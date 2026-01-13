@@ -1,0 +1,6 @@
+export enum JobTier {
+  BASIC = 'BASIC',
+  STANDARD = 'STANDARD',
+  PREMIUM = 'PREMIUM',
+  EXCLUSIVE = 'EXCLUSIVE',
+}

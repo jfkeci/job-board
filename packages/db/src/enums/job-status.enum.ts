@@ -1,0 +1,7 @@
+export enum JobStatus {
+  DRAFT = 'DRAFT',
+  PENDING_PAYMENT = 'PENDING_PAYMENT',
+  ACTIVE = 'ACTIVE',
+  EXPIRED = 'EXPIRED',
+  CLOSED = 'CLOSED',
+}
