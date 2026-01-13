@@ -42,6 +42,41 @@ export {
   type RequestLogData,
 } from './logger';
 
+// Exceptions exports
+export {
+  // Module
+  ExceptionsModule,
+  // Exception class and factory
+  ApiException,
+  ApiExceptions,
+  // Exception codes
+  ExceptionCode,
+  // Constants
+  DEFAULT_LANGUAGE,
+  SUPPORTED_LANGUAGES,
+  EXCEPTIONS_MODULE_OPTIONS,
+  // Services
+  ExceptionI18nService,
+  // Filters
+  HttpExceptionFilter,
+  createValidationExceptionFactory,
+  flattenValidationErrors,
+  validationErrorsToDetails,
+  mapConstraintToCode,
+  // i18n (for customization)
+  exceptionMessages,
+  validationMessages,
+  fieldNameTranslations,
+  // Types
+  type ExceptionsModuleAsyncOptions,
+  type ErrorType,
+  type SupportedLanguage,
+  type ErrorDetail,
+  type ApiErrorResponse,
+  type ExceptionsModuleOptions,
+  type ValidationExceptionFactory,
+} from './exceptions';
+
 // Utility functions
 export function generateId(): string {
   return crypto.randomUUID();
