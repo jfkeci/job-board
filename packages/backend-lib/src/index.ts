@@ -1,6 +1,47 @@
 // Re-export types for convenience
 export * from '@borg/types';
 
+// Logger exports
+export {
+  // Core logger
+  LoggerService,
+  LoggerModule,
+  LoggerMiddleware,
+  LoggingInterceptor,
+  LOGGER_MODULE_OPTIONS,
+  // PII Redaction
+  redactObject,
+  redactString,
+  maskValue,
+  maskEmail,
+  maskPhone,
+  maskIP,
+  createRedactor,
+  DEFAULT_SENSITIVE_FIELDS,
+  DEFAULT_PII_FIELDS,
+  // Correlation
+  CorrelationContext,
+  generateCorrelationId,
+  generateRequestId,
+  getCorrelationId,
+  getTenantId,
+  CORRELATION_ID_HEADER,
+  TENANT_ID_HEADER,
+  // Log formatting
+  formatLog,
+  formatLogJson,
+  formatLogPretty,
+  createStructuredLog,
+  sanitizeError,
+  // Types
+  type LoggerOptions,
+  type LoggerModuleAsyncOptions,
+  type RedactorConfig,
+  type StructuredLog,
+  type LoggerModuleOptions,
+  type RequestLogData,
+} from './logger';
+
 // Utility functions
 export function generateId(): string {
   return crypto.randomUUID();
