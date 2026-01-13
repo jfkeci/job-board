@@ -1,0 +1,4 @@
+# Environment files (except example)
+src/env/.env
+src/env/.env.*
+!src/env/.env.example
