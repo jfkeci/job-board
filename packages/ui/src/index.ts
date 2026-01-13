@@ -88,6 +88,7 @@ export {
   VStack,
   Grid,
   GridItem,
+  SimpleGrid,
   Container,
   Center,
   Spacer,
@@ -103,6 +104,11 @@ export {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  Switch,
 
   // Feedback
   Spinner,
@@ -144,6 +150,11 @@ export {
   Tag,
   TagLabel,
   TagCloseButton,
+  List,
+  ListItem,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
 
   // Navigation
   Tabs,

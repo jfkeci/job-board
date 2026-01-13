@@ -14,9 +14,16 @@
   },
   "dependencies": {
     "@borg/types": "workspace:*",
+    "@borg/ui": "workspace:*",
+    "@chakra-ui/next-js": "^2.4.2",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "framer-motion": "^11.15.0",
     "next": "^15.1.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0"
   },
   "devDependencies": {
     "@borg/eslint-config-frontend": "workspace:*",
