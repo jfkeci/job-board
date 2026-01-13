@@ -1,19 +1,38 @@
-export { Tenant } from './tenant.entity';
-export { User } from './user.entity';
-export { UserProfile } from './user-profile.entity';
-export { Session } from './session.entity';
-export { RefreshToken } from './refresh-token.entity';
-export { Organization } from './organization.entity';
-export { Job } from './job.entity';
-export { Application } from './application.entity';
-export { SavedJob } from './saved-job.entity';
-export { JobView } from './job-view.entity';
-export { Category } from './category.entity';
-export { CategoryTranslation } from './category-translation.entity';
-export { Location } from './location.entity';
-export { Payment } from './payment.entity';
-export { CvCredit } from './cv-credit.entity';
-export { File } from './file.entity';
+import { Tenant } from './tenant.entity';
+import { User } from './user.entity';
+import { UserProfile } from './user-profile.entity';
+import { Session } from './session.entity';
+import { RefreshToken } from './refresh-token.entity';
+import { Organization } from './organization.entity';
+import { Job } from './job.entity';
+import { Application } from './application.entity';
+import { SavedJob } from './saved-job.entity';
+import { JobView } from './job-view.entity';
+import { Category } from './category.entity';
+import { CategoryTranslation } from './category-translation.entity';
+import { Location } from './location.entity';
+import { Payment } from './payment.entity';
+import { CvCredit } from './cv-credit.entity';
+import { File } from './file.entity';
+
+export {
+  Tenant,
+  User,
+  UserProfile,
+  Session,
+  RefreshToken,
+  Organization,
+  Job,
+  Application,
+  SavedJob,
+  JobView,
+  Category,
+  CategoryTranslation,
+  Location,
+  Payment,
+  CvCredit,
+  File,
+};
 
 // All entities array for TypeORM configuration
 export const entities = [

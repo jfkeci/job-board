@@ -41,115 +41,51 @@ import {
 export class DatabaseService {
   constructor(
     @InjectRepository(Tenant)
-    private readonly tenantRepo: Repository<Tenant>,
+    public readonly tenants: Repository<Tenant>,
 
     @InjectRepository(User)
-    private readonly userRepo: Repository<User>,
+    public readonly users: Repository<User>,
 
     @InjectRepository(UserProfile)
-    private readonly userProfileRepo: Repository<UserProfile>,
+    public readonly userProfiles: Repository<UserProfile>,
 
     @InjectRepository(Session)
-    private readonly sessionRepo: Repository<Session>,
+    public readonly sessions: Repository<Session>,
 
     @InjectRepository(RefreshToken)
-    private readonly refreshTokenRepo: Repository<RefreshToken>,
+    public readonly refreshTokens: Repository<RefreshToken>,
 
     @InjectRepository(Organization)
-    private readonly organizationRepo: Repository<Organization>,
+    public readonly organizations: Repository<Organization>,
 
     @InjectRepository(Job)
-    private readonly jobRepo: Repository<Job>,
+    public readonly jobs: Repository<Job>,
 
     @InjectRepository(Application)
-    private readonly applicationRepo: Repository<Application>,
+    public readonly applications: Repository<Application>,
 
     @InjectRepository(SavedJob)
-    private readonly savedJobRepo: Repository<SavedJob>,
+    public readonly savedJobs: Repository<SavedJob>,
 
     @InjectRepository(JobView)
-    private readonly jobViewRepo: Repository<JobView>,
+    public readonly jobViews: Repository<JobView>,
 
     @InjectRepository(Category)
-    private readonly categoryRepo: Repository<Category>,
+    public readonly categories: Repository<Category>,
 
     @InjectRepository(CategoryTranslation)
-    private readonly categoryTranslationRepo: Repository<CategoryTranslation>,
+    public readonly categoryTranslations: Repository<CategoryTranslation>,
 
     @InjectRepository(Location)
-    private readonly locationRepo: Repository<Location>,
+    public readonly locations: Repository<Location>,
 
     @InjectRepository(Payment)
-    private readonly paymentRepo: Repository<Payment>,
+    public readonly payments: Repository<Payment>,
 
     @InjectRepository(CvCredit)
-    private readonly cvCreditRepo: Repository<CvCredit>,
+    public readonly cvCredits: Repository<CvCredit>,
 
     @InjectRepository(File)
-    private readonly fileRepo: Repository<File>,
+    public readonly files: Repository<File>,
   ) {}
-
-  get tenants(): Repository<Tenant> {
-    return this.tenantRepo;
-  }
-
-  get users(): Repository<User> {
-    return this.userRepo;
-  }
-
-  get userProfiles(): Repository<UserProfile> {
-    return this.userProfileRepo;
-  }
-
-  get sessions(): Repository<Session> {
-    return this.sessionRepo;
-  }
-
-  get refreshTokens(): Repository<RefreshToken> {
-    return this.refreshTokenRepo;
-  }
-
-  get organizations(): Repository<Organization> {
-    return this.organizationRepo;
-  }
-
-  get jobs(): Repository<Job> {
-    return this.jobRepo;
-  }
-
-  get applications(): Repository<Application> {
-    return this.applicationRepo;
-  }
-
-  get savedJobs(): Repository<SavedJob> {
-    return this.savedJobRepo;
-  }
-
-  get jobViews(): Repository<JobView> {
-    return this.jobViewRepo;
-  }
-
-  get categories(): Repository<Category> {
-    return this.categoryRepo;
-  }
-
-  get categoryTranslations(): Repository<CategoryTranslation> {
-    return this.categoryTranslationRepo;
-  }
-
-  get locations(): Repository<Location> {
-    return this.locationRepo;
-  }
-
-  get payments(): Repository<Payment> {
-    return this.paymentRepo;
-  }
-
-  get cvCredits(): Repository<CvCredit> {
-    return this.cvCreditRepo;
-  }
-
-  get files(): Repository<File> {
-    return this.fileRepo;
-  }
 }
