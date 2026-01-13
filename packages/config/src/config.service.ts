@@ -20,21 +20,47 @@ export class ConfigService {
   }
 
   /**
-   * Load environment files from the package's env directory
+   * Load environment files from the project root
+   * Searches up from cwd() to find monorepo root (contains pnpm-workspace.yaml)
    */
   private loadEnvFiles(): void {
-    const envDir = path.resolve(__dirname, 'env');
+    const rootDir = this.findMonorepoRoot() || process.cwd();
 
-    const baseEnvPath = path.join(envDir, '.env');
+    // Load base .env file
+    const baseEnvPath = path.join(rootDir, '.env');
     if (fs.existsSync(baseEnvPath)) {
       dotenvConfig({ path: baseEnvPath });
     }
 
+    // Load environment-specific .env file (e.g., .env.development)
     const nodeEnv = process.env.NODE_ENV || 'development';
-    const envSpecificPath = path.join(envDir, `.env.${nodeEnv}`);
+    const envSpecificPath = path.join(rootDir, `.env.${nodeEnv}`);
     if (fs.existsSync(envSpecificPath)) {
       dotenvConfig({ path: envSpecificPath, override: true });
     }
+
+    // Also check .env.local for local overrides (git-ignored)
+    const localEnvPath = path.join(rootDir, '.env.local');
+    if (fs.existsSync(localEnvPath)) {
+      dotenvConfig({ path: localEnvPath, override: true });
+    }
+  }
+
+  /**
+   * Find the monorepo root by looking for pnpm-workspace.yaml
+   */
+  private findMonorepoRoot(): string | null {
+    let dir = process.cwd();
+    const root = path.parse(dir).root;
+
+    while (dir !== root) {
+      if (fs.existsSync(path.join(dir, 'pnpm-workspace.yaml'))) {
+        return dir;
+      }
+      dir = path.dirname(dir);
+    }
+
+    return null;
   }
 
   /**
