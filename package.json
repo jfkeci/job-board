@@ -1,6 +1,12 @@
 {
   "name": "borg-clone",
   "private": true,
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.0.2",
+      "@types/react-dom": "^19.0.2"
+    }
+  },
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",

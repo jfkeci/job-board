@@ -4,3 +4,5 @@
 
 refine a comprehensive prompt form this 
 
+need a robust, gdpr compliant logger middleware for my backend projects
+make it inside backend libs package

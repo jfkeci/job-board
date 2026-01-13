@@ -2,5 +2,5 @@
 - docs/prompts/template-prompt.md
 - docs/prompts/00-prompt-header-reference.md
 
-refine a comprehensive prompt form this 
+refine a prompt form this 
 
