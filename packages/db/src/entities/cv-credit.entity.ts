@@ -12,16 +12,16 @@ export class CvCredit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'organization_id' })
+  @Column({ type: 'uuid', name: 'organization_id' })
   organizationId: string;
 
-  @Column({ name: 'job_id' })
+  @Column({ type: 'uuid', name: 'job_id' })
   jobId: string;
 
-  @Column()
+  @Column({ type: 'int' })
   total: number;
 
-  @Column({ default: 0 })
+  @Column({ type: 'int', default: 0 })
   used: number;
 
   @CreateDateColumn({ name: 'created_at' })

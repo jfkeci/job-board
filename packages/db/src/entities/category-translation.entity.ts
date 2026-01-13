@@ -11,13 +11,13 @@ export class CategoryTranslation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'category_id' })
+  @Column({ type: 'uuid', name: 'category_id' })
   categoryId: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   language: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
   // Relations

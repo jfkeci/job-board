@@ -14,22 +14,22 @@ export class UserProfile {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'user_id', unique: true })
+  @Column({ type: 'uuid', name: 'user_id', unique: true })
   userId: string;
 
-  @Column({ name: 'first_name' })
+  @Column({ type: 'varchar', name: 'first_name' })
   firstName: string;
 
-  @Column({ name: 'last_name' })
+  @Column({ type: 'varchar', name: 'last_name' })
   lastName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   phone: string | null;
 
-  @Column({ name: 'cv_file_id', nullable: true })
+  @Column({ type: 'uuid', name: 'cv_file_id', nullable: true })
   cvFileId: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   headline: string | null;
 
   @Column({ type: 'text', nullable: true })

@@ -16,19 +16,19 @@ export class Location {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'tenant_id' })
+  @Column({ type: 'uuid', name: 'tenant_id' })
   tenantId: string;
 
-  @Column({ name: 'parent_id', nullable: true })
+  @Column({ type: 'uuid', name: 'parent_id', nullable: true })
   parentId: string | null;
 
   @Column({ type: 'enum', enum: LocationType })
   type: LocationType;
 
-  @Column()
+  @Column({ type: 'varchar' })
   slug: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
   @CreateDateColumn({ name: 'created_at' })

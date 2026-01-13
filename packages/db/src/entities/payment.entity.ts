@@ -16,16 +16,16 @@ export class Payment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'organization_id' })
+  @Column({ type: 'uuid', name: 'organization_id' })
   organizationId: string;
 
-  @Column({ name: 'job_id', unique: true })
+  @Column({ type: 'uuid', name: 'job_id', unique: true })
   jobId: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
   currency: string;
 
   @Column({ type: 'enum', enum: JobTier })
@@ -37,13 +37,13 @@ export class Payment {
   @Column({ type: 'enum', enum: PaymentStatus, default: PaymentStatus.PENDING })
   status: PaymentStatus;
 
-  @Column({ name: 'provider_ref', nullable: true })
+  @Column({ type: 'varchar', name: 'provider_ref', nullable: true })
   providerRef: string | null;
 
-  @Column({ name: 'invoice_number', unique: true, nullable: true })
+  @Column({ type: 'varchar', name: 'invoice_number', unique: true, nullable: true })
   invoiceNumber: string | null;
 
-  @Column({ name: 'paid_at', nullable: true })
+  @Column({ type: 'timestamp', name: 'paid_at', nullable: true })
   paidAt: Date | null;
 
   @CreateDateColumn({ name: 'created_at' })

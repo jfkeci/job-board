@@ -17,25 +17,25 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'tenant_id' })
+  @Column({ type: 'uuid', name: 'tenant_id' })
   tenantId: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   email: string;
 
-  @Column({ name: 'password_hash', nullable: true })
+  @Column({ type: 'varchar', name: 'password_hash', nullable: true })
   passwordHash: string | null;
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role: UserRole;
 
-  @Column({ name: 'email_verified', default: false })
+  @Column({ type: 'boolean', name: 'email_verified', default: false })
   emailVerified: boolean;
 
-  @Column({ default: 'en' })
+  @Column({ type: 'varchar', default: 'en' })
   language: string;
 
-  @Column({ name: 'organization_id', nullable: true })
+  @Column({ type: 'uuid', name: 'organization_id', nullable: true })
   organizationId: string | null;
 
   @CreateDateColumn({ name: 'created_at' })

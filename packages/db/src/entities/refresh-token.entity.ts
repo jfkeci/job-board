@@ -12,13 +12,13 @@ export class RefreshToken {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'session_id', unique: true })
+  @Column({ type: 'uuid', name: 'session_id', unique: true })
   sessionId: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   token: string;
 
-  @Column({ name: 'expires_at' })
+  @Column({ type: 'timestamp', name: 'expires_at' })
   expiresAt: Date;
 
   @CreateDateColumn({ name: 'created_at' })

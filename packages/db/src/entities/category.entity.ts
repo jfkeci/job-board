@@ -14,13 +14,13 @@ export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'tenant_id', nullable: true })
+  @Column({ type: 'uuid', name: 'tenant_id', nullable: true })
   tenantId: string | null;
 
-  @Column({ name: 'parent_id', nullable: true })
+  @Column({ type: 'uuid', name: 'parent_id', nullable: true })
   parentId: string | null;
 
-  @Column()
+  @Column({ type: 'varchar' })
   slug: string;
 
   @CreateDateColumn({ name: 'created_at' })

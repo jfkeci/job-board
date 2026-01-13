@@ -16,31 +16,31 @@ export class Organization {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'tenant_id' })
+  @Column({ type: 'uuid', name: 'tenant_id' })
   tenantId: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   slug: string;
 
   @Column({ type: 'text', nullable: true })
   description: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   website: string | null;
 
-  @Column({ name: 'logo_file_id', nullable: true })
+  @Column({ type: 'uuid', name: 'logo_file_id', nullable: true })
   logoFileId: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   industry: string | null;
 
   @Column({ type: 'enum', enum: OrganizationSize, nullable: true })
   size: OrganizationSize | null;
 
-  @Column({ name: 'is_verified', default: false })
+  @Column({ type: 'boolean', name: 'is_verified', default: false })
   isVerified: boolean;
 
   @CreateDateColumn({ name: 'created_at' })

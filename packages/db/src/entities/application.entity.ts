@@ -15,34 +15,34 @@ export class Application {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'job_id' })
+  @Column({ type: 'uuid', name: 'job_id' })
   jobId: string;
 
-  @Column({ name: 'user_id', nullable: true })
+  @Column({ type: 'uuid', name: 'user_id', nullable: true })
   userId: string | null;
 
-  @Column()
+  @Column({ type: 'varchar' })
   email: string;
 
-  @Column({ name: 'first_name' })
+  @Column({ type: 'varchar', name: 'first_name' })
   firstName: string;
 
-  @Column({ name: 'last_name' })
+  @Column({ type: 'varchar', name: 'last_name' })
   lastName: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   phone: string | null;
 
   @Column({ name: 'cover_letter', type: 'text', nullable: true })
   coverLetter: string | null;
 
-  @Column({ name: 'cv_file_id', nullable: true })
+  @Column({ type: 'uuid', name: 'cv_file_id', nullable: true })
   cvFileId: string | null;
 
-  @Column({ name: 'linkedin_url', nullable: true })
+  @Column({ type: 'varchar', name: 'linkedin_url', nullable: true })
   linkedinUrl: string | null;
 
-  @Column({ name: 'portfolio_url', nullable: true })
+  @Column({ type: 'varchar', name: 'portfolio_url', nullable: true })
   portfolioUrl: string | null;
 
   @Column({ type: 'enum', enum: ApplicationStatus, default: ApplicationStatus.PENDING })
@@ -51,7 +51,7 @@ export class Application {
   @Column({ type: 'text', nullable: true })
   notes: string | null;
 
-  @Column({ name: 'tracking_token', unique: true })
+  @Column({ type: 'varchar', name: 'tracking_token', unique: true })
   trackingToken: string;
 
   @CreateDateColumn({ name: 'created_at' })

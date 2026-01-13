@@ -10,16 +10,16 @@ export class File {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   filename: string;
 
-  @Column({ name: 'mime_type' })
+  @Column({ type: 'varchar', name: 'mime_type' })
   mimeType: string;
 
-  @Column()
+  @Column({ type: 'int' })
   size: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
   path: string;
 
   @CreateDateColumn({ name: 'created_at' })

@@ -25,16 +25,16 @@ export class Job {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'tenant_id' })
+  @Column({ type: 'uuid', name: 'tenant_id' })
   tenantId: string;
 
-  @Column({ name: 'organization_id' })
+  @Column({ type: 'uuid', name: 'organization_id' })
   organizationId: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   title: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   slug: string;
 
   @Column({ type: 'text' })
@@ -46,10 +46,10 @@ export class Job {
   @Column({ type: 'text', nullable: true })
   benefits: string | null;
 
-  @Column({ name: 'category_id' })
+  @Column({ type: 'uuid', name: 'category_id' })
   categoryId: string;
 
-  @Column({ name: 'location_id', nullable: true })
+  @Column({ type: 'uuid', name: 'location_id', nullable: true })
   locationId: string | null;
 
   @Column({ name: 'employment_type', type: 'enum', enum: EmploymentType })
@@ -61,13 +61,13 @@ export class Job {
   @Column({ name: 'experience_level', type: 'enum', enum: ExperienceLevel, nullable: true })
   experienceLevel: ExperienceLevel | null;
 
-  @Column({ name: 'salary_min', nullable: true })
+  @Column({ type: 'int', name: 'salary_min', nullable: true })
   salaryMin: number | null;
 
-  @Column({ name: 'salary_max', nullable: true })
+  @Column({ type: 'int', name: 'salary_max', nullable: true })
   salaryMax: number | null;
 
-  @Column({ name: 'salary_currency', default: 'EUR' })
+  @Column({ type: 'varchar', name: 'salary_currency', default: 'EUR' })
   salaryCurrency: string;
 
   @Column({ name: 'salary_period', type: 'enum', enum: SalaryPeriod, default: SalaryPeriod.MONTHLY })
@@ -82,13 +82,13 @@ export class Job {
   @Column({ type: 'enum', enum: JobStatus, default: JobStatus.DRAFT })
   status: JobStatus;
 
-  @Column({ name: 'published_at', nullable: true })
+  @Column({ type: 'timestamp', name: 'published_at', nullable: true })
   publishedAt: Date | null;
 
-  @Column({ name: 'expires_at', nullable: true })
+  @Column({ type: 'timestamp', name: 'expires_at', nullable: true })
   expiresAt: Date | null;
 
-  @Column({ name: 'view_count', default: 0 })
+  @Column({ type: 'int', name: 'view_count', default: 0 })
   viewCount: number;
 
   @CreateDateColumn({ name: 'created_at' })

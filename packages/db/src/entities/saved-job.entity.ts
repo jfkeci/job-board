@@ -12,10 +12,10 @@ export class SavedJob {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'user_id' })
+  @Column({ type: 'uuid', name: 'user_id' })
   userId: string;
 
-  @Column({ name: 'job_id' })
+  @Column({ type: 'uuid', name: 'job_id' })
   jobId: string;
 
   @CreateDateColumn({ name: 'created_at' })

@@ -13,22 +13,22 @@ export class Session {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'user_id' })
+  @Column({ type: 'uuid', name: 'user_id' })
   userId: string;
 
-  @Column({ name: 'user_agent', nullable: true })
+  @Column({ type: 'varchar', name: 'user_agent', nullable: true })
   userAgent: string | null;
 
-  @Column({ name: 'ip_address', nullable: true })
+  @Column({ type: 'varchar', name: 'ip_address', nullable: true })
   ipAddress: string | null;
 
-  @Column({ name: 'device_type', nullable: true })
+  @Column({ type: 'varchar', name: 'device_type', nullable: true })
   deviceType: string | null;
 
-  @Column({ name: 'last_activity_at' })
+  @Column({ type: 'timestamp', name: 'last_activity_at' })
   lastActivityAt: Date;
 
-  @Column({ name: 'expires_at' })
+  @Column({ type: 'timestamp', name: 'expires_at' })
   expiresAt: Date;
 
   @CreateDateColumn({ name: 'created_at' })

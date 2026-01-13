@@ -11,13 +11,13 @@ export class JobView {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'user_id' })
+  @Column({ type: 'uuid', name: 'user_id' })
   userId: string;
 
-  @Column({ name: 'job_id' })
+  @Column({ type: 'uuid', name: 'job_id' })
   jobId: string;
 
-  @Column({ name: 'viewed_at' })
+  @Column({ type: 'timestamp', name: 'viewed_at' })
   viewedAt: Date;
 
   // Relations

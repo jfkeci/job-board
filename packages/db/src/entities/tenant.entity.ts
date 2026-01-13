@@ -12,28 +12,28 @@ export class Tenant {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   code: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', unique: true })
   domain: string;
 
-  @Column({ name: 'default_language' })
+  @Column({ type: 'varchar', name: 'default_language' })
   defaultLanguage: string;
 
   @Column('simple-array', { name: 'supported_languages' })
   supportedLanguages: string[];
 
-  @Column()
+  @Column({ type: 'varchar' })
   currency: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   timezone: string;
 
-  @Column({ name: 'is_active', default: true })
+  @Column({ type: 'boolean', name: 'is_active', default: true })
   isActive: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
