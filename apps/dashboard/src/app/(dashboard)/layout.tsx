@@ -1,14 +1,44 @@
 'use client';
 
-import { Box, Flex } from '@borg/ui';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { Box, Flex, Center, Spinner } from '@borg/ui';
 
 import { Header, Sidebar } from '@/components/layout';
+import { useAuthStore } from '@/store/auth.store';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+  const router = useRouter();
+  const { isAuthenticated, isHydrated } = useAuthStore();
+
+  useEffect(() => {
+    if (isHydrated && !isAuthenticated) {
+      router.push('/login');
+    }
+  }, [isHydrated, isAuthenticated, router]);
+
+  // Show loading while checking auth
+  if (!isHydrated) {
+    return (
+      <Center minH="100vh" bg="neutral.50" _dark={{ bg: 'neutral.950' }}>
+        <Spinner size="xl" color="primary.500" />
+      </Center>
+    );
+  }
+
+  // Don't render dashboard if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return (
+      <Center minH="100vh" bg="neutral.50" _dark={{ bg: 'neutral.950' }}>
+        <Spinner size="xl" color="primary.500" />
+      </Center>
+    );
+  }
+
   return (
     <Box minH="100vh" bg="neutral.50" _dark={{ bg: 'neutral.950' }}>
       {/* Header */}

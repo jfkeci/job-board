@@ -27,15 +27,27 @@ const DEFAULT_TENANT_ID =
   process.env.NEXT_PUBLIC_DEFAULT_TENANT_ID ||
   '00000000-0000-0000-0000-000000000001';
 
-export default function LoginPage() {
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  terms?: string;
+}
+
+export default function SignupPage() {
   const router = useRouter();
-  const { login, isLoading, error, clearError, isAuthenticated, isHydrated } =
+  const { register, isLoading, error, clearError, isAuthenticated, isHydrated } =
     useAuthStore();
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -50,24 +62,40 @@ export default function LoginPage() {
   }, [clearError]);
 
   const validateForm = (): boolean => {
-    let isValid = true;
-    setEmailError('');
-    setPasswordError('');
+    const newErrors: FormErrors = {};
+
+    if (!firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+
+    if (!lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
 
     if (!email) {
-      setEmailError('Email is required');
-      isValid = false;
+      newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setEmailError('Please enter a valid email address');
-      isValid = false;
+      newErrors.email = 'Please enter a valid email address';
     }
 
     if (!password) {
-      setPasswordError('Password is required');
-      isValid = false;
+      newErrors.password = 'Password is required';
+    } else if (password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters';
     }
 
-    return isValid;
+    if (!confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    if (!acceptTerms) {
+      newErrors.terms = 'You must accept the terms and conditions';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -77,7 +105,9 @@ export default function LoginPage() {
     if (!validateForm()) return;
 
     try {
-      await login({
+      await register({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
         email,
         password,
         tenantId: DEFAULT_TENANT_ID,
@@ -112,7 +142,7 @@ export default function LoginPage() {
 
       <Container maxW="md" position="relative">
         <GlassCard p={{ base: 8, md: 10 }}>
-          <VStack spacing={8}>
+          <VStack spacing={6}>
             {/* Header */}
             <VStack spacing={2} textAlign="center">
               <Link href="/">
@@ -134,10 +164,10 @@ export default function LoginPage() {
                 </HStack>
               </Link>
               <Heading as="h1" size="lg">
-                Welcome back
+                Create your account
               </Heading>
               <Text color="neutral.600" _dark={{ color: 'neutral.400' }}>
-                Sign in to your account to continue
+                Start hiring top talent today
               </Text>
             </VStack>
 
@@ -149,9 +179,31 @@ export default function LoginPage() {
               </Alert>
             )}
 
-            {/* Login Form */}
+            {/* Signup Form */}
             <VStack as="form" spacing={4} w="full" onSubmit={handleSubmit}>
-              <FormControl isInvalid={!!emailError}>
+              <HStack w="full" spacing={4}>
+                <FormControl isInvalid={!!errors.firstName}>
+                  <FormLabel>First name</FormLabel>
+                  <GlassInput
+                    placeholder="John"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <FormErrorMessage>{errors.firstName}</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={!!errors.lastName}>
+                  <FormLabel>Last name</FormLabel>
+                  <GlassInput
+                    placeholder="Doe"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                  <FormErrorMessage>{errors.lastName}</FormErrorMessage>
+                </FormControl>
+              </HStack>
+
+              <FormControl isInvalid={!!errors.email}>
                 <FormLabel>Email</FormLabel>
                 <GlassInput
                   type="email"
@@ -159,57 +211,73 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <FormErrorMessage>{emailError}</FormErrorMessage>
+                <FormErrorMessage>{errors.email}</FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={!!passwordError}>
+              <FormControl isInvalid={!!errors.password}>
                 <FormLabel>Password</FormLabel>
                 <GlassInput
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="Minimum 8 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <FormErrorMessage>{passwordError}</FormErrorMessage>
+                <FormErrorMessage>{errors.password}</FormErrorMessage>
               </FormControl>
 
-              <HStack w="full" justify="space-between">
-                <Checkbox colorScheme="primary">
-                  <Text fontSize="sm">Remember me</Text>
-                </Checkbox>
-                <Link href="/forgot-password">
-                  <Text
-                    fontSize="sm"
-                    color="primary.500"
-                    _hover={{ textDecoration: 'underline' }}
-                  >
-                    Forgot password?
+              <FormControl isInvalid={!!errors.confirmPassword}>
+                <FormLabel>Confirm password</FormLabel>
+                <GlassInput
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <FormErrorMessage>{errors.confirmPassword}</FormErrorMessage>
+              </FormControl>
+
+              <FormControl isInvalid={!!errors.terms}>
+                <Checkbox
+                  colorScheme="primary"
+                  isChecked={acceptTerms}
+                  onChange={(e) => setAcceptTerms(e.target.checked)}
+                >
+                  <Text fontSize="sm">
+                    I agree to the{' '}
+                    <Text as="span" color="primary.500">
+                      Terms of Service
+                    </Text>{' '}
+                    and{' '}
+                    <Text as="span" color="primary.500">
+                      Privacy Policy
+                    </Text>
                   </Text>
-                </Link>
-              </HStack>
+                </Checkbox>
+                <FormErrorMessage>{errors.terms}</FormErrorMessage>
+              </FormControl>
 
               <GlassButton
                 w="full"
                 size="lg"
                 type="submit"
                 isLoading={isLoading}
-                loadingText="Signing in..."
+                loadingText="Creating account..."
               >
-                Sign In
+                Create Account
               </GlassButton>
             </VStack>
 
-            {/* Sign Up Link */}
+            {/* Sign In Link */}
             <Text color="neutral.600" _dark={{ color: 'neutral.400' }}>
-              Don&apos;t have an account?{' '}
-              <Link href="/signup">
+              Already have an account?{' '}
+              <Link href="/login">
                 <Text
                   as="span"
                   color="primary.500"
                   fontWeight="medium"
                   _hover={{ textDecoration: 'underline' }}
                 >
-                  Sign up
+                  Sign in
                 </Text>
               </Link>
             </Text>

@@ -86,6 +86,11 @@ export function Header({ onMobileMenuToggle, showMenuButton = false }: HeaderPro
               Pricing
             </GlassButton>
           </Link>
+          <Link href="/login">
+            <GlassButton variant="ghost" size="sm">
+              Login
+            </GlassButton>
+          </Link>
           <Link href="/dashboard/overview">
             <GlassButton variant="ghost" size="sm">
               Dashboard

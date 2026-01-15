@@ -3,9 +3,9 @@ title: Auth Controller Swagger Documentation and HTTP Exceptions
 id: 12-auth-swagger-documentation
 created: 2026-01-15
 updated: 2026-01-15
-status: ready
-executed_date:
-execution_result: pending
+status: executed
+executed_date: 2026-01-15
+execution_result: success
 deprecated: false
 deprecated_reason:
 target: backend
