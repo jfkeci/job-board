@@ -13,6 +13,7 @@
     "dev:api": "turbo dev --filter=@borg/api",
     "dev:web": "turbo dev --filter=@borg/web",
     "dev:dashboard": "turbo dev --filter=@borg/dashboard",
+    "cli": "pnpm --filter=@borg/api cli",
     "lint": "turbo lint",
     "format": "turbo format",
     "format:check": "turbo format:check",

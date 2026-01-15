@@ -75,10 +75,12 @@ export const useAuthStore = create<AuthState>()(
             error: null,
           });
         } catch (err) {
+          console.log('Register error caught:', err);
           const message =
             err instanceof ApiClientError
               ? err.message
               : 'An unexpected error occurred';
+          console.log('Setting error message:', message);
           set({ isLoading: false, error: message });
           throw err;
         }

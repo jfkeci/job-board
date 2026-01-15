@@ -5,6 +5,7 @@ import { ExceptionI18nService } from './services/exception-i18n.service';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { EXCEPTIONS_MODULE_OPTIONS } from './types';
 import type { ExceptionsModuleOptions } from './types';
+import { LoggerService } from '../logger/logger.service';
 
 export interface ExceptionsModuleAsyncOptions {
   imports?: Type<unknown>[];
@@ -32,7 +33,16 @@ export class ExceptionsModule {
         ExceptionI18nService,
         {
           provide: APP_FILTER,
-          useClass: HttpExceptionFilter,
+          useFactory: (
+            i18nService: ExceptionI18nService,
+            moduleOptions: ExceptionsModuleOptions,
+            logger?: LoggerService,
+          ) => new HttpExceptionFilter(i18nService, moduleOptions, logger),
+          inject: [
+            ExceptionI18nService,
+            EXCEPTIONS_MODULE_OPTIONS,
+            { token: LoggerService, optional: true },
+          ],
         },
       ],
       exports: [ExceptionI18nService, EXCEPTIONS_MODULE_OPTIONS],
@@ -51,7 +61,16 @@ export class ExceptionsModule {
         ExceptionI18nService,
         {
           provide: APP_FILTER,
-          useClass: HttpExceptionFilter,
+          useFactory: (
+            i18nService: ExceptionI18nService,
+            moduleOptions: ExceptionsModuleOptions,
+            logger?: LoggerService,
+          ) => new HttpExceptionFilter(i18nService, moduleOptions, logger),
+          inject: [
+            ExceptionI18nService,
+            EXCEPTIONS_MODULE_OPTIONS,
+            { token: LoggerService, optional: true },
+          ],
         },
       ],
       exports: [ExceptionI18nService, EXCEPTIONS_MODULE_OPTIONS],

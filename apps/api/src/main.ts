@@ -94,7 +94,7 @@ async function bootstrap() {
   app.enableShutdownHooks();
 
   // Start server
-  await app.listen(3001);
+  await app.listen(port);
 
   // Log startup information
   logger.log(`Environment: ${configService.nodeEnv}`, 'Bootstrap');

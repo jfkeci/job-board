@@ -63,6 +63,7 @@ export async function apiClient<T>(
 
   if (!response.ok) {
     const errorData = (await response.json()) as ApiErrorResponse;
+    console.log('API Error Response:', errorData);
     throw new ApiClientError(
       errorData.error || {
         code: 'UNKNOWN_ERROR',

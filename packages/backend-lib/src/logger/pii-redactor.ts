@@ -186,7 +186,7 @@ export function redactString(value: string, config?: Partial<RedactorConfig>): s
 
   const mergedConfig = { ...DEFAULT_CONFIG, ...config };
 
-  for (const pattern of mergedConfig.sensitivePatterns) {
+  for (const pattern of mergedConfig.sensitivePatterns ?? []) {
     if (pattern.test(value)) {
       return REDACTED_VALUE;
     }
@@ -214,10 +214,13 @@ export function redactObject<T>(obj: T, config?: Partial<RedactorConfig>, seen =
 
   const mergedConfig = { ...DEFAULT_CONFIG, ...config };
   const allSensitiveFields = [
-    ...mergedConfig.sensitiveFields,
+    ...(mergedConfig.sensitiveFields ?? DEFAULT_CONFIG.sensitiveFields),
     ...(config?.sensitiveFields || []),
   ];
-  const allPiiFields = [...mergedConfig.piiFields, ...(config?.piiFields || [])];
+  const allPiiFields = [
+    ...(mergedConfig.piiFields ?? DEFAULT_CONFIG.piiFields),
+    ...(config?.piiFields || []),
+  ];
 
   if (Array.isArray(obj)) {
     return obj.map((item) => redactObject(item, config, seen)) as T;
