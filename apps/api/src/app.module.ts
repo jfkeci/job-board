@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth';
 import { HealthModule } from './health/health.module';
+import { JobsModule } from './jobs/jobs.module';
 import { OrganizationsModule } from './organizations/organizations.module';
 
 @Module({
@@ -51,6 +52,9 @@ import { OrganizationsModule } from './organizations/organizations.module';
 
     // Organizations module
     OrganizationsModule,
+
+    // Jobs module
+    JobsModule,
 
     // Health check endpoint
     HealthModule,
