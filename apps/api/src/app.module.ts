@@ -7,6 +7,7 @@ import { DatabaseModule, entities } from '@borg/db';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth';
 import { HealthModule } from './health/health.module';
 
 @Module({
@@ -43,6 +44,9 @@ import { HealthModule } from './health/health.module';
 
     // Database service facade
     DatabaseModule.forRoot(),
+
+    // Authentication module
+    AuthModule,
 
     // Health check endpoint
     HealthModule,

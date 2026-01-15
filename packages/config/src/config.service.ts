@@ -120,4 +120,21 @@ export class ConfigService {
       entities,
     };
   }
+
+  // JWT Configuration
+  get jwtSecret(): string {
+    return this.config.JWT_SECRET;
+  }
+
+  get jwtAccessTokenExpiry(): string {
+    return this.config.JWT_ACCESS_TOKEN_EXPIRY;
+  }
+
+  get jwtRefreshTokenExpiry(): string {
+    return this.config.JWT_REFRESH_TOKEN_EXPIRY;
+  }
+
+  get sessionExpiry(): string {
+    return this.config.SESSION_EXPIRY;
+  }
 }

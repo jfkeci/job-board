@@ -26,6 +26,12 @@ export const envSchema = z.object({
     .string()
     .transform((val) => val === 'true')
     .default('false'),
+
+  // JWT Configuration
+  JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
+  JWT_ACCESS_TOKEN_EXPIRY: z.string().default('15m'),
+  JWT_REFRESH_TOKEN_EXPIRY: z.string().default('7d'),
+  SESSION_EXPIRY: z.string().default('30d'),
 });
 
 /**

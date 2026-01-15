@@ -33,6 +33,7 @@ export class DatabaseModule {
   static forRoot(): DynamicModule {
     return {
       module: DatabaseModule,
+      global: true, // Make DatabaseService available globally
       imports: [TypeOrmModule.forFeature(entities)],
       providers: [DatabaseService],
       exports: [DatabaseService, TypeOrmModule],

@@ -16,6 +16,12 @@ export interface EnvConfig {
   DB_DATABASE: string;
   DB_SYNCHRONIZE: boolean;
   DB_LOGGING: boolean;
+
+  // JWT Configuration
+  JWT_SECRET: string;
+  JWT_ACCESS_TOKEN_EXPIRY: string;
+  JWT_REFRESH_TOKEN_EXPIRY: string;
+  SESSION_EXPIRY: string;
 }
 
 /**
