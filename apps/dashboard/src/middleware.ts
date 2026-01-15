@@ -11,12 +11,12 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Check if it's a public route
-  const isPublicRoute = publicRoutes.some(
+  const _isPublicRoute = publicRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`)
   );
 
   // Check if it's a protected route
-  const isProtectedRoute = protectedPrefixes.some((prefix) =>
+  const _isProtectedRoute = protectedPrefixes.some((prefix) =>
     pathname.startsWith(prefix)
   );
 

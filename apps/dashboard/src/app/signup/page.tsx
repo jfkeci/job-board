@@ -1,8 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Alert, AlertIcon } from '@chakra-ui/react';
 import {
   Box,
   Container,
@@ -18,7 +15,10 @@ import {
   GlassButton,
   GlassInput,
 } from '@borg/ui';
+import { Alert, AlertIcon } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 import { useAuthStore } from '@/store/auth.store';
 

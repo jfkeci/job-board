@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Box, Flex, Center, Spinner } from '@borg/ui';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { Header, Sidebar } from '@/components/layout';
 import { useAuthStore } from '@/store/auth.store';

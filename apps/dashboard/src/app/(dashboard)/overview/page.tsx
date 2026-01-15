@@ -13,6 +13,7 @@ import {
   GlassCard,
   GlassButton,
 } from '@borg/ui';
+import Link from 'next/link';
 import {
   FiBriefcase,
   FiUsers,
@@ -30,7 +31,6 @@ import {
   FiDatabase,
   FiClock,
 } from 'react-icons/fi';
-import Link from 'next/link';
 
 // =============================================================================
 // Type Definitions

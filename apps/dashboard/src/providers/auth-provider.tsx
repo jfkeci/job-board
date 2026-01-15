@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, type ReactNode } from 'react';
-import { Box, Spinner, Center } from '@borg/ui';
+import { Spinner, Center } from '@borg/ui';
+import { type ReactNode } from 'react';
 
 import { useAuthStore } from '@/store/auth.store';
 
