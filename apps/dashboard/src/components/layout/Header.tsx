@@ -15,7 +15,19 @@ import {
   GlassButton,
 } from '@borg/ui';
 import Link from 'next/link';
-import { FiMenu, FiSun, FiMoon, FiChevronDown, FiUser, FiSettings, FiLogOut } from 'react-icons/fi';
+import { useRouter } from 'next/navigation';
+import {
+  FiMenu,
+  FiSun,
+  FiMoon,
+  FiChevronDown,
+  FiUser,
+  FiSettings,
+  FiLogOut,
+  FiGrid,
+} from 'react-icons/fi';
+
+import { useAuthStore } from '@/store/auth.store';
 
 interface HeaderProps {
   onMobileMenuToggle?: () => void;
@@ -24,6 +36,19 @@ interface HeaderProps {
 
 export function Header({ onMobileMenuToggle, showMenuButton = false }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { user, isAuthenticated, isHydrated, logout } = useAuthStore();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/');
+  };
+
+  const displayName = user?.profile
+    ? `${user.profile.firstName} ${user.profile.lastName}`
+    : user?.email || 'Account';
+
+  const shortName = user?.profile?.firstName || 'Account';
 
   return (
     <Box
@@ -86,21 +111,11 @@ export function Header({ onMobileMenuToggle, showMenuButton = false }: HeaderPro
               Pricing
             </GlassButton>
           </Link>
-          <Link href="/login">
-            <GlassButton variant="ghost" size="sm">
-              Login
-            </GlassButton>
-          </Link>
-          <Link href="/dashboard/overview">
-            <GlassButton variant="ghost" size="sm">
-              Dashboard
-            </GlassButton>
-          </Link>
         </HStack>
 
         {/* Right side */}
         <HStack spacing={2}>
-          {/* Theme Toggle */}
+          {/* Theme Toggle - Always visible */}
           <IconButton
             aria-label="Toggle color mode"
             icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
@@ -108,25 +123,44 @@ export function Header({ onMobileMenuToggle, showMenuButton = false }: HeaderPro
             onClick={toggleColorMode}
           />
 
-          {/* User Menu */}
-          <Menu>
-            <MenuButton
-              as={GlassButton}
-              variant="ghost"
-              size="sm"
-              rightIcon={<FiChevronDown />}
-            >
-              <HStack spacing={2}>
-                <Avatar size="sm" name="Admin User" bg="primary.500" />
-                <Text display={{ base: 'none', md: 'block' }}>Admin</Text>
-              </HStack>
-            </MenuButton>
-            <MenuList>
-              <MenuItem icon={<FiUser />}>Profile</MenuItem>
-              <MenuItem icon={<FiSettings />}>Settings</MenuItem>
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
-            </MenuList>
-          </Menu>
+          {/* Auth-dependent UI */}
+          {isHydrated && (
+            <>
+              {isAuthenticated ? (
+                <Menu>
+                  <MenuButton
+                    as={GlassButton}
+                    variant="ghost"
+                    size="sm"
+                    rightIcon={<FiChevronDown />}
+                  >
+                    <HStack spacing={2}>
+                      <Avatar size="sm" name={displayName} bg="primary.500" />
+                      <Text display={{ base: 'none', md: 'block' }}>{shortName}</Text>
+                    </HStack>
+                  </MenuButton>
+                  <MenuList>
+                    <Link href="/dashboard/overview">
+                      <MenuItem icon={<FiGrid />}>Dashboard</MenuItem>
+                    </Link>
+                    <Link href="/profile">
+                      <MenuItem icon={<FiUser />}>Profile</MenuItem>
+                    </Link>
+                    <Link href="/settings">
+                      <MenuItem icon={<FiSettings />}>Settings</MenuItem>
+                    </Link>
+                    <MenuItem icon={<FiLogOut />} onClick={handleLogout}>
+                      Logout
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              ) : (
+                <Link href="/login">
+                  <GlassButton size="sm">Login</GlassButton>
+                </Link>
+              )}
+            </>
+          )}
         </HStack>
       </Flex>
     </Box>
