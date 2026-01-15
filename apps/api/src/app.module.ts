@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth';
 import { HealthModule } from './health/health.module';
+import { OrganizationsModule } from './organizations/organizations.module';
 
 @Module({
   imports: [
@@ -47,6 +48,9 @@ import { HealthModule } from './health/health.module';
 
     // Authentication module
     AuthModule,
+
+    // Organizations module
+    OrganizationsModule,
 
     // Health check endpoint
     HealthModule,
