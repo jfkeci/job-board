@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import {
   FiHome,
+  FiBriefcase,
   FiBarChart2,
-  FiUsers,
   FiSettings,
   FiChevronLeft,
   FiChevronRight,
@@ -23,15 +23,15 @@ interface SidebarProps {
 const STORAGE_KEY = 'sidebar-collapsed';
 
 const navItems = [
-  { href: '/dashboard/overview', label: 'Overview', icon: FiHome },
-  { href: '/dashboard/analytics', label: 'Analytics', icon: FiBarChart2 },
-  { href: '/dashboard/users', label: 'Users', icon: FiUsers },
-  { href: '/dashboard/billing', label: 'Billing', icon: FiCreditCard },
+  { href: '/overview', label: 'Overview', icon: FiHome },
+  { href: '/jobs', label: 'Jobs', icon: FiBriefcase },
+  { href: '/analytics', label: 'Analytics', icon: FiBarChart2 },
+  { href: '/billing', label: 'Billing', icon: FiCreditCard },
 ];
 
 const settingsItems = [
-  { href: '/dashboard/settings', label: 'Settings', icon: FiSettings },
-  { href: '/dashboard/help', label: 'Help', icon: FiHelpCircle },
+  { href: '/settings', label: 'Settings', icon: FiSettings },
+  { href: '/help', label: 'Help', icon: FiHelpCircle },
 ];
 
 export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: SidebarProps) {

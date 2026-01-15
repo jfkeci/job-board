@@ -4,6 +4,7 @@ import { Box, Flex, Center, Spinner } from '@borg/ui';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
+import { OrganizationGuard } from '@/components/guards/OrganizationGuard';
 import { Header, Sidebar } from '@/components/layout';
 import { useAuthStore } from '@/store/auth.store';
 
@@ -64,7 +65,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           p={{ base: 4, md: 6, lg: 8 }}
           overflow="auto"
         >
-          {children}
+          <OrganizationGuard>{children}</OrganizationGuard>
         </Box>
       </Flex>
     </Box>

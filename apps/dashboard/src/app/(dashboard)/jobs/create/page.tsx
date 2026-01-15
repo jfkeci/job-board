@@ -1,68 +1,63 @@
 'use client';
 
+import type { CreateJobDto, UpdateJobDto } from '@borg/types';
 import {
-  Box,
   Container,
   Heading,
   Text,
   VStack,
-  Icon,
   GlassCard,
 } from '@borg/ui';
-import { FiBriefcase } from 'react-icons/fi';
+import { Alert, AlertIcon } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
+
+import { JobForm } from '@/components/jobs';
+import { useCreateJob } from '@/hooks/use-jobs';
 
 export default function CreateJobPage() {
+  const router = useRouter();
+  const createJob = useCreateJob();
+
+  const handleSubmit = async (data: CreateJobDto | UpdateJobDto) => {
+    const result = await createJob.mutateAsync(data as CreateJobDto);
+    router.push(`/jobs/${result.id}`);
+  };
+
+  const handleCancel = () => {
+    router.push('/jobs');
+  };
+
   return (
     <Container maxW="4xl" py={8}>
-      <GlassCard p={{ base: 8, md: 12 }}>
-        <VStack spacing={6} textAlign="center">
-          <Box
-            w={16}
-            h={16}
-            bg="primary.100"
-            _dark={{ bg: 'primary.900' }}
-            borderRadius="full"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Icon
-              as={FiBriefcase}
-              w={8}
-              h={8}
-              color="primary.500"
-            />
-          </Box>
-
-          <VStack spacing={2}>
-            <Heading as="h1" size="lg">
-              Create Job Advertisement
-            </Heading>
-            <Text
-              color="neutral.600"
-              _dark={{ color: 'neutral.400' }}
-              maxW="md"
-            >
-              Job creation form coming soon. You&apos;ll be able to create and
-              manage your job postings from here.
-            </Text>
-          </VStack>
-
-          <Box
-            p={4}
-            bg="primary.50"
-            _dark={{ bg: 'primary.900/30', borderColor: 'primary.800' }}
-            borderRadius="md"
-            borderWidth="1px"
-            borderColor="primary.200"
-          >
-            <Text fontSize="sm" color="primary.700" _dark={{ color: 'primary.300' }}>
-              This page will include job title, description, requirements,
-              salary range, location, and more.
-            </Text>
-          </Box>
+      <VStack spacing={6} align="stretch">
+        {/* Header */}
+        <VStack spacing={2} align="start">
+          <Heading size="lg">Create Job Advertisement</Heading>
+          <Text color="neutral.600" _dark={{ color: 'neutral.400' }}>
+            Fill in the details below to create a new job listing as a draft.
+          </Text>
         </VStack>
-      </GlassCard>
+
+        {/* Error Alert */}
+        {createJob.error && (
+          <Alert status="error" borderRadius="md">
+            <AlertIcon />
+            {createJob.error instanceof Error
+              ? createJob.error.message
+              : 'Failed to create job'}
+          </Alert>
+        )}
+
+        {/* Form */}
+        <GlassCard p={{ base: 6, md: 8 }}>
+          <JobForm
+            onSubmit={handleSubmit}
+            isLoading={createJob.isPending}
+            submitLabel="Create Job Draft"
+            onCancel={handleCancel}
+          />
+        </GlassCard>
+      </VStack>
     </Container>
   );
 }

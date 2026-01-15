@@ -8,6 +8,7 @@ import { DatabaseModule, entities } from '@borg/db';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth';
+import { CategoriesModule } from './categories';
 import { HealthModule } from './health/health.module';
 import { JobsModule } from './jobs/jobs.module';
 import { OrganizationsModule } from './organizations/organizations.module';
@@ -55,6 +56,9 @@ import { OrganizationsModule } from './organizations/organizations.module';
 
     // Jobs module
     JobsModule,
+
+    // Categories module
+    CategoriesModule,
 
     // Health check endpoint
     HealthModule,

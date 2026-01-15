@@ -3,7 +3,10 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { ConfigService } from '@borg/config';
-import { LoggerService, createValidationExceptionFactory } from '@borg/backend-lib';
+import {
+  LoggerService,
+  createValidationExceptionFactory,
+} from '@borg/backend-lib';
 
 import { AppModule } from './app.module';
 
@@ -91,13 +94,22 @@ async function bootstrap() {
   app.enableShutdownHooks();
 
   // Start server
-  await app.listen(port);
+  await app.listen(3001);
 
   // Log startup information
   logger.log(`Environment: ${configService.nodeEnv}`, 'Bootstrap');
-  logger.log(`API running on: http://localhost:${port}/${apiPrefix}`, 'Bootstrap');
-  logger.log(`Swagger docs: http://localhost:${port}/${apiPrefix}/docs`, 'Bootstrap');
-  logger.log(`Health check: http://localhost:${port}/${apiPrefix}/health`, 'Bootstrap');
+  logger.log(
+    `API running on: http://localhost:${port}/${apiPrefix}`,
+    'Bootstrap',
+  );
+  logger.log(
+    `Swagger docs: http://localhost:${port}/${apiPrefix}/docs`,
+    'Bootstrap',
+  );
+  logger.log(
+    `Health check: http://localhost:${port}/${apiPrefix}/health`,
+    'Bootstrap',
+  );
 }
 
 void bootstrap();
