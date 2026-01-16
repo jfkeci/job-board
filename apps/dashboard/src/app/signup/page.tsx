@@ -14,18 +14,14 @@ import {
   GlassCard,
   GlassButton,
   GlassInput,
+  GlassAlert,
 } from '@borg/ui';
-import { Alert, AlertIcon } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 import { useAuthStore } from '@/store/auth.store';
-
-// Default tenant ID for MVP - will be dynamic later
-const DEFAULT_TENANT_ID =
-  process.env.NEXT_PUBLIC_DEFAULT_TENANT_ID ||
-  '00000000-0000-0000-0000-000000000001';
+import { env } from '@/lib/env';
 
 interface FormErrors {
   firstName?: string;
@@ -38,15 +34,22 @@ interface FormErrors {
 
 export default function SignupPage() {
   const router = useRouter();
-  const { register, isLoading, error, clearError, isAuthenticated, isHydrated } =
-    useAuthStore();
+  const {
+    register,
+    isLoading,
+    error,
+    clearError,
+    isAuthenticated,
+    isHydrated,
+  } = useAuthStore();
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [acceptTerms, setAcceptTerms] = useState(false);
+  // Prefilled test data (remove in production)
+  const [firstName, setFirstName] = useState('John');
+  const [lastName, setLastName] = useState('Doe');
+  const [email, setEmail] = useState('john.doe@example.com');
+  const [password, setPassword] = useState('SecurePass123');
+  const [confirmPassword, setConfirmPassword] = useState('SecurePass123');
+  const [acceptTerms, setAcceptTerms] = useState(true);
   const [errors, setErrors] = useState<FormErrors>({});
 
   // Redirect if already authenticated
@@ -110,7 +113,7 @@ export default function SignupPage() {
         lastName: lastName.trim(),
         email,
         password,
-        tenantId: DEFAULT_TENANT_ID,
+        tenantId: env.NEXT_PUBLIC_DEFAULT_TENANT_ID,
       });
       router.push('/jobs/create');
     } catch {
@@ -173,10 +176,13 @@ export default function SignupPage() {
 
             {/* Error Alert */}
             {error && (
-              <Alert status="error" borderRadius="md">
-                <AlertIcon />
-                {error}
-              </Alert>
+              <GlassAlert
+                status="error"
+                title={error}
+                description="Please check your input and try again"
+                isClosable
+                onClose={clearError}
+              />
             )}
 
             {/* Signup Form */}

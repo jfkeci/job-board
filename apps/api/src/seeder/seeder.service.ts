@@ -121,10 +121,14 @@ export class SeederService {
 
     const tenants: Tenant[] = [];
     for (const data of tenantsData) {
-      const tenant = this.db.tenants.create(data);
+      const { id, ...rest } = data;
+      const tenant = this.db.tenants.create({
+        ...rest,
+        ...(id && { id }),
+      });
       const saved = await this.db.tenants.save(tenant);
       tenants.push(saved);
-      this.logger.debug(`Created tenant: ${saved.name} (${saved.code})`);
+      this.logger.debug(`Created tenant: ${saved.name} (${saved.code}) - ${saved.id}`);
     }
 
     this.logger.log(`Seeded ${tenants.length} tenants`);

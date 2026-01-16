@@ -46,3 +46,5 @@ export {
 } from './GlassSidebar';
 
 export { GlassPanel, type GlassPanelProps } from './GlassPanel';
+
+export { GlassAlert, type GlassAlertProps } from './GlassAlert';

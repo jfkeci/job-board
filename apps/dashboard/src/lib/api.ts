@@ -5,9 +5,9 @@ import type {
   User,
   ApiErrorResponse,
 } from '@/types/auth';
+import { env } from './env';
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = env.NEXT_PUBLIC_API_URL;
 
 class ApiClientError extends Error {
   code: string;
@@ -63,7 +63,6 @@ export async function apiClient<T>(
 
   if (!response.ok) {
     const errorData = (await response.json()) as ApiErrorResponse;
-    console.log('API Error Response:', errorData);
     throw new ApiClientError(
       errorData.error || {
         code: 'UNKNOWN_ERROR',

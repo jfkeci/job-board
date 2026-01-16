@@ -14,12 +14,20 @@
     "dev:web": "turbo dev --filter=@borg/web",
     "dev:dashboard": "turbo dev --filter=@borg/dashboard",
     "cli": "pnpm --filter=@borg/api cli",
+    "db:status": "pnpm --filter=@borg/api cli db:status",
+    "db:seed": "pnpm --filter=@borg/api cli db:seed",
+    "db:purge": "pnpm --filter=@borg/api cli db:purge",
+    "db:reset": "pnpm --filter=@borg/api cli db:reset",
     "lint": "turbo lint",
     "format": "turbo format",
     "format:check": "turbo format:check",
     "type-check": "turbo type-check",
     "test": "turbo test",
-    "clean": "turbo clean && rm -rf node_modules"
+    "clean": "turbo clean && rm -rf node_modules",
+    "clean:api": "pnpm --filter=@borg/api clean",
+    "clean:web": "pnpm --filter=@borg/web clean",
+    "clean:dashboard": "pnpm --filter=@borg/dashboard clean",
+    "reinstall": "turbo clean && rm -rf node_modules && pnpm install"
   },
   "devDependencies": {
     "turbo": "^2.3.0",

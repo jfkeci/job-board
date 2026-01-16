@@ -1,4 +1,5 @@
 export interface TenantSeedData {
+  id?: string;
   code: string;
   name: string;
   domain: string;
@@ -9,8 +10,12 @@ export interface TenantSeedData {
   isActive: boolean;
 }
 
+// Default tenant ID used by dashboard for development
+export const DEFAULT_TENANT_ID = '8c63afa2-f959-41f8-a548-7bf2a31524da';
+
 export const tenantsData: TenantSeedData[] = [
   {
+    id: DEFAULT_TENANT_ID,
     code: 'HR',
     name: 'borg Croatia',
     domain: 'borg.hr',

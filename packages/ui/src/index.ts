@@ -63,6 +63,10 @@ export {
   // Panel
   GlassPanel,
   type GlassPanelProps,
+
+  // Alert
+  GlassAlert,
+  type GlassAlertProps,
 } from './components';
 
 // Utilities

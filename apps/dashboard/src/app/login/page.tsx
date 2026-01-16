@@ -14,18 +14,14 @@ import {
   GlassCard,
   GlassButton,
   GlassInput,
+  GlassAlert,
 } from '@borg/ui';
-import { Alert, AlertIcon } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 import { useAuthStore } from '@/store/auth.store';
-
-// Default tenant ID for MVP - will be dynamic later
-const DEFAULT_TENANT_ID =
-  process.env.NEXT_PUBLIC_DEFAULT_TENANT_ID ||
-  '00000000-0000-0000-0000-000000000001';
+import { env } from '@/lib/env';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -80,7 +76,7 @@ export default function LoginPage() {
       await login({
         email,
         password,
-        tenantId: DEFAULT_TENANT_ID,
+        tenantId: env.NEXT_PUBLIC_DEFAULT_TENANT_ID,
       });
       router.push('/jobs/create');
     } catch {
@@ -143,10 +139,13 @@ export default function LoginPage() {
 
             {/* Error Alert */}
             {error && (
-              <Alert status="error" borderRadius="md">
-                <AlertIcon />
-                {error}
-              </Alert>
+              <GlassAlert
+                status="error"
+                title={error}
+                description="Please verify your credentials and try again"
+                isClosable
+                onClose={clearError}
+              />
             )}
 
             {/* Login Form */}
