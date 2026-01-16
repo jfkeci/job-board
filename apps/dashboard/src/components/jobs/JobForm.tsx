@@ -8,7 +8,7 @@ import {
   type Job,
   type CreateJobDto,
   type UpdateJobDto,
-} from '@borg/types';
+} from '@job-board/types';
 import {
   VStack,
   HStack,
@@ -22,7 +22,7 @@ import {
   Divider,
   GlassButton,
   GlassInput,
-} from '@borg/ui';
+} from '@job-board/ui';
 import { Select, Textarea } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 
@@ -86,24 +86,34 @@ export function JobForm({
 
   // Form state
   const [title, setTitle] = useState(initialData?.title || '');
-  const [description, setDescription] = useState(initialData?.description || '');
-  const [requirements, setRequirements] = useState(initialData?.requirements || '');
+  const [description, setDescription] = useState(
+    initialData?.description || '',
+  );
+  const [requirements, setRequirements] = useState(
+    initialData?.requirements || '',
+  );
   const [benefits, setBenefits] = useState(initialData?.benefits || '');
   const [categoryId, setCategoryId] = useState(initialData?.categoryId || '');
   const [employmentType, setEmploymentType] = useState<EmploymentType | ''>(
-    initialData?.employmentType || ''
+    initialData?.employmentType || '',
   );
   const [remoteOption, setRemoteOption] = useState<RemoteOption | ''>(
-    initialData?.remoteOption || ''
+    initialData?.remoteOption || '',
   );
   const [experienceLevel, setExperienceLevel] = useState<ExperienceLevel | ''>(
-    initialData?.experienceLevel || ''
+    initialData?.experienceLevel || '',
   );
-  const [salaryMin, setSalaryMin] = useState(initialData?.salaryMin?.toString() || '');
-  const [salaryMax, setSalaryMax] = useState(initialData?.salaryMax?.toString() || '');
-  const [salaryCurrency, setSalaryCurrency] = useState(initialData?.salaryCurrency || 'EUR');
+  const [salaryMin, setSalaryMin] = useState(
+    initialData?.salaryMin?.toString() || '',
+  );
+  const [salaryMax, setSalaryMax] = useState(
+    initialData?.salaryMax?.toString() || '',
+  );
+  const [salaryCurrency, setSalaryCurrency] = useState(
+    initialData?.salaryCurrency || 'EUR',
+  );
   const [salaryPeriod, setSalaryPeriod] = useState<SalaryPeriod>(
-    initialData?.salaryPeriod || SalaryPeriod.YEARLY
+    initialData?.salaryPeriod || SalaryPeriod.YEARLY,
   );
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -214,8 +224,12 @@ export function JobForm({
               <FormLabel>Category</FormLabel>
               <Select
                 value={categoryId}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCategoryId(e.target.value)}
-                placeholder={categoriesLoading ? 'Loading...' : 'Select category...'}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setCategoryId(e.target.value)
+                }
+                placeholder={
+                  categoriesLoading ? 'Loading...' : 'Select category...'
+                }
                 bg="transparent"
                 borderColor="glass.light.border"
                 _dark={{ borderColor: 'glass.dark.border' }}
@@ -236,17 +250,21 @@ export function JobForm({
                 <FormLabel>Employment Type</FormLabel>
                 <Select
                   value={employmentType}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setEmploymentType(e.target.value as EmploymentType)}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setEmploymentType(e.target.value as EmploymentType)
+                  }
                   placeholder="Select type..."
                   bg="transparent"
                   borderColor="glass.light.border"
                   _dark={{ borderColor: 'glass.dark.border' }}
                 >
-                  {Object.entries(employmentTypeLabels).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
+                  {Object.entries(employmentTypeLabels).map(
+                    ([value, label]) => (
+                      <option key={value} value={value}>
+                        {label}
+                      </option>
+                    ),
+                  )}
                 </Select>
                 <FormErrorMessage>{errors.employmentType}</FormErrorMessage>
               </FormControl>
@@ -255,7 +273,9 @@ export function JobForm({
                 <FormLabel>Remote Option</FormLabel>
                 <Select
                   value={remoteOption}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setRemoteOption(e.target.value as RemoteOption)}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setRemoteOption(e.target.value as RemoteOption)
+                  }
                   placeholder="Select option..."
                   bg="transparent"
                   borderColor="glass.light.border"
@@ -276,7 +296,9 @@ export function JobForm({
               <FormLabel>Experience Level</FormLabel>
               <Select
                 value={experienceLevel}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setExperienceLevel(e.target.value as ExperienceLevel)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setExperienceLevel(e.target.value as ExperienceLevel)
+                }
                 placeholder="Select level (optional)..."
                 bg="transparent"
                 borderColor="glass.light.border"
@@ -305,7 +327,9 @@ export function JobForm({
               <FormLabel>Job Description</FormLabel>
               <Textarea
                 value={description}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setDescription(e.target.value)
+                }
                 placeholder="Describe the role, responsibilities, and what makes this opportunity exciting..."
                 rows={8}
                 bg="transparent"
@@ -328,7 +352,9 @@ export function JobForm({
               <FormLabel>Requirements</FormLabel>
               <Textarea
                 value={requirements}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setRequirements(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setRequirements(e.target.value)
+                }
                 placeholder="List the skills, experience, and qualifications required..."
                 rows={5}
                 bg="transparent"
@@ -347,7 +373,9 @@ export function JobForm({
               <FormLabel>Benefits</FormLabel>
               <Textarea
                 value={benefits}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setBenefits(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setBenefits(e.target.value)
+                }
                 placeholder="List the benefits and perks offered..."
                 rows={5}
                 bg="transparent"
@@ -399,7 +427,9 @@ export function JobForm({
                 <FormLabel>Currency</FormLabel>
                 <GlassInput
                   value={salaryCurrency}
-                  onChange={(e) => setSalaryCurrency(e.target.value.toUpperCase())}
+                  onChange={(e) =>
+                    setSalaryCurrency(e.target.value.toUpperCase())
+                  }
                   placeholder="EUR"
                   maxLength={3}
                 />
@@ -410,7 +440,9 @@ export function JobForm({
               <FormLabel>Salary Period</FormLabel>
               <Select
                 value={salaryPeriod}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSalaryPeriod(e.target.value as SalaryPeriod)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setSalaryPeriod(e.target.value as SalaryPeriod)
+                }
                 maxW="200px"
                 bg="transparent"
                 borderColor="glass.light.border"

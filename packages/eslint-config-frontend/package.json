@@ -1,5 +1,5 @@
 {
-  "name": "@borg/eslint-config-frontend",
+  "name": "@job-board/eslint-config-frontend",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",

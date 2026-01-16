@@ -14,6 +14,7 @@ import { Location } from './location.entity';
 import { Payment } from './payment.entity';
 import { CvCredit } from './cv-credit.entity';
 import { File } from './file.entity';
+import { SearchQuery } from './search-query.entity';
 
 export {
   Tenant,
@@ -32,6 +33,7 @@ export {
   Payment,
   CvCredit,
   File,
+  SearchQuery,
 };
 
 // All entities array for TypeORM configuration
@@ -52,4 +54,5 @@ export const entities = [
   Payment,
   CvCredit,
   File,
+  SearchQuery,
 ];

@@ -1,6 +1,6 @@
 'use client';
 
-import { GlassThemeProvider, brandPresets } from '@borg/ui';
+import { GlassThemeProvider, brandPresets } from '@job-board/ui';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { AuthProvider } from '@/providers/auth-provider';

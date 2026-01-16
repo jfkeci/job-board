@@ -40,7 +40,7 @@ Backend applications need a robust, type-safe configuration system that validate
 
 ## Goal
 
-Create a shared backend configuration package (`@borg/config`) that provides:
+Create a shared backend configuration package (`@job-board/config`) that provides:
 1. TypeScript interfaces defining all environment variable types
 2. Zod schemas for runtime validation
 3. A NestJS-compatible ConfigService
@@ -49,7 +49,7 @@ Create a shared backend configuration package (`@borg/config`) that provides:
 
 ## Current State
 
-- Monorepo has `@borg/backend-lib` for shared utilities
+- Monorepo has `@job-board/backend-lib` for shared utilities
 - No centralized configuration management
 - Each app would need to implement its own env validation
 
@@ -168,7 +168,7 @@ The package should:
 - Must work with NestJS dependency injection
 - Must validate configuration synchronously on app startup
 - Must fail fast with clear error messages
-- Use `@borg/eslint-config-backend` for linting
+- Use `@job-board/eslint-config-backend` for linting
 - Keep the package focused (config only, no other utilities)
 - The `.env` file inside the package should be gitignored
 - The `.env.example` should document all required variables
@@ -189,7 +189,7 @@ The package should:
 
 - [ ] `pnpm build` succeeds for the new package
 - [ ] `pnpm type-check` passes
-- [ ] Package can be imported in `@borg/api`
+- [ ] Package can be imported in `@job-board/api`
 - [ ] ConfigService validates env vars on instantiation
 - [ ] Invalid/missing env vars throw descriptive errors
 - [ ] TypeORM configuration helper returns correct options object
@@ -210,7 +210,7 @@ The package should:
     "@nestjs/common": "^10.0.0"
   },
   "devDependencies": {
-    "@borg/eslint-config-backend": "workspace:*",
+    "@job-board/eslint-config-backend": "workspace:*",
     "@nestjs/common": "^10.4.15",
     "@types/node": "^22.10.5",
     "tsup": "^8.3.5",
@@ -224,7 +224,7 @@ The package should:
 ```typescript
 // apps/api/src/app.module.ts
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@borg/config';
+import { ConfigModule, ConfigService } from '@job-board/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

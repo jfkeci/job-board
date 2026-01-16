@@ -21,7 +21,7 @@ dependencies:
 blocks: []
 related_specs: []
 related_planning: []
-notes: Integrate @borg/ui design system into dashboard app with glassmorphism layout and basic routing
+notes: Integrate @job-board/ui design system into dashboard app with glassmorphism layout and basic routing
 ---
 
 # 06 - Dashboard App Layout and Routing Setup
@@ -34,11 +34,11 @@ notes: Integrate @borg/ui design system into dashboard app with glassmorphism la
 
 ## Context
 
-The `@borg/dashboard` app currently uses Tailwind CSS with a basic layout. The `@borg/ui` glassmorphism design system package has been created and needs to be integrated into the dashboard app. The app needs a proper layout structure with header, footer, and collapsible sidebar, along with routing for multiple views.
+The `@job-board/dashboard` app currently uses Tailwind CSS with a basic layout. The `@job-board/ui` glassmorphism design system package has been created and needs to be integrated into the dashboard app. The app needs a proper layout structure with header, footer, and collapsible sidebar, along with routing for multiple views.
 
 ## Goal
 
-Integrate the `@borg/ui` design system into the dashboard app and establish:
+Integrate the `@job-board/ui` design system into the dashboard app and establish:
 1. A consistent layout structure with glassmorphism styling
 2. Collapsible sidebar navigation
 3. Header and footer components
@@ -52,13 +52,13 @@ Integrate the `@borg/ui` design system into the dashboard app and establish:
 - Currently styled with Tailwind CSS (to be replaced with Chakra UI)
 - Basic layout implemented in `page.tsx`
 - No proper routing structure
-- `@borg/ui` package available with glassmorphism components
+- `@job-board/ui` package available with glassmorphism components
 
 ## Requirements
 
-### 1. Install and Configure @borg/ui
+### 1. Install and Configure @job-board/ui
 
-- Add `@borg/ui` and Chakra UI dependencies to dashboard app
+- Add `@job-board/ui` and Chakra UI dependencies to dashboard app
 - Remove/minimize Tailwind CSS usage (keep for utility classes if needed)
 - Configure `GlassThemeProvider` in root layout
 - Set appropriate brand colors for dashboard (e.g., `brandPresets.indigo` or custom)
@@ -171,7 +171,7 @@ Create reusable components:
 
 ## Constraints
 
-- Must use `@borg/ui` components (GlassCard, GlassButton, GlassNavbar, etc.)
+- Must use `@job-board/ui` components (GlassCard, GlassButton, GlassNavbar, etc.)
 - Must maintain glassmorphism aesthetic
 - Must be responsive (mobile-first)
 - Must support dark mode
@@ -181,7 +181,7 @@ Create reusable components:
 
 ## Expected Output
 
-- [ ] `@borg/ui` and Chakra dependencies added to `package.json`
+- [ ] `@job-board/ui` and Chakra dependencies added to `package.json`
 - [ ] Root layout updated with `GlassThemeProvider`
 - [ ] Layout components created (`Header`, `Sidebar`, `Footer`, `MainLayout`)
 - [ ] Homepage view (`/`)
@@ -201,7 +201,7 @@ Create reusable components:
 - [ ] Dark/light mode toggle works
 - [ ] Mobile responsive (sidebar becomes drawer on mobile)
 - [ ] Navigation between pages works
-- [ ] Components use `@borg/ui` exports
+- [ ] Components use `@job-board/ui` exports
 
 ## Technical Notes
 
@@ -209,7 +209,7 @@ Create reusable components:
 
 ```tsx
 // app/layout.tsx
-import { GlassThemeProvider, brandPresets } from '@borg/ui';
+import { GlassThemeProvider, brandPresets } from '@job-board/ui';
 
 export default function RootLayout({ children }) {
   return (
@@ -234,7 +234,7 @@ export default function RootLayout({ children }) {
 'use client';
 
 import { useState, useEffect } from 'react';
-import { GlassSidebar, GlassSidebarItem, IconButton } from '@borg/ui';
+import { GlassSidebar, GlassSidebarItem, IconButton } from '@job-board/ui';
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -268,7 +268,7 @@ Ensure all client components that use Chakra hooks have `'use client'` directive
 
 ```
 apps/dashboard/
-├── package.json                          # Add @borg/ui dependencies
+├── package.json                          # Add @job-board/ui dependencies
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx                    # Update with GlassThemeProvider
@@ -296,8 +296,8 @@ apps/dashboard/
 ### Homepage Hero Section
 
 ```tsx
-import { Box, Container, Heading, Text, HStack } from '@borg/ui';
-import { GlassCard, GlassButton } from '@borg/ui';
+import { Box, Container, Heading, Text, HStack } from '@job-board/ui';
+import { GlassCard, GlassButton } from '@job-board/ui';
 
 export default function HomePage() {
   return (
@@ -305,7 +305,7 @@ export default function HomePage() {
       <Container maxW="container.xl" py={20}>
         <GlassCard p={12} textAlign="center">
           <Heading size="2xl" mb={4}>
-            Welcome to Borg Dashboard
+            Welcome to job-board Dashboard
           </Heading>
           <Text fontSize="xl" color="neutral.600" mb={8}>
             Manage your business with our powerful B2B platform
@@ -342,4 +342,4 @@ export default function HomePage() {
 
 - Depends on: [[prompts/04-chakra-ui-design-system]]
 - Blocks: Authentication implementation, Dashboard features
-- References: `@borg/ui` README, Next.js App Router documentation
+- References: `@job-board/ui` README, Next.js App Router documentation

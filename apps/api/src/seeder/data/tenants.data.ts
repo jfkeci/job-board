@@ -17,8 +17,8 @@ export const tenantsData: TenantSeedData[] = [
   {
     id: DEFAULT_TENANT_ID,
     code: 'HR',
-    name: 'borg Croatia',
-    domain: 'borg.hr',
+    name: 'job-board Croatia',
+    domain: 'job-board.hr',
     defaultLanguage: 'hr',
     supportedLanguages: ['hr', 'en'],
     currency: 'EUR',
@@ -27,8 +27,8 @@ export const tenantsData: TenantSeedData[] = [
   },
   {
     code: 'SI',
-    name: 'borg Slovenia',
-    domain: 'borg.si',
+    name: 'job-board Slovenia',
+    domain: 'job-board.si',
     defaultLanguage: 'sl',
     supportedLanguages: ['sl', 'en'],
     currency: 'EUR',
@@ -37,8 +37,8 @@ export const tenantsData: TenantSeedData[] = [
   },
   {
     code: 'RS',
-    name: 'borg Serbia',
-    domain: 'borg.rs',
+    name: 'job-board Serbia',
+    domain: 'job-board.rs',
     defaultLanguage: 'sr',
     supportedLanguages: ['sr', 'en'],
     currency: 'RSD',

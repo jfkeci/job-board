@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Container, Flex, HStack, Text } from '@borg/ui';
+import { Box, Container, Flex, HStack, Text } from '@job-board/ui';
 import Link from 'next/link';
 
 export function Footer() {
@@ -28,7 +28,7 @@ export function Footer() {
         >
           {/* Copyright */}
           <Text fontSize="sm" color="neutral.500">
-            {currentYear} Borg Dashboard. All rights reserved.
+            {currentYear} job-board Dashboard. All rights reserved.
           </Text>
 
           {/* Links */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, useDisclosure } from '@borg/ui';
+import { Box, useDisclosure } from '@job-board/ui';
 
 import { Footer } from './Footer';
 import { Header } from './Header';
@@ -15,11 +15,7 @@ export function MainLayout({ children, showFooter = true }: MainLayoutProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box
-      minH="100vh"
-      bg="neutral.50"
-      _dark={{ bg: 'neutral.950' }}
-    >
+    <Box minH="100vh" bg="neutral.50" _dark={{ bg: 'neutral.950' }}>
       {/* Header */}
       <Header onMobileMenuToggle={onOpen} showMenuButton />
 

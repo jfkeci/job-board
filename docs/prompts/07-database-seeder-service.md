@@ -35,7 +35,7 @@ notes: Seeds reference/lookup data only, excludes user-generated content. Succes
 
 ## Context
 
-The borg-clone platform is a multi-tenant job board that requires reference/lookup data to function properly. Currently, there is no seeding mechanism in place, meaning new database instances cannot operate without manually inserting required reference data.
+The job-board-clone platform is a multi-tenant job board that requires reference/lookup data to function properly. Currently, there is no seeding mechanism in place, meaning new database instances cannot operate without manually inserting required reference data.
 
 Reference data includes tenants, job categories (with translations), and geographic locations. This data is system-managed and distinct from user-generated content (users, organizations, jobs, applications, payments).
 
@@ -101,8 +101,8 @@ Seed default tenants based on business plan:
 export const tenantsData = [
   {
     code: 'HR',
-    name: 'borg Croatia',
-    domain: 'borg.hr',
+    name: 'job-board Croatia',
+    domain: 'job-board.hr',
     defaultLanguage: 'hr',
     supportedLanguages: ['hr', 'en'],
     currency: 'EUR',
@@ -111,8 +111,8 @@ export const tenantsData = [
   },
   {
     code: 'SI',
-    name: 'borg Slovenia',
-    domain: 'borg.si',
+    name: 'job-board Slovenia',
+    domain: 'job-board.si',
     defaultLanguage: 'sl',
     supportedLanguages: ['sl', 'en'],
     currency: 'EUR',
@@ -245,7 +245,7 @@ Add to root `package.json`:
 ```json
 {
   "scripts": {
-    "cli": "pnpm --filter=@borg/api cli"
+    "cli": "pnpm --filter=@job-board/api cli"
   }
 }
 ```
@@ -297,7 +297,7 @@ Add to root `package.json`:
 ### Dependencies to Install
 
 ```bash
-pnpm --filter=@borg/api add nest-commander
+pnpm --filter=@job-board/api add nest-commander
 ```
 
 ### Purge Order (FK constraints)

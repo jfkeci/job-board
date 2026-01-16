@@ -1,5 +1,5 @@
 {
-  "name": "borg-clone",
+  "name": "job-board-clone",
   "private": true,
   "pnpm": {
     "overrides": {
@@ -10,23 +10,25 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "dev:api": "turbo dev --filter=@borg/api",
-    "dev:web": "turbo dev --filter=@borg/web",
-    "dev:dashboard": "turbo dev --filter=@borg/dashboard",
-    "cli": "pnpm --filter=@borg/api cli",
-    "db:status": "pnpm --filter=@borg/api cli db:status",
-    "db:seed": "pnpm --filter=@borg/api cli db:seed",
-    "db:purge": "pnpm --filter=@borg/api cli db:purge",
-    "db:reset": "pnpm --filter=@borg/api cli db:reset",
+    "dev:api": "turbo dev --filter=@job-board/api",
+    "dev:web": "turbo dev --filter=@job-board/web",
+    "dev:dashboard": "turbo dev --filter=@job-board/dashboard",
+    "dev:admin": "turbo dev --filter=@job-board/admin",
+    "cli": "pnpm --filter=@job-board/api cli",
+    "db:status": "pnpm --filter=@job-board/api cli db:status",
+    "db:seed": "pnpm --filter=@job-board/api cli db:seed",
+    "db:purge": "pnpm --filter=@job-board/api cli db:purge",
+    "db:reset": "pnpm --filter=@job-board/api cli db:reset",
     "lint": "turbo lint",
     "format": "turbo format",
     "format:check": "turbo format:check",
     "type-check": "turbo type-check",
     "test": "turbo test",
     "clean": "turbo clean && rm -rf node_modules",
-    "clean:api": "pnpm --filter=@borg/api clean",
-    "clean:web": "pnpm --filter=@borg/web clean",
-    "clean:dashboard": "pnpm --filter=@borg/dashboard clean",
+    "clean:api": "pnpm --filter=@job-board/api clean",
+    "clean:web": "pnpm --filter=@job-board/web clean",
+    "clean:dashboard": "pnpm --filter=@job-board/dashboard clean",
+    "clean:admin": "pnpm --filter=@job-board/admin clean",
     "reinstall": "turbo clean && rm -rf node_modules && pnpm install"
   },
   "devDependencies": {

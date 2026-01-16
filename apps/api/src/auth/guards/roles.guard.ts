@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
-import { UserRole } from '@borg/db';
+import { UserRole } from '@job-board/db';
 
 import { ROLES_KEY } from '../decorators';
 import { RequestUser } from '../interfaces';
@@ -45,8 +45,6 @@ export class RolesGuard implements CanActivate {
     const userRoleLevel = ROLE_HIERARCHY[user.role];
 
     // Check if user's role level is >= any of the required roles
-    return requiredRoles.some(
-      (role) => userRoleLevel >= ROLE_HIERARCHY[role],
-    );
+    return requiredRoles.some((role) => userRoleLevel >= ROLE_HIERARCHY[role]);
   }
 }

@@ -11,7 +11,7 @@ tags:
 
 # AI-Assisted Development Workflow
 
-This document describes the standardized AI-assisted development workflow used throughout the borg-clone job board Turborepo project. This workflow leverages Obsidian as a knowledge base and AI agents (Claude, GitHub Copilot) for prompt refinement and code execution.
+This document describes the standardized AI-assisted development workflow used throughout the job-board-clone job board Turborepo project. This workflow leverages Obsidian as a knowledge base and AI agents (Claude, GitHub Copilot) for prompt refinement and code execution.
 
 ---
 
@@ -300,7 +300,7 @@ status: executed
 executed_date: 2025-12-14
 execution_result: success
 notes: Successfully created auth-db package with User and Session entities. 
-       Integrated with both borg-clone-backend and borg-clone-auth-api apps.
+       Integrated with both job-board-clone-backend and job-board-clone-auth-api apps.
 ```
 
 ---

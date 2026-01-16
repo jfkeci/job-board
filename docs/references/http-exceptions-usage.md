@@ -1,6 +1,6 @@
 # HTTP Exceptions Usage Reference
 
-Quick reference for adding, throwing, and handling HTTP exceptions using `@borg/backend-lib`.
+Quick reference for adding, throwing, and handling HTTP exceptions using `@job-board/backend-lib`.
 
 ---
 
@@ -21,7 +21,7 @@ Quick reference for adding, throwing, and handling HTTP exceptions using `@borg/
 
 ```typescript
 // app.module.ts
-import { ExceptionsModule } from '@borg/backend-lib';
+import { ExceptionsModule } from '@job-board/backend-lib';
 
 @Module({
   imports: [
@@ -39,7 +39,7 @@ export class AppModule {}
 ```typescript
 // main.ts
 import { ValidationPipe } from '@nestjs/common';
-import { createValidationExceptionFactory } from '@borg/backend-lib';
+import { createValidationExceptionFactory } from '@job-board/backend-lib';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -64,7 +64,7 @@ async function bootstrap() {
 ### Using Factory Methods (Recommended)
 
 ```typescript
-import { ApiExceptions } from '@borg/backend-lib';
+import { ApiExceptions } from '@job-board/backend-lib';
 
 @Injectable()
 export class JobService {
@@ -197,7 +197,7 @@ ApiExceptions.maintenanceMode()
 For custom scenarios not covered by factory methods:
 
 ```typescript
-import { ApiException, ExceptionCode } from '@borg/backend-lib';
+import { ApiException, ExceptionCode } from '@job-board/backend-lib';
 
 // Basic usage
 throw new ApiException(
@@ -312,7 +312,7 @@ export class ApiExceptions {
 ### Step 4: Rebuild Package
 
 ```bash
-pnpm build --filter=@borg/backend-lib
+pnpm build --filter=@job-board/backend-lib
 ```
 
 ---
@@ -364,7 +364,7 @@ export class CreateUserDto {
 ### Manual Validation Exceptions
 
 ```typescript
-import { ApiExceptions, ErrorDetail } from '@borg/backend-lib';
+import { ApiExceptions, ErrorDetail } from '@job-board/backend-lib';
 
 async function validateBusinessRules(dto: CreateOrderDto): Promise<void> {
   const errors: ErrorDetail[] = [];

@@ -25,7 +25,7 @@ dependencies:
 blocks: []
 related_specs: []
 related_planning: []
-notes: Successfully implemented. Extended @borg/types with comprehensive types matching API DTOs. Added React Query with services and hooks for organizations and jobs. Fixed pre-existing lint issues in dashboard files. Build and type-check pass.
+notes: Successfully implemented. Extended @job-board/types with comprehensive types matching API DTOs. Added React Query with services and hooks for organizations and jobs. Fixed pre-existing lint issues in dashboard files. Build and type-check pass.
 ---
 
 # 19 - Dashboard API Integration with Shared Types
@@ -40,11 +40,11 @@ notes: Successfully implemented. Extended @borg/types with comprehensive types m
 
 The dashboard app (`apps/dashboard`) currently has authentication endpoints connected to the API (`apps/api`). The auth flow works with login, registration, logout, and token refresh. However, the remaining API endpoints (organizations, jobs) are not yet connected to the dashboard.
 
-Additionally, types are currently defined locally in the dashboard app (`apps/dashboard/src/types/auth.ts`) instead of using the shared types package (`@borg/types`). This needs to be consolidated for type safety across the monorepo.
+Additionally, types are currently defined locally in the dashboard app (`apps/dashboard/src/types/auth.ts`) instead of using the shared types package (`@job-board/types`). This needs to be consolidated for type safety across the monorepo.
 
 ## Goal
 
-1. **Consolidate types** in `@borg/types` package for cross-app type safety
+1. **Consolidate types** in `@job-board/types` package for cross-app type safety
 2. **Create API service layer** for organizations and jobs endpoints
 3. **Implement React Query hooks** for data fetching with proper caching
 4. **Ensure proper error handling** and loading states
@@ -72,7 +72,7 @@ Additionally, types are currently defined locally in the dashboard app (`apps/da
 ### Existing Dashboard Setup
 - **API Client**: `apps/dashboard/src/lib/api.ts` - Handles auth header injection
 - **Auth Store**: `apps/dashboard/src/store/auth.store.ts` - Zustand with localStorage persistence
-- **Local Types**: `apps/dashboard/src/types/auth.ts` - Should be moved to `@borg/types`
+- **Local Types**: `apps/dashboard/src/types/auth.ts` - Should be moved to `@job-board/types`
 
 ### Shared Types Package
 - **Location**: `packages/types/src/index.ts`
@@ -81,7 +81,7 @@ Additionally, types are currently defined locally in the dashboard app (`apps/da
 
 ## Requirements
 
-### 1. **Extend `@borg/types` Package**
+### 1. **Extend `@job-board/types` Package**
 
 Add comprehensive types mirroring API DTOs:
 
@@ -296,9 +296,9 @@ export interface JobListResponse {
 }
 ```
 
-### 2. **Update Dashboard to Use `@borg/types`**
+### 2. **Update Dashboard to Use `@job-board/types`**
 
-- Update `apps/dashboard/src/types/auth.ts` to re-export from `@borg/types`
+- Update `apps/dashboard/src/types/auth.ts` to re-export from `@job-board/types`
 - Update all imports throughout dashboard to use shared types
 - Ensure auth store uses shared types
 
@@ -313,7 +313,7 @@ import type {
   Organization,
   CreateOrganizationDto,
   UpdateOrganizationDto
-} from '@borg/types';
+} from '@job-board/types';
 
 export const organizationsService = {
   create: (data: CreateOrganizationDto) =>
@@ -339,7 +339,7 @@ import type {
   CreateJobDto,
   UpdateJobDto,
   PublishJobDto
-} from '@borg/types';
+} from '@job-board/types';
 
 export const jobsService = {
   create: (data: CreateJobDto) =>
@@ -376,7 +376,7 @@ Install and configure TanStack Query (React Query):
 ```typescript
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { organizationsService } from '@/services/organizations.service';
-import type { CreateOrganizationDto, UpdateOrganizationDto } from '@borg/types';
+import type { CreateOrganizationDto, UpdateOrganizationDto } from '@job-board/types';
 
 export const organizationKeys = {
   all: ['organizations'] as const,
@@ -429,7 +429,7 @@ export function useDeleteOrganization() {
 ```typescript
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { jobsService } from '@/services/jobs.service';
-import type { CreateJobDto, UpdateJobDto, PublishJobDto } from '@borg/types';
+import type { CreateJobDto, UpdateJobDto, PublishJobDto } from '@job-board/types';
 
 export const jobKeys = {
   all: ['jobs'] as const,
@@ -530,7 +530,7 @@ export function useExtendJob(id: string) {
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { GlassThemeProvider, brandPresets } from '@borg/ui';
+import { GlassThemeProvider, brandPresets } from '@job-board/ui';
 import { AuthProvider } from '@/providers/auth-provider';
 import { useState } from 'react';
 
@@ -564,14 +564,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
 - **Don't modify** existing auth flow - it's working correctly
 - **Maintain compatibility** with existing Zustand auth store
 - **Follow existing patterns** in the dashboard codebase
-- **Use workspace imports** for `@borg/types` package
+- **Use workspace imports** for `@job-board/types` package
 
 ## Expected Output
 
 - [ ] `packages/types/src/index.ts` - Extended with all auth, organization, and job types
 - [ ] `packages/types/package.json` - Ensure proper exports
 - [ ] `apps/dashboard/package.json` - Add `@tanstack/react-query` dependency
-- [ ] `apps/dashboard/src/types/auth.ts` - Updated to re-export from `@borg/types`
+- [ ] `apps/dashboard/src/types/auth.ts` - Updated to re-export from `@job-board/types`
 - [ ] `apps/dashboard/src/services/organizations.service.ts` - New file
 - [ ] `apps/dashboard/src/services/jobs.service.ts` - New file
 - [ ] `apps/dashboard/src/hooks/use-organizations.ts` - New file
@@ -580,8 +580,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 ## Acceptance Criteria
 
-- [ ] All types are defined in `@borg/types` and importable in dashboard
-- [ ] Dashboard type-checks successfully (`pnpm type-check --filter=@borg/dashboard`)
+- [ ] All types are defined in `@job-board/types` and importable in dashboard
+- [ ] Dashboard type-checks successfully (`pnpm type-check --filter=@job-board/dashboard`)
 - [ ] API service functions properly typed and callable
 - [ ] React Query hooks working with proper cache invalidation
 - [ ] No breaking changes to existing auth functionality
@@ -611,7 +611,7 @@ apps/dashboard/
   package.json - Add @tanstack/react-query
   src/
     types/
-      auth.ts - Re-export from @borg/types
+      auth.ts - Re-export from @job-board/types
     services/
       organizations.service.ts - Create new
       jobs.service.ts - Create new

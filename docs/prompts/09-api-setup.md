@@ -25,7 +25,7 @@ blocks: []
 related_specs:
   - "[[initial/backend-architecture]]"
 related_planning: []
-notes: Successfully implemented. Fixed TypeORM entity column types in @borg/db package to add explicit types required for bundled packages.
+notes: Successfully implemented. Fixed TypeORM entity column types in @job-board/db package to add explicit types required for bundled packages.
 ---
 
 # 09 - Setup Main API with Core Infrastructure
@@ -38,11 +38,11 @@ notes: Successfully implemented. Fixed TypeORM entity column types in @borg/db p
 
 ## Context
 
-The `@borg/api` NestJS application currently has a minimal scaffold with basic AppModule, AppController, and AppService. The shared infrastructure packages (`@borg/config`, `@borg/backend-lib`, `@borg/db`) are implemented and ready for integration. The API needs to be properly configured with all core infrastructure to serve as the foundation for feature development.
+The `@job-board/api` NestJS application currently has a minimal scaffold with basic AppModule, AppController, and AppService. The shared infrastructure packages (`@job-board/config`, `@job-board/backend-lib`, `@job-board/db`) are implemented and ready for integration. The API needs to be properly configured with all core infrastructure to serve as the foundation for feature development.
 
 ## Goal
 
-Configure the `@borg/api` application with proper infrastructure integration including environment configuration, database connection, logging middleware, exception handling, Swagger documentation, validation pipes, and a comprehensive healthcheck endpoint.
+Configure the `@job-board/api` application with proper infrastructure integration including environment configuration, database connection, logging middleware, exception handling, Swagger documentation, validation pipes, and a comprehensive healthcheck endpoint.
 
 ## Current State
 
@@ -56,30 +56,30 @@ src/
 ```
 
 **Available Packages**:
-- `@borg/config` - Exports: `ConfigModule`, `ConfigService`, `envSchema`, `validateEnv`
-- `@borg/backend-lib` - Exports: `LoggerModule`, `LoggerService`, `LoggerMiddleware`, `LoggingInterceptor`, HTTP exception filter
-- `@borg/db` - Exports: `DatabaseModule`, `DatabaseService`, all entities and enums
+- `@job-board/config` - Exports: `ConfigModule`, `ConfigService`, `envSchema`, `validateEnv`
+- `@job-board/backend-lib` - Exports: `LoggerModule`, `LoggerService`, `LoggerMiddleware`, `LoggingInterceptor`, HTTP exception filter
+- `@job-board/db` - Exports: `DatabaseModule`, `DatabaseService`, all entities and enums
 
 ## Requirements
 
 1. **Environment Configuration**
-   - Import and configure `ConfigModule` from `@borg/config`
+   - Import and configure `ConfigModule` from `@job-board/config`
    - Use `ConfigService` for all environment-dependent values (port, API prefix, etc.)
    - Ensure environment validation runs on startup
 
 2. **Database Connection**
-   - Import `DatabaseModule` from `@borg/db`
+   - Import `DatabaseModule` from `@job-board/db`
    - Database should connect on application startup
    - Log connection status
 
 3. **Logger Middleware**
-   - Import `LoggerModule` from `@borg/backend-lib`
+   - Import `LoggerModule` from `@job-board/backend-lib`
    - Apply `LoggerMiddleware` globally to all routes
    - Configure structured JSON logging for production, pretty logging for development
    - Include correlation ID support
 
 4. **Exception Handling**
-   - Apply global HTTP exception filter from `@borg/backend-lib`
+   - Apply global HTTP exception filter from `@job-board/backend-lib`
    - Ensure consistent error response format across all endpoints
 
 5. **Swagger Documentation**
@@ -117,7 +117,7 @@ src/
 
 ## Constraints
 
-- Do NOT modify the shared packages (`@borg/config`, `@borg/backend-lib`, `@borg/db`)
+- Do NOT modify the shared packages (`@job-board/config`, `@job-board/backend-lib`, `@job-board/db`)
 - Follow existing code patterns from the packages
 - Use dependency injection consistently
 - Keep healthcheck module self-contained and reusable
@@ -157,7 +157,7 @@ const port = configService.get('port');
 ### LoggerModule Configuration
 ```typescript
 LoggerModule.forRoot({
-  serviceName: 'borg-api',
+  serviceName: 'job-board-api',
   logLevel: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
 })
 ```
@@ -185,7 +185,7 @@ LoggerModule.forRoot({
 ### Swagger Configuration
 ```typescript
 const config = new DocumentBuilder()
-  .setTitle('Borg API')
+  .setTitle('job-board API')
   .setDescription('Multi-tenant Job Board API')
   .setVersion('1.0')
   .addBearerAuth()

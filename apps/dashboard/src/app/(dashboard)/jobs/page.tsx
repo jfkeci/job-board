@@ -1,6 +1,6 @@
 'use client';
 
-import { JobStatus } from '@borg/types';
+import { JobStatus } from '@job-board/types';
 import {
   Box,
   Container,
@@ -20,7 +20,7 @@ import {
   useDisclosure,
   GlassCard,
   GlassButton,
-} from '@borg/ui';
+} from '@job-board/ui';
 import {
   Select,
   Table,
@@ -41,7 +41,16 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useRef } from 'react';
-import { FiPlus, FiMoreVertical, FiEdit, FiEye, FiTrash2, FiPlay, FiPause, FiBriefcase } from 'react-icons/fi';
+import {
+  FiPlus,
+  FiMoreVertical,
+  FiEdit,
+  FiEye,
+  FiTrash2,
+  FiPlay,
+  FiPause,
+  FiBriefcase,
+} from 'react-icons/fi';
 
 import { JobStatusBadge, JobTierBadge } from '@/components/jobs';
 import { useJobs, useDeleteJob } from '@/hooks/use-jobs';
@@ -75,13 +84,22 @@ export default function JobsListPage() {
 
   const deleteDialogRef = useRef<HTMLButtonElement>(null);
   const closeDialogRef = useRef<HTMLButtonElement>(null);
-  const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useDisclosure();
-  const { isOpen: isCloseOpen, onOpen: onCloseOpen, onClose: onCloseClose } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
+  const {
+    isOpen: isCloseOpen,
+    onOpen: onCloseOpen,
+    onClose: onCloseClose,
+  } = useDisclosure();
 
   // Filter jobs by status
-  const filteredJobs = statusFilter === 'ALL'
-    ? jobsData?.data
-    : jobsData?.data?.filter((job) => job.status === statusFilter);
+  const filteredJobs =
+    statusFilter === 'ALL'
+      ? jobsData?.data
+      : jobsData?.data?.filter((job) => job.status === statusFilter);
 
   const handleDeleteClick = (jobId: string) => {
     setJobToDelete(jobId);
@@ -146,7 +164,9 @@ export default function JobsListPage() {
         <HStack spacing={4}>
           <Select
             value={statusFilter}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setStatusFilter(e.target.value as StatusFilter)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setStatusFilter(e.target.value as StatusFilter)
+            }
             maxW="200px"
             bg="transparent"
             borderColor="glass.light.border"
@@ -159,7 +179,8 @@ export default function JobsListPage() {
             ))}
           </Select>
           <Text color="neutral.500" fontSize="sm">
-            {filteredJobs?.length || 0} job{filteredJobs?.length !== 1 ? 's' : ''}
+            {filteredJobs?.length || 0} job
+            {filteredJobs?.length !== 1 ? 's' : ''}
           </Text>
         </HStack>
 
@@ -186,7 +207,10 @@ export default function JobsListPage() {
                 </Text>
               </VStack>
               <Link href="/jobs/create">
-                <GlassButton colorScheme="primary" leftIcon={<Icon as={FiPlus} />}>
+                <GlassButton
+                  colorScheme="primary"
+                  leftIcon={<Icon as={FiPlus} />}
+                >
                   Create Your First Job
                 </GlassButton>
               </Link>
@@ -213,7 +237,10 @@ export default function JobsListPage() {
                         <Link href={`/jobs/${job.id}`}>
                           <Text
                             fontWeight="medium"
-                            _hover={{ color: 'primary.500', textDecoration: 'underline' }}
+                            _hover={{
+                              color: 'primary.500',
+                              textDecoration: 'underline',
+                            }}
                           >
                             {job.title}
                           </Text>
@@ -226,7 +253,11 @@ export default function JobsListPage() {
                         <JobTierBadge tier={job.tier} />
                       </Td>
                       <Td>
-                        <Text fontSize="sm" color="neutral.600" _dark={{ color: 'neutral.400' }}>
+                        <Text
+                          fontSize="sm"
+                          color="neutral.600"
+                          _dark={{ color: 'neutral.400' }}
+                        >
                           {formatDate(job.createdAt)}
                         </Text>
                       </Td>
@@ -251,7 +282,9 @@ export default function JobsListPage() {
                             </MenuItem>
                             <MenuItem
                               icon={<FiEdit />}
-                              onClick={() => router.push(`/jobs/${job.id}/edit`)}
+                              onClick={() =>
+                                router.push(`/jobs/${job.id}/edit`)
+                              }
                             >
                               Edit
                             </MenuItem>
@@ -259,7 +292,9 @@ export default function JobsListPage() {
                               <>
                                 <MenuItem
                                   icon={<FiPlay />}
-                                  onClick={() => router.push(`/jobs/${job.id}?publish=true`)}
+                                  onClick={() =>
+                                    router.push(`/jobs/${job.id}?publish=true`)
+                                  }
                                 >
                                   Publish
                                 </MenuItem>
@@ -305,7 +340,8 @@ export default function JobsListPage() {
               Delete Job
             </AlertDialogHeader>
             <AlertDialogBody>
-              Are you sure you want to delete this job? This action cannot be undone.
+              Are you sure you want to delete this job? This action cannot be
+              undone.
             </AlertDialogBody>
             <AlertDialogFooter>
               <GlassButton ref={deleteDialogRef} onClick={onDeleteClose}>
@@ -336,7 +372,8 @@ export default function JobsListPage() {
               Close Job
             </AlertDialogHeader>
             <AlertDialogBody>
-              Are you sure you want to close this job? It will no longer be visible to candidates.
+              Are you sure you want to close this job? It will no longer be
+              visible to candidates.
             </AlertDialogBody>
             <AlertDialogFooter>
               <GlassButton ref={closeDialogRef} onClick={onCloseClose}>

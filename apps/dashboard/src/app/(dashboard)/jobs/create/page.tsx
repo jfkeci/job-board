@@ -1,13 +1,7 @@
 'use client';
 
-import type { CreateJobDto, UpdateJobDto } from '@borg/types';
-import {
-  Container,
-  Heading,
-  Text,
-  VStack,
-  GlassCard,
-} from '@borg/ui';
+import type { CreateJobDto, UpdateJobDto } from '@job-board/types';
+import { Container, Heading, Text, VStack, GlassCard } from '@job-board/ui';
 import { Alert, AlertIcon } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 

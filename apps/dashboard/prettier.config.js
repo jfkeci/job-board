@@ -1,1 +1,1 @@
-module.exports = require('@borg/eslint-config-frontend/prettier.config');
+module.exports = require('@job-board/eslint-config-frontend/prettier.config');

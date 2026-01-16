@@ -1,4 +1,4 @@
-import type { Category } from '@borg/types';
+import type { Category } from '@job-board/types';
 
 import { apiClient } from '@/lib/api';
 
@@ -8,6 +8,8 @@ export const categoriesService = {
     if (tenantId) params.append('tenantId', tenantId);
     if (language) params.append('language', language);
     const queryString = params.toString();
-    return apiClient<Category[]>(`/categories${queryString ? `?${queryString}` : ''}`);
+    return apiClient<Category[]>(
+      `/categories${queryString ? `?${queryString}` : ''}`,
+    );
   },
 };

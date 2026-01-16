@@ -23,7 +23,7 @@ blocks: []
 related_specs:
   - "[[initial/backend-architecture]]"
 related_planning: []
-notes: Verifies and documents the exception filter integration between @borg/api and @borg/backend-lib
+notes: Verifies and documents the exception filter integration between @job-board/api and @job-board/backend-lib
 ---
 
 # 10 - Integrate Exception Filter from Backend-lib into API
@@ -36,18 +36,18 @@ notes: Verifies and documents the exception filter integration between @borg/api
 
 ## Context
 
-The `@borg/backend-lib` package provides a comprehensive exception handling system including:
+The `@job-board/backend-lib` package provides a comprehensive exception handling system including:
 - `HttpExceptionFilter` - Global filter for consistent error responses
 - `ApiException` - Custom exception class with i18n support
 - `ExceptionCode` - Standardized error codes
 - `createValidationExceptionFactory` - Factory for class-validator integration
 - `ExceptionsModule` - NestJS module for easy integration
 
-The `@borg/api` application needs to properly integrate this exception handling system to ensure consistent, internationalized error responses across all endpoints.
+The `@job-board/api` application needs to properly integrate this exception handling system to ensure consistent, internationalized error responses across all endpoints.
 
 ## Goal
 
-Verify and configure the `@borg/api` application to use the exception handling infrastructure from `@borg/backend-lib`, ensuring:
+Verify and configure the `@job-board/api` application to use the exception handling infrastructure from `@job-board/backend-lib`, ensuring:
 1. Global HTTP exception filter is active
 2. Validation errors use the custom exception factory
 3. Custom exceptions can be thrown using `ApiException`
@@ -55,7 +55,7 @@ Verify and configure the `@borg/api` application to use the exception handling i
 
 ## Current State
 
-**@borg/backend-lib Exports** (from `packages/backend-lib/src/index.ts`):
+**@job-board/backend-lib Exports** (from `packages/backend-lib/src/index.ts`):
 ```typescript
 // Module
 ExceptionsModule
@@ -86,13 +86,13 @@ ErrorType, SupportedLanguage, ErrorDetail, ApiErrorResponse
 ## Requirements
 
 1. **ExceptionsModule Registration**
-   - Import `ExceptionsModule` from `@borg/backend-lib`
+   - Import `ExceptionsModule` from `@job-board/backend-lib`
    - Use `ExceptionsModule.forRootAsync()` for configuration
    - Configure `includeStack` based on environment (false in production)
    - Register as global module
 
 2. **Validation Exception Factory**
-   - Import `createValidationExceptionFactory` from `@borg/backend-lib`
+   - Import `createValidationExceptionFactory` from `@job-board/backend-lib`
    - Configure `ValidationPipe` to use the custom exception factory
    - Ensure validation errors return proper `ApiErrorResponse` format
 
@@ -110,7 +110,7 @@ ErrorType, SupportedLanguage, ErrorDetail, ApiErrorResponse
 
 ## Constraints
 
-- Do NOT modify `@borg/backend-lib` package
+- Do NOT modify `@job-board/backend-lib` package
 - Use async module configuration for environment-based settings
 - Maintain backward compatibility with existing endpoints
 - Follow NestJS dependency injection patterns
@@ -136,8 +136,8 @@ ErrorType, SupportedLanguage, ErrorDetail, ApiErrorResponse
 
 ```typescript
 // app.module.ts
-import { ExceptionsModule } from '@borg/backend-lib';
-import { ConfigModule, ConfigService } from '@borg/config';
+import { ExceptionsModule } from '@job-board/backend-lib';
+import { ConfigModule, ConfigService } from '@job-board/config';
 
 @Module({
   imports: [
@@ -161,7 +161,7 @@ export class AppModule {}
 ```typescript
 // main.ts
 import { ValidationPipe } from '@nestjs/common';
-import { createValidationExceptionFactory } from '@borg/backend-lib';
+import { createValidationExceptionFactory } from '@job-board/backend-lib';
 
 app.useGlobalPipes(
   new ValidationPipe({
@@ -180,7 +180,7 @@ app.useGlobalPipes(
 
 ```typescript
 // In any service or controller
-import { ApiException, ApiExceptions, ExceptionCode } from '@borg/backend-lib';
+import { ApiException, ApiExceptions, ExceptionCode } from '@job-board/backend-lib';
 
 // Using factory methods
 throw ApiExceptions.notFound('User', userId);

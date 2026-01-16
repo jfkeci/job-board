@@ -1,5 +1,5 @@
 {
-  "name": "@borg/dashboard",
+  "name": "@job-board/dashboard",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,8 +13,8 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
-    "@borg/types": "workspace:*",
-    "@borg/ui": "workspace:*",
+    "@job-board/types": "workspace:*",
+    "@job-board/ui": "workspace:*",
     "@chakra-ui/next-js": "^2.4.2",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.5",
@@ -29,7 +29,7 @@
     "zustand": "^5.0.10"
   },
   "devDependencies": {
-    "@borg/eslint-config-frontend": "workspace:*",
+    "@job-board/eslint-config-frontend": "workspace:*",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",

@@ -19,18 +19,100 @@ importers:
         specifier: ^5.7.2
         version: 5.9.3
 
+  apps/admin:
+    dependencies:
+      '@job-board/types':
+        specifier: workspace:*
+        version: link:../../packages/types
+      '@job-board/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@chakra-ui/next-js':
+        specifier: ^2.4.2
+        version: 2.4.2(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(@types/react@19.2.8)(react@19.2.3))(@types/react@19.2.8)(framer-motion@11.18.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(next@15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
+      '@chakra-ui/react':
+        specifier: ^2.8.2
+        version: 2.10.9(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(@types/react@19.2.8)(react@19.2.3))(@types/react@19.2.8)(framer-motion@11.18.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@emotion/react':
+        specifier: ^11.13.5
+        version: 11.14.0(@types/react@19.2.8)(react@19.2.3)
+      '@emotion/styled':
+        specifier: ^11.13.5
+        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.8)(react@19.2.3))(@types/react@19.2.8)(react@19.2.3)
+      '@tanstack/react-query':
+        specifier: ^5.90.17
+        version: 5.90.17(react@19.2.3)
+      framer-motion:
+        specifier: ^11.15.0
+        version: 11.18.2(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      next:
+        specifier: ^15.1.3
+        version: 15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.3
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.3(react@19.2.3)
+      react-icons:
+        specifier: ^5.4.0
+        version: 5.5.0(react@19.2.3)
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+      zustand:
+        specifier: ^5.0.10
+        version: 5.0.10(@types/react@19.2.8)(react@19.2.3)
+    devDependencies:
+      '@job-board/eslint-config-frontend':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config-frontend
+      '@types/node':
+        specifier: ^22.10.5
+        version: 22.19.6
+      '@types/react':
+        specifier: ^19.0.2
+        version: 19.2.8
+      '@types/react-dom':
+        specifier: ^19.0.2
+        version: 19.2.3(@types/react@19.2.8)
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.23(postcss@8.5.6)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.1.3
+        version: 15.5.9(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.49
+        version: 8.5.6
+      prettier:
+        specifier: ^3.4.2
+        version: 3.7.4
+      prettier-plugin-tailwindcss:
+        specifier: ^0.6.9
+        version: 0.6.14(prettier@3.7.4)
+      tailwindcss:
+        specifier: ^3.4.17
+        version: 3.4.19
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
   apps/api:
     dependencies:
-      '@borg/backend-lib':
+      '@job-board/backend-lib':
         specifier: workspace:*
         version: link:../../packages/backend-lib
-      '@borg/config':
+      '@job-board/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@borg/db':
+      '@job-board/db':
         specifier: workspace:*
         version: link:../../packages/db
-      '@borg/types':
+      '@job-board/types':
         specifier: workspace:*
         version: link:../../packages/types
       '@nestjs/common':
@@ -82,7 +164,7 @@ importers:
         specifier: ^0.3.20
         version: 0.3.28(babel-plugin-macros@3.1.0)(pg@8.16.3)(ts-node@10.9.2(@types/node@22.19.6)(typescript@5.9.3))
     devDependencies:
-      '@borg/eslint-config-backend':
+      '@job-board/eslint-config-backend':
         specifier: workspace:*
         version: link:../../packages/eslint-config-backend
       '@nestjs/cli':
@@ -136,10 +218,10 @@ importers:
 
   apps/dashboard:
     dependencies:
-      '@borg/types':
+      '@job-board/types':
         specifier: workspace:*
         version: link:../../packages/types
-      '@borg/ui':
+      '@job-board/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@chakra-ui/next-js':
@@ -179,7 +261,7 @@ importers:
         specifier: ^5.0.10
         version: 5.0.10(@types/react@19.2.8)(react@19.2.3)
     devDependencies:
-      '@borg/eslint-config-frontend':
+      '@job-board/eslint-config-frontend':
         specifier: workspace:*
         version: link:../../packages/eslint-config-frontend
       '@types/node':
@@ -218,9 +300,12 @@ importers:
 
   apps/web:
     dependencies:
-      '@borg/types':
+      '@job-board/types':
         specifier: workspace:*
         version: link:../../packages/types
+      '@tanstack/react-query':
+        specifier: ^5.90.17
+        version: 5.90.17(react@19.2.3)
       next:
         specifier: ^15.1.3
         version: 15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -230,8 +315,14 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.3(react@19.2.3)
+      zod:
+        specifier: ^3.25.76
+        version: 3.25.76
+      zustand:
+        specifier: ^5.0.10
+        version: 5.0.10(@types/react@19.2.8)(react@19.2.3)
     devDependencies:
-      '@borg/eslint-config-frontend':
+      '@job-board/eslint-config-frontend':
         specifier: workspace:*
         version: link:../../packages/eslint-config-frontend
       '@types/node':
@@ -270,11 +361,11 @@ importers:
 
   packages/backend-lib:
     dependencies:
-      '@borg/types':
+      '@job-board/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:
-      '@borg/eslint-config-backend':
+      '@job-board/eslint-config-backend':
         specifier: workspace:*
         version: link:../eslint-config-backend
       '@nestjs/common':
@@ -323,7 +414,7 @@ importers:
         specifier: ^3.24.1
         version: 3.25.76
     devDependencies:
-      '@borg/eslint-config-backend':
+      '@job-board/eslint-config-backend':
         specifier: workspace:*
         version: link:../eslint-config-backend
       '@nestjs/common':
@@ -350,14 +441,14 @@ importers:
 
   packages/db:
     dependencies:
-      '@borg/config':
+      '@job-board/config':
         specifier: workspace:*
         version: link:../config
       typeorm:
         specifier: ^0.3.20
         version: 0.3.28(babel-plugin-macros@3.1.0)(pg@8.16.3)(ts-node@10.9.2(@types/node@22.19.6)(typescript@5.9.3))
     devDependencies:
-      '@borg/eslint-config-backend':
+      '@job-board/eslint-config-backend':
         specifier: workspace:*
         version: link:../eslint-config-backend
       '@nestjs/common':
@@ -458,7 +549,7 @@ importers:
 
   packages/ui:
     devDependencies:
-      '@borg/eslint-config-frontend':
+      '@job-board/eslint-config-frontend':
         specifier: workspace:*
         version: link:../eslint-config-frontend
       '@chakra-ui/anatomy':
@@ -7787,7 +7878,7 @@ snapshots:
       '@typescript-eslint/parser': 8.53.0(eslint@8.57.1)(typescript@5.9.3)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.1)
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.5(eslint@8.57.1)
@@ -7811,7 +7902,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.1):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3
@@ -7826,14 +7917,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.53.0(eslint@8.57.1)(typescript@5.9.3)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7848,7 +7939,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.53.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3

@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 
-import { ConfigService } from '@borg/config';
+import { ConfigService } from '@job-board/config';
 
-import type { HealthResponseDto, DatabaseHealth, MemoryHealth } from './dto/health-response.dto';
+import type {
+  HealthResponseDto,
+  DatabaseHealth,
+  MemoryHealth,
+} from './dto/health-response.dto';
 
 // Version from package.json - imported at build time
 const packageJson = require('../../package.json');

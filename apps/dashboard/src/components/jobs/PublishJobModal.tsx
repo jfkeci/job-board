@@ -1,6 +1,6 @@
 'use client';
 
-import { JobTier, PromotionType } from '@borg/types';
+import { JobTier, PromotionType } from '@job-board/types';
 import {
   VStack,
   HStack,
@@ -20,7 +20,7 @@ import {
   GlassModalBody,
   GlassModalFooter,
   GlassModalCloseButton,
-} from '@borg/ui';
+} from '@job-board/ui';
 import { Alert, AlertIcon } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FiStar, FiTrendingUp, FiZap, FiShare2 } from 'react-icons/fi';
@@ -51,7 +51,11 @@ const tierInfo: Record<JobTier, TierInfo> = {
   [JobTier.STANDARD]: {
     name: 'Standard',
     description: 'Enhanced visibility',
-    features: ['30 days visibility', 'Priority search placement', 'Highlighted in results'],
+    features: [
+      '30 days visibility',
+      'Priority search placement',
+      'Highlighted in results',
+    ],
     price: '49',
   },
   [JobTier.PREMIUM]: {
@@ -67,7 +71,10 @@ const tierInfo: Record<JobTier, TierInfo> = {
   },
 };
 
-const promotionInfo: Record<PromotionType, { label: string; icon: typeof FiStar; price: string }> = {
+const promotionInfo: Record<
+  PromotionType,
+  { label: string; icon: typeof FiStar; price: string }
+> = {
   [PromotionType.FEATURED]: {
     label: 'Featured Badge',
     icon: FiStar,
@@ -90,16 +97,24 @@ const promotionInfo: Record<PromotionType, { label: string; icon: typeof FiStar;
   },
 };
 
-export function PublishJobModal({ isOpen, onClose, jobId, onSuccess }: PublishJobModalProps) {
+export function PublishJobModal({
+  isOpen,
+  onClose,
+  jobId,
+  onSuccess,
+}: PublishJobModalProps) {
   const [selectedTier, setSelectedTier] = useState<JobTier>(JobTier.BASIC);
-  const [selectedPromotions, setSelectedPromotions] = useState<PromotionType[]>([]);
+  const [selectedPromotions, setSelectedPromotions] = useState<PromotionType[]>(
+    [],
+  );
   const publishJob = usePublishJob(jobId);
 
   const handlePublish = async () => {
     try {
       await publishJob.mutateAsync({
         tier: selectedTier,
-        promotions: selectedPromotions.length > 0 ? selectedPromotions : undefined,
+        promotions:
+          selectedPromotions.length > 0 ? selectedPromotions : undefined,
       });
       onSuccess?.();
     } catch {
@@ -130,7 +145,10 @@ export function PublishJobModal({ isOpen, onClose, jobId, onSuccess }: PublishJo
               <Text fontWeight="semibold" mb={3}>
                 Select Listing Tier
               </Text>
-              <RadioGroup value={selectedTier} onChange={(v) => setSelectedTier(v as JobTier)}>
+              <RadioGroup
+                value={selectedTier}
+                onChange={(v) => setSelectedTier(v as JobTier)}
+              >
                 <VStack spacing={3} align="stretch">
                   {Object.entries(tierInfo).map(([tier, info]) => (
                     <Box
@@ -138,9 +156,16 @@ export function PublishJobModal({ isOpen, onClose, jobId, onSuccess }: PublishJo
                       p={4}
                       borderWidth="1px"
                       borderRadius="md"
-                      borderColor={selectedTier === tier ? 'primary.500' : 'glass.light.border'}
+                      borderColor={
+                        selectedTier === tier
+                          ? 'primary.500'
+                          : 'glass.light.border'
+                      }
                       _dark={{
-                        borderColor: selectedTier === tier ? 'primary.500' : 'glass.dark.border',
+                        borderColor:
+                          selectedTier === tier
+                            ? 'primary.500'
+                            : 'glass.dark.border',
                       }}
                       cursor="pointer"
                       onClick={() => setSelectedTier(tier as JobTier)}
@@ -158,12 +183,19 @@ export function PublishJobModal({ isOpen, onClose, jobId, onSuccess }: PublishJo
                           </Box>
                         </HStack>
                         <Text fontWeight="bold" color="primary.500">
-                          {info.price === 'Free' ? info.price : `€${info.price}`}
+                          {info.price === 'Free'
+                            ? info.price
+                            : `€${info.price}`}
                         </Text>
                       </HStack>
                       <VStack align="start" spacing={1} pl={8}>
                         {info.features.map((feature, idx) => (
-                          <Text key={idx} fontSize="sm" color="neutral.600" _dark={{ color: 'neutral.400' }}>
+                          <Text
+                            key={idx}
+                            fontSize="sm"
+                            color="neutral.600"
+                            _dark={{ color: 'neutral.400' }}
+                          >
                             • {feature}
                           </Text>
                         ))}
@@ -183,7 +215,9 @@ export function PublishJobModal({ isOpen, onClose, jobId, onSuccess }: PublishJo
               </Text>
               <CheckboxGroup
                 value={selectedPromotions}
-                onChange={(values) => setSelectedPromotions(values as PromotionType[])}
+                onChange={(values) =>
+                  setSelectedPromotions(values as PromotionType[])
+                }
               >
                 <VStack spacing={2} align="stretch">
                   {Object.entries(promotionInfo).map(([promotion, info]) => (
@@ -198,7 +232,9 @@ export function PublishJobModal({ isOpen, onClose, jobId, onSuccess }: PublishJo
                           : 'glass.light.border'
                       }
                       _dark={{
-                        borderColor: selectedPromotions.includes(promotion as PromotionType)
+                        borderColor: selectedPromotions.includes(
+                          promotion as PromotionType,
+                        )
                           ? 'primary.500'
                           : 'glass.dark.border',
                       }}
@@ -209,7 +245,11 @@ export function PublishJobModal({ isOpen, onClose, jobId, onSuccess }: PublishJo
                         <Icon as={info.icon} color="primary.500" />
                         <Text fontSize="sm">{info.label}</Text>
                       </HStack>
-                      <Text fontSize="sm" fontWeight="medium" color="primary.500">
+                      <Text
+                        fontSize="sm"
+                        fontWeight="medium"
+                        color="primary.500"
+                      >
                         {info.price}
                       </Text>
                     </HStack>

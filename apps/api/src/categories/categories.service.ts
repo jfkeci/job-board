@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { Category, DatabaseService } from '@borg/db';
+import { Category, DatabaseService } from '@job-board/db';
 
 import { CategoryResponseDto } from './dto';
 
@@ -12,7 +12,10 @@ export class CategoriesService {
    * Get all categories for a tenant
    * Returns global categories (tenantId = null) if no tenant-specific categories exist
    */
-  async findAll(tenantId?: string, language = 'en'): Promise<CategoryResponseDto[]> {
+  async findAll(
+    tenantId?: string,
+    language = 'en',
+  ): Promise<CategoryResponseDto[]> {
     // Find categories for the specific tenant or global categories
     const categories = await this.db.categories.find({
       where: tenantId ? [{ tenantId }, { tenantId: undefined }] : {},
@@ -26,11 +29,15 @@ export class CategoriesService {
   /**
    * Map Category entity to response DTO
    */
-  private mapToResponse(category: Category, language: string): CategoryResponseDto {
+  private mapToResponse(
+    category: Category,
+    language: string,
+  ): CategoryResponseDto {
     // Find translation for the requested language, fallback to 'en' or first available
-    const translation = category.translations?.find((t) => t.language === language)
-      || category.translations?.find((t) => t.language === 'en')
-      || category.translations?.[0];
+    const translation =
+      category.translations?.find((t) => t.language === language) ||
+      category.translations?.find((t) => t.language === 'en') ||
+      category.translations?.[0];
 
     return {
       id: category.id,

@@ -4,4 +4,4 @@
 
 refine a comprehensive prompt form this 
 
-borg/api needs to use the exception filter from backend libs
+job-board/api needs to use the exception filter from backend libs

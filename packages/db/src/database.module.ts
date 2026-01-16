@@ -11,8 +11,8 @@ import { entities } from './entities';
  * ```typescript
  * // app.module.ts
  * import { TypeOrmModule } from '@nestjs/typeorm';
- * import { ConfigModule, ConfigService } from '@borg/config';
- * import { DatabaseModule, entities } from '@borg/db';
+ * import { ConfigModule, ConfigService } from '@job-board/config';
+ * import { DatabaseModule, entities } from '@job-board/db';
  *
  * @Module({
  *   imports: [

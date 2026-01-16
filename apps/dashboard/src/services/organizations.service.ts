@@ -2,7 +2,7 @@ import type {
   Organization,
   CreateOrganizationDto,
   UpdateOrganizationDto,
-} from '@borg/types';
+} from '@job-board/types';
 
 import { apiClient } from '@/lib/api';
 

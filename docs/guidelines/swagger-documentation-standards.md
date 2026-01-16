@@ -259,7 +259,7 @@ This requires knowing **which errors can occur** and **what they mean**.
 
 ### Standard Error Response Format
 
-All errors follow this structure (from `@borg/backend-lib` exception filter):
+All errors follow this structure (from `@job-board/backend-lib` exception filter):
 
 ```typescript
 export class ErrorDetailDto {

@@ -24,7 +24,7 @@ blocks: []
 related_specs:
   - "[[initial/er-diagram]]"
 related_planning: []
-notes: Successfully implemented auth module with JWT tokens, session management, and RBAC. Added JWT config to @borg/config. All type checks pass.
+notes: Successfully implemented auth module with JWT tokens, session management, and RBAC. Added JWT config to @job-board/config. All type checks pass.
 ---
 
 # 11 - Authentication Module with JWT and Session Management
@@ -37,7 +37,7 @@ notes: Successfully implemented auth module with JWT tokens, session management,
 
 ## Context
 
-The `@borg/api` application needs a complete authentication system to secure API endpoints and manage user sessions. The database layer (`@borg/db`) already provides entities for `User`, `Session`, and `RefreshToken` with the appropriate schema defined. This prompt implements the authentication logic, JWT token handling, and role-based access control.
+The `@job-board/api` application needs a complete authentication system to secure API endpoints and manage user sessions. The database layer (`@job-board/db`) already provides entities for `User`, `Session`, and `RefreshToken` with the appropriate schema defined. This prompt implements the authentication logic, JWT token handling, and role-based access control.
 
 ## Goal
 
@@ -58,8 +58,8 @@ Implement a production-ready authentication module in `apps/api` that provides:
   - `RefreshToken` - sessionId, token, expiresAt (cascade delete with Session)
 - **DatabaseService** (`packages/db/src/database.service.ts`) - facade providing `db.users`, `db.sessions`, `db.refreshTokens` repositories
 - **UserRole Enum** (`packages/db/src/enums/user-role.enum.ts`): `USER`, `CLIENT`, `CLIENT_ADMIN`, `ADMIN`
-- **ConfigService** (`@borg/config`) - environment configuration with Zod validation
-- **ExceptionsModule** (`@borg/backend-lib`) - global exception handling with i18n support
+- **ConfigService** (`@job-board/config`) - environment configuration with Zod validation
+- **ExceptionsModule** (`@job-board/backend-lib`) - global exception handling with i18n support
 
 ### Files to Reference
 ```
@@ -76,7 +76,7 @@ packages/config/src/config.service.ts
 
 ### 1. **Environment Configuration**
 
-Extend `@borg/config` to include JWT configuration:
+Extend `@job-board/config` to include JWT configuration:
 
 - `JWT_SECRET` - Secret key for signing tokens (required)
 - `JWT_ACCESS_TOKEN_EXPIRY` - Access token TTL (default: `15m`)
@@ -298,8 +298,8 @@ const isValid = await argon2.verify(hash, password);
 
 ### Dependency Installation
 ```bash
-pnpm --filter @borg/api add @nestjs/jwt @nestjs/passport passport passport-jwt argon2
-pnpm --filter @borg/api add -D @types/passport-jwt
+pnpm --filter @job-board/api add @nestjs/jwt @nestjs/passport passport passport-jwt argon2
+pnpm --filter @job-board/api add -D @types/passport-jwt
 ```
 
 ### Example DTO Validation

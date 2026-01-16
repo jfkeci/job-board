@@ -4,6 +4,6 @@
 
 refine a prompts form this 
 
-all apps/packages should have @borg prefix
+all apps/packages should have @job-board prefix
 need local dev script for the api and the website 
 need another website that will be used as a b2b dashboard

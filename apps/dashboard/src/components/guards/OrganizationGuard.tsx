@@ -1,6 +1,6 @@
 'use client';
 
-import { Center, Spinner } from '@borg/ui';
+import { Center, Spinner } from '@job-board/ui';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 

@@ -2,7 +2,7 @@
 export {
   // Enums (value exports)
   UserRole,
-} from '@borg/types';
+} from '@job-board/types';
 
 export type {
   // Interfaces
@@ -14,4 +14,4 @@ export type {
   RegisterCredentials,
   ApiError,
   ApiErrorResponse,
-} from '@borg/types';
+} from '@job-board/types';

@@ -1,5 +1,5 @@
 {
-  "name": "@borg/api",
+  "name": "@job-board/api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -19,10 +19,10 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@borg/backend-lib": "workspace:*",
-    "@borg/config": "workspace:*",
-    "@borg/db": "workspace:*",
-    "@borg/types": "workspace:*",
+    "@job-board/backend-lib": "workspace:*",
+    "@job-board/config": "workspace:*",
+    "@job-board/db": "workspace:*",
+    "@job-board/types": "workspace:*",
     "@nestjs/common": "^10.4.15",
     "@nestjs/core": "^10.4.15",
     "@nestjs/jwt": "^11.0.2",
@@ -41,7 +41,7 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
-    "@borg/eslint-config-backend": "workspace:*",
+    "@job-board/eslint-config-backend": "workspace:*",
     "@nestjs/cli": "^10.4.9",
     "@nestjs/schematics": "^10.2.3",
     "@nestjs/testing": "^10.4.15",

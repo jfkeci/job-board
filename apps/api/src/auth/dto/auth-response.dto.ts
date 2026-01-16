@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-import { UserRole } from '@borg/db';
+import { UserRole } from '@job-board/db';
 
 export class UserProfileDto {
   @ApiProperty({ description: 'User first name', example: 'John' })
@@ -9,10 +9,18 @@ export class UserProfileDto {
   @ApiProperty({ description: 'User last name', example: 'Doe' })
   lastName!: string;
 
-  @ApiPropertyOptional({ description: 'Phone number', example: '+385911234567', nullable: true })
+  @ApiPropertyOptional({
+    description: 'Phone number',
+    example: '+385911234567',
+    nullable: true,
+  })
   phone!: string | null;
 
-  @ApiPropertyOptional({ description: 'Professional headline', example: 'Senior Software Developer', nullable: true })
+  @ApiPropertyOptional({
+    description: 'Professional headline',
+    example: 'Senior Software Developer',
+    nullable: true,
+  })
   headline!: string | null;
 }
 
@@ -76,13 +84,16 @@ export class UserResponseDto {
 export class AuthResponseDto {
   @ApiProperty({
     description: 'JWT access token (short-lived, default 15 minutes)',
-    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ...',
+    example:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ...',
   })
   accessToken!: string;
 
   @ApiProperty({
-    description: 'Refresh token for obtaining new access tokens (long-lived, default 7 days)',
-    example: 'a1b2c3d4e5f6789abcdef0123456789abcdef0123456789abcdef0123456789...',
+    description:
+      'Refresh token for obtaining new access tokens (long-lived, default 7 days)',
+    example:
+      'a1b2c3d4e5f6789abcdef0123456789abcdef0123456789abcdef0123456789...',
   })
   refreshToken!: string;
 
@@ -93,7 +104,8 @@ export class AuthResponseDto {
   expiresIn!: number;
 
   @ApiPropertyOptional({
-    description: 'User data (included on register/login, omitted on token refresh)',
+    description:
+      'User data (included on register/login, omitted on token refresh)',
     type: UserResponseDto,
   })
   user?: UserResponseDto;

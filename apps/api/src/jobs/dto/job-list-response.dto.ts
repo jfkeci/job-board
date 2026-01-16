@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { EmploymentType, JobStatus, JobTier } from '@borg/db';
+import { EmploymentType, JobStatus, JobTier } from '@job-board/db';
 
 export class JobListItemDto {
   @ApiProperty({

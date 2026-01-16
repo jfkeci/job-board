@@ -96,7 +96,7 @@ apps/dashboard/src/
 
 ```bash
 # From monorepo root
-pnpm add zustand @tanstack/react-query --filter=@borg/dashboard
+pnpm add zustand @tanstack/react-query --filter=@job-board/dashboard
 ```
 
 ### 2. Create Auth Types
@@ -295,7 +295,7 @@ NEXT_PUBLIC_DEFAULT_TENANT_ID=<uuid-from-database>
 - Do NOT implement social login (Google/GitHub) - keep buttons as UI placeholders
 - Do NOT implement forgot password flow
 - Do NOT add email verification UI
-- Use existing `@borg/ui` components (GlassCard, GlassButton, GlassInput)
+- Use existing `@job-board/ui` components (GlassCard, GlassButton, GlassInput)
 - Follow existing code patterns in dashboard app
 - Keep implementation simple - no over-engineering
 - Hardcode tenantId for MVP (will be dynamic later)
@@ -331,7 +331,7 @@ NEXT_PUBLIC_DEFAULT_TENANT_ID=<uuid-from-database>
 - [ ] Loading states show during API calls
 - [ ] Logout clears tokens and redirects to login
 - [ ] App hydrates auth state from localStorage on reload
-- [ ] Type-check passes: `pnpm type-check --filter=@borg/dashboard`
+- [ ] Type-check passes: `pnpm type-check --filter=@job-board/dashboard`
 
 ## Technical Notes
 

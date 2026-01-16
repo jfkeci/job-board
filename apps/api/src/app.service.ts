@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { successResponse } from '@borg/backend-lib';
-import type { ApiResponse } from '@borg/types';
+import { successResponse } from '@job-board/backend-lib';
+import type { ApiResponse } from '@job-board/types';
 
 @Injectable()
 export class AppService {

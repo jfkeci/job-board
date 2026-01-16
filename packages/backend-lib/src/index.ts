@@ -1,5 +1,5 @@
 // Re-export types for convenience
-export * from '@borg/types';
+export * from '@job-board/types';
 
 // Logger exports
 export {

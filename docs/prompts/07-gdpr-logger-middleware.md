@@ -29,7 +29,7 @@ notes: Core logging infrastructure for all backend services with GDPR compliance
 
 **Date**: 2026-01-13
 **Target**: Backend
-**Package**: `@borg/backend-lib`
+**Package**: `@job-board/backend-lib`
 
 ---
 
@@ -43,7 +43,7 @@ All backend applications require robust logging for debugging, monitoring, and a
 
 ## Goal
 
-Create a comprehensive, GDPR-compliant logging system in `@borg/backend-lib` that includes:
+Create a comprehensive, GDPR-compliant logging system in `@job-board/backend-lib` that includes:
 1. A NestJS LoggerMiddleware for HTTP request/response logging
 2. A custom LoggerService wrapping NestJS Logger with PII redaction
 3. Configurable sensitive field detection and masking
@@ -52,9 +52,9 @@ Create a comprehensive, GDPR-compliant logging system in `@borg/backend-lib` tha
 
 ## Current State
 
-- `@borg/backend-lib` exists with basic utility functions
+- `@job-board/backend-lib` exists with basic utility functions
 - No logging infrastructure exists
-- `@borg/config` provides environment configuration
+- `@job-board/config` provides environment configuration
 - Backend apps use default NestJS console logging
 
 ## Requirements
@@ -282,7 +282,7 @@ export class LoggerModule {
 
 ### 8. **Package Exports**
 
-Update `@borg/backend-lib` exports:
+Update `@job-board/backend-lib` exports:
 
 ```typescript
 // index.ts additions
@@ -322,7 +322,7 @@ export { type StructuredLog, formatLog } from './logger/log-format';
 - Must work with NestJS dependency injection
 - Must support multi-tenant architecture (tenant isolation in logs)
 - Must be performant (minimal overhead on request handling)
-- Must work with existing `@borg/config` for environment detection
+- Must work with existing `@job-board/config` for environment detection
 - Redaction must be recursive (handle nested objects)
 - Must handle circular references in objects safely
 
@@ -342,7 +342,7 @@ export { type StructuredLog, formatLog } from './logger/log-format';
 
 ## Acceptance Criteria
 
-- [ ] `pnpm build` succeeds for `@borg/backend-lib`
+- [ ] `pnpm build` succeeds for `@job-board/backend-lib`
 - [ ] `pnpm type-check` passes
 - [ ] All sensitive fields are properly redacted in logs
 - [ ] Email addresses are masked (u***@d***.com format)
@@ -355,7 +355,7 @@ export { type StructuredLog, formatLog } from './logger/log-format';
 - [ ] Production logs are JSON formatted
 - [ ] Development logs are human-readable
 - [ ] Request/response logging works via middleware
-- [ ] Can be imported and used in `@borg/api` app
+- [ ] Can be imported and used in `@job-board/api` app
 
 ## Technical Notes
 
@@ -371,7 +371,7 @@ export { type StructuredLog, formatLog } from './logger/log-format';
 
 ```typescript
 // app.module.ts
-import { LoggerModule } from '@borg/backend-lib';
+import { LoggerModule } from '@job-board/backend-lib';
 
 @Module({
   imports: [

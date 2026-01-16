@@ -1,6 +1,6 @@
 'use client';
 
-import { JobStatus } from '@borg/types';
+import { JobStatus } from '@job-board/types';
 import {
   Box,
   Heading,
@@ -14,7 +14,7 @@ import {
   Spinner,
   GlassCard,
   GlassButton,
-} from '@borg/ui';
+} from '@job-board/ui';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -54,14 +54,23 @@ export default function OverviewPage() {
 
   // Calculate stats from real data
   const jobs = jobsData?.data || [];
-  const activeJobsCount = jobs.filter((j) => j.status === JobStatus.ACTIVE).length;
-  const draftJobsCount = jobs.filter((j) => j.status === JobStatus.DRAFT).length;
-  const closedJobsCount = jobs.filter((j) => j.status === JobStatus.CLOSED).length;
+  const activeJobsCount = jobs.filter(
+    (j) => j.status === JobStatus.ACTIVE,
+  ).length;
+  const draftJobsCount = jobs.filter(
+    (j) => j.status === JobStatus.DRAFT,
+  ).length;
+  const closedJobsCount = jobs.filter(
+    (j) => j.status === JobStatus.CLOSED,
+  ).length;
   const totalViews = jobs.reduce((sum, j) => sum + j.viewCount, 0);
 
   // Get recent jobs (last 5)
   const recentJobs = [...jobs]
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
     .slice(0, 5);
 
   if (isLoading) {
@@ -252,7 +261,9 @@ export default function OverviewPage() {
                         {job.expiresAt && job.status === JobStatus.ACTIVE && (
                           <HStack spacing={1}>
                             <Icon as={FiClock} boxSize={3} />
-                            <Text>{getDaysRemaining(job.expiresAt)} days left</Text>
+                            <Text>
+                              {getDaysRemaining(job.expiresAt)} days left
+                            </Text>
                           </HStack>
                         )}
                         <Text>Created {formatDate(job.createdAt)}</Text>
@@ -293,17 +304,29 @@ export default function OverviewPage() {
                 </GlassButton>
               </Link>
               <Link href="/jobs">
-                <GlassButton w="full" variant="outline" leftIcon={<FiBriefcase />}>
+                <GlassButton
+                  w="full"
+                  variant="outline"
+                  leftIcon={<FiBriefcase />}
+                >
                   Manage Jobs
                 </GlassButton>
               </Link>
               <Link href="/analytics">
-                <GlassButton w="full" variant="outline" leftIcon={<FiBarChart2 />}>
+                <GlassButton
+                  w="full"
+                  variant="outline"
+                  leftIcon={<FiBarChart2 />}
+                >
                   Analytics
                 </GlassButton>
               </Link>
               <Link href="/settings">
-                <GlassButton w="full" variant="outline" leftIcon={<FiFileText />}>
+                <GlassButton
+                  w="full"
+                  variant="outline"
+                  leftIcon={<FiFileText />}
+                >
                   Settings
                 </GlassButton>
               </Link>

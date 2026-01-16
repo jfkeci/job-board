@@ -1,6 +1,6 @@
 'use client';
 
-import { OrganizationSize } from '@borg/types';
+import { OrganizationSize } from '@job-board/types';
 import {
   Box,
   Container,
@@ -14,7 +14,7 @@ import {
   GlassCard,
   GlassButton,
   GlassInput,
-} from '@borg/ui';
+} from '@job-board/ui';
 import { Alert, AlertIcon, Select, Textarea } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -59,7 +59,8 @@ export default function CreateOrganizationPage() {
     }
 
     if (website && !isValidUrl(website)) {
-      newErrors.website = 'Please enter a valid URL (e.g., https://example.com)';
+      newErrors.website =
+        'Please enter a valid URL (e.g., https://example.com)';
     }
 
     setErrors(newErrors);
@@ -160,7 +161,9 @@ export default function CreateOrganizationPage() {
                 <FormLabel>Description</FormLabel>
                 <Textarea
                   value={description}
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setDescription(e.target.value)
+                  }
                   placeholder="Tell us about your company..."
                   rows={4}
                   bg="transparent"
@@ -203,7 +206,9 @@ export default function CreateOrganizationPage() {
                 <FormLabel>Company Size</FormLabel>
                 <Select
                   value={size}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSize(e.target.value as OrganizationSize | '')}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setSize(e.target.value as OrganizationSize | '')
+                  }
                   placeholder="Select company size..."
                   bg="transparent"
                   borderColor="glass.light.border"
@@ -216,11 +221,13 @@ export default function CreateOrganizationPage() {
                     boxShadow: '0 0 0 1px var(--chakra-colors-primary-500)',
                   }}
                 >
-                  {Object.entries(organizationSizeLabels).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
+                  {Object.entries(organizationSizeLabels).map(
+                    ([value, label]) => (
+                      <option key={value} value={value}>
+                        {label}
+                      </option>
+                    ),
+                  )}
                 </Select>
               </FormControl>
 

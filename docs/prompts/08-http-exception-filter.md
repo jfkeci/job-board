@@ -30,7 +30,7 @@ notes: Stripe-inspired exception handling with internationalized error messages 
 
 **Date**: 2026-01-13
 **Target**: Backend
-**Package**: `@borg/backend-lib`
+**Package**: `@job-board/backend-lib`
 
 ---
 
@@ -40,7 +40,7 @@ APIs need consistent, developer-friendly error responses similar to Stripe's err
 
 ## Goal
 
-Create a robust HTTP exception filter system in `@borg/backend-lib` that provides:
+Create a robust HTTP exception filter system in `@job-board/backend-lib` that provides:
 1. Stripe-inspired error response format with consistent structure
 2. Comprehensive exception codes enum covering common error scenarios
 3. Internationalized error messages (HR, BS, EN, MK)
@@ -50,7 +50,7 @@ Create a robust HTTP exception filter system in `@borg/backend-lib` that provide
 
 ## Current State
 
-- `@borg/backend-lib` exists with logging infrastructure
+- `@job-board/backend-lib` exists with logging infrastructure
 - No standardized exception handling exists
 - NestJS apps use default exception responses
 - No i18n support for error messages
@@ -607,7 +607,7 @@ export {
 
 ## Acceptance Criteria
 
-- [x] `pnpm build` succeeds for `@borg/backend-lib`
+- [x] `pnpm build` succeeds for `@job-board/backend-lib`
 - [x] All exception codes have translations for EN, HR, BS, MK
 - [x] `X-Language` header correctly switches response language
 - [x] Default language is English when header is missing/invalid
@@ -616,7 +616,7 @@ export {
 - [x] Correlation IDs are included in error responses
 - [x] Unknown exceptions are caught and return 500 with generic message
 - [x] ApiExceptions factory methods create correct exceptions
-- [x] Can be imported and used in `@borg/api` app
+- [x] Can be imported and used in `@job-board/api` app
 
 ## Technical Notes
 
@@ -704,7 +704,7 @@ export {
 
 ```typescript
 // app.module.ts
-import { ExceptionsModule } from '@borg/backend-lib';
+import { ExceptionsModule } from '@job-board/backend-lib';
 
 @Module({
   imports: [
@@ -716,7 +716,7 @@ import { ExceptionsModule } from '@borg/backend-lib';
 export class AppModule {}
 
 // main.ts - Configure validation pipe
-import { createValidationExceptionFactory } from '@borg/backend-lib';
+import { createValidationExceptionFactory } from '@job-board/backend-lib';
 
 app.useGlobalPipes(
   new ValidationPipe({
@@ -727,7 +727,7 @@ app.useGlobalPipes(
 );
 
 // job.service.ts - Throwing exceptions
-import { ApiExceptions } from '@borg/backend-lib';
+import { ApiExceptions } from '@job-board/backend-lib';
 
 @Injectable()
 export class JobService {

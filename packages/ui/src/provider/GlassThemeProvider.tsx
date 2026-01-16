@@ -43,7 +43,7 @@ export interface GlassThemeProviderProps {
  * </GlassThemeProvider>
  *
  * // With preset brand colors
- * import { brandPresets } from '@borg/ui';
+ * import { brandPresets } from '@job-board/ui';
  * <GlassThemeProvider brandConfig={brandPresets.emerald}>
  *   <App />
  * </GlassThemeProvider>

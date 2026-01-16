@@ -8,7 +8,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-import { OrganizationSize } from '@borg/db';
+import { OrganizationSize } from '@job-board/db';
 
 export class UpdateOrganizationDto {
   @ApiPropertyOptional({

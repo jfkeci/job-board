@@ -1,10 +1,16 @@
 // ===========================================
-// @borg/ui - Glassmorphism Design System
+// @job-board/ui - Glassmorphism Design System
 // ===========================================
 
 // Theme & Brand
 export { createGlassTheme, glassTheme, type GlassThemeConfig } from './theme';
-export { brandPresets, type BrandConfig, type BrandPresetName, type ColorScale, type BrandColors } from './brand';
+export {
+  brandPresets,
+  type BrandConfig,
+  type BrandPresetName,
+  type ColorScale,
+  type BrandColors,
+} from './brand';
 
 // Provider
 export {
@@ -108,6 +114,14 @@ export {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  InputLeftAddon,
+  InputRightAddon,
+  Select,
+  Textarea,
   Checkbox,
   CheckboxGroup,
   Radio,
@@ -121,7 +135,22 @@ export {
   SkeletonText,
   SkeletonCircle,
 
+  // Stats
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  StatGroup,
+
   // Overlay
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   Drawer,
   DrawerBody,
   DrawerFooter,

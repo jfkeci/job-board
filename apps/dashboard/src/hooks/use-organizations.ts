@@ -1,4 +1,7 @@
-import type { CreateOrganizationDto, UpdateOrganizationDto } from '@borg/types';
+import type {
+  CreateOrganizationDto,
+  UpdateOrganizationDto,
+} from '@job-board/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { organizationsService } from '@/services/organizations.service';

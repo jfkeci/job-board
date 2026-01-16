@@ -1,5 +1,5 @@
 {
-  "name": "@borg/config",
+  "name": "@job-board/config",
   "version": "0.0.0",
   "private": true,
   "main": "./dist/index.js",
@@ -38,7 +38,7 @@
     "@nestjs/common": "^10.0.0"
   },
   "devDependencies": {
-    "@borg/eslint-config-backend": "workspace:*",
+    "@job-board/eslint-config-backend": "workspace:*",
     "@nestjs/common": "^10.4.15",
     "@types/node": "^22.10.5",
     "eslint": "^8.57.0",

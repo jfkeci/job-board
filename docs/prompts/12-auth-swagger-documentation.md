@@ -35,7 +35,7 @@ notes: Add comprehensive Swagger docs and proper HTTP exception handling to auth
 
 ## Context
 
-The auth controller (`apps/api/src/auth/auth.controller.ts`) is implemented but lacks Swagger documentation and proper HTTP exception handling. The endpoints need to be documented with request/response schemas and use the standardized `ApiExceptions` factory methods from `@borg/backend-lib` for consistent error responses.
+The auth controller (`apps/api/src/auth/auth.controller.ts`) is implemented but lacks Swagger documentation and proper HTTP exception handling. The endpoints need to be documented with request/response schemas and use the standardized `ApiExceptions` factory methods from `@job-board/backend-lib` for consistent error responses.
 
 ## Goal
 
@@ -337,10 +337,10 @@ export class MessageResponseDto {
 
 ### 4. **HTTP Exception Handling**
 
-Update `auth.service.ts` to use `ApiExceptions` from `@borg/backend-lib`:
+Update `auth.service.ts` to use `ApiExceptions` from `@job-board/backend-lib`:
 
 ```typescript
-import { ApiExceptions } from '@borg/backend-lib';
+import { ApiExceptions } from '@job-board/backend-lib';
 
 @Injectable()
 export class AuthService {
@@ -449,7 +449,7 @@ export class ApiErrorResponseDto {
 
 ## Constraints
 
-- Use existing `@borg/backend-lib` exception system - don't create new exception classes
+- Use existing `@job-board/backend-lib` exception system - don't create new exception classes
 - Follow Swagger patterns from `docs/references/swagger-documentation-usage.md`
 - Follow exception patterns from `docs/references/http-exceptions-usage.md`
 - Keep DTO validation decorators (`class-validator`) alongside `@ApiProperty`

@@ -1,5 +1,5 @@
 {
-  "name": "@borg/ui",
+  "name": "@job-board/ui",
   "version": "0.0.0",
   "private": true,
   "sideEffects": false,
@@ -39,7 +39,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@borg/eslint-config-frontend": "workspace:*",
+    "@job-board/eslint-config-frontend": "workspace:*",
     "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.5",

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { ApiExceptions } from '@borg/backend-lib';
-import { DatabaseService, Organization, UserRole } from '@borg/db';
+import { ApiExceptions } from '@job-board/backend-lib';
+import { DatabaseService, Organization, UserRole } from '@job-board/db';
 
 import { RequestUser } from '../auth/interfaces';
 import {
@@ -61,7 +61,10 @@ export class OrganizationsService {
   /**
    * Get organization by ID
    */
-  async findOne(id: string, user: RequestUser): Promise<OrganizationResponseDto> {
+  async findOne(
+    id: string,
+    user: RequestUser,
+  ): Promise<OrganizationResponseDto> {
     const organization = await this.db.organizations.findOne({
       where: { id },
     });

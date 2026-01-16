@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-import { OrganizationSize } from '@borg/db';
+import { OrganizationSize } from '@job-board/db';
 
 export class OrganizationResponseDto {
   @ApiProperty({

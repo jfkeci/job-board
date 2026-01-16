@@ -19,7 +19,7 @@ export interface ConfigModuleOptions {
  *
  * @example
  * // app.module.ts
- * import { ConfigModule } from '@borg/config';
+ * import { ConfigModule } from '@job-board/config';
  *
  * @Module({
  *   imports: [ConfigModule.forRoot()],

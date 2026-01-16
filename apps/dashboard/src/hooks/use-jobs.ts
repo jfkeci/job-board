@@ -1,4 +1,8 @@
-import type { CreateJobDto, UpdateJobDto, PublishJobDto } from '@borg/types';
+import type {
+  CreateJobDto,
+  UpdateJobDto,
+  PublishJobDto,
+} from '@job-board/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { jobsService } from '@/services/jobs.service';

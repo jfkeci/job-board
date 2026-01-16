@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import type { ApiResponse } from '@borg/types';
+import type { ApiResponse } from '@job-board/types';
 
 import { AppService } from './app.service';
 import { Public } from './auth';

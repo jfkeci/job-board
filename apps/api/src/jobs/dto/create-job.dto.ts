@@ -15,7 +15,7 @@ import {
   ExperienceLevel,
   RemoteOption,
   SalaryPeriod,
-} from '@borg/db';
+} from '@job-board/db';
 
 export class CreateJobDto {
   @ApiProperty({
@@ -31,7 +31,8 @@ export class CreateJobDto {
 
   @ApiProperty({
     description: 'Job description (Markdown supported)',
-    example: '## About the Role\n\nWe are looking for an experienced engineer...',
+    example:
+      '## About the Role\n\nWe are looking for an experienced engineer...',
     minLength: 100,
     maxLength: 50000,
   })

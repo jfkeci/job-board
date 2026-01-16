@@ -12,7 +12,7 @@ import {
   Badge,
   GlassCard,
   GlassButton,
-} from '@borg/ui';
+} from '@job-board/ui';
 import Link from 'next/link';
 import {
   FiBriefcase,
@@ -34,22 +34,26 @@ const features = [
   {
     icon: FiBriefcase,
     title: 'Easy Job Posting',
-    description: 'Create and publish job listings in minutes with our intuitive interface.',
+    description:
+      'Create and publish job listings in minutes with our intuitive interface.',
   },
   {
     icon: FiUsers,
     title: 'Applicant Tracking',
-    description: 'Manage all applications in one place. Review, shortlist, and hire efficiently.',
+    description:
+      'Manage all applications in one place. Review, shortlist, and hire efficiently.',
   },
   {
     icon: FiDatabase,
     title: 'CV Database Access',
-    description: 'Search our database of qualified candidates and reach out proactively.',
+    description:
+      'Search our database of qualified candidates and reach out proactively.',
   },
   {
     icon: FiTrendingUp,
     title: 'Performance Analytics',
-    description: 'Track views, applications, and conversion rates for every job post.',
+    description:
+      'Track views, applications, and conversion rates for every job post.',
   },
 ];
 
@@ -58,14 +62,22 @@ const pricingTiers = [
     name: 'Basic',
     price: '€68',
     description: 'Standard job posting',
-    features: ['Unlimited description length', '30-day listing', 'Basic visibility'],
+    features: [
+      'Unlimited description length',
+      '30-day listing',
+      'Basic visibility',
+    ],
     color: 'gray',
   },
   {
     name: 'Standard',
     price: '€387',
     description: 'Enhanced recruitment',
-    features: ['All Basic features', 'Highlighted company logo', 'Access to 10 CVs'],
+    features: [
+      'All Basic features',
+      'Highlighted company logo',
+      'Access to 10 CVs',
+    ],
     color: 'blue',
     popular: true,
   },
@@ -73,7 +85,11 @@ const pricingTiers = [
     name: 'Premium',
     price: '€570',
     description: 'Maximum visibility',
-    features: ['All Standard features', 'Enhanced search visibility', 'Priority placement'],
+    features: [
+      'All Standard features',
+      'Enhanced search visibility',
+      'Priority placement',
+    ],
     color: 'purple',
   },
 ];
@@ -92,11 +108,7 @@ export default function HomePage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <Box
-        py={{ base: 16, md: 24 }}
-        position="relative"
-        overflow="hidden"
-      >
+      <Box py={{ base: 16, md: 24 }} position="relative" overflow="hidden">
         {/* Background gradient */}
         <Box
           position="absolute"
@@ -130,8 +142,8 @@ export default function HomePage() {
                   _dark={{ color: 'neutral.400' }}
                   maxW="2xl"
                 >
-                  Post job listings, access qualified candidates, and manage your recruitment
-                  process all in one powerful platform.
+                  Post job listings, access qualified candidates, and manage
+                  your recruitment process all in one powerful platform.
                 </Text>
                 <HStack spacing={4} pt={4} flexWrap="wrap" justify="center">
                   <Link href="/signup">
@@ -159,12 +171,21 @@ export default function HomePage() {
               <Heading as="h2" size="lg">
                 Everything You Need to Hire
               </Heading>
-              <Text color="neutral.600" _dark={{ color: 'neutral.400' }} maxW="2xl">
-                Streamline your recruitment process with powerful tools designed for modern hiring.
+              <Text
+                color="neutral.600"
+                _dark={{ color: 'neutral.400' }}
+                maxW="2xl"
+              >
+                Streamline your recruitment process with powerful tools designed
+                for modern hiring.
               </Text>
             </VStack>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} w="full">
+            <SimpleGrid
+              columns={{ base: 1, md: 2, lg: 4 }}
+              spacing={6}
+              w="full"
+            >
               {features.map((feature, index) => (
                 <GlassCard key={index} p={6}>
                   <VStack align="start" spacing={4}>
@@ -180,7 +201,11 @@ export default function HomePage() {
                     <Heading as="h3" size="sm">
                       {feature.title}
                     </Heading>
-                    <Text fontSize="sm" color="neutral.600" _dark={{ color: 'neutral.400' }}>
+                    <Text
+                      fontSize="sm"
+                      color="neutral.600"
+                      _dark={{ color: 'neutral.400' }}
+                    >
                       {feature.description}
                     </Text>
                   </VStack>
@@ -192,14 +217,22 @@ export default function HomePage() {
       </Box>
 
       {/* Pricing Preview Section */}
-      <Box py={{ base: 12, md: 16 }} bg="neutral.50" _dark={{ bg: 'rgba(255,255,255,0.02)' }}>
+      <Box
+        py={{ base: 12, md: 16 }}
+        bg="neutral.50"
+        _dark={{ bg: 'rgba(255,255,255,0.02)' }}
+      >
         <Container maxW="container.xl">
           <VStack spacing={12}>
             <VStack spacing={4} textAlign="center">
               <Heading as="h2" size="lg">
                 Simple, Transparent Pricing
               </Heading>
-              <Text color="neutral.600" _dark={{ color: 'neutral.400' }} maxW="2xl">
+              <Text
+                color="neutral.600"
+                _dark={{ color: 'neutral.400' }}
+                maxW="2xl"
+              >
                 Choose the tier that fits your hiring needs. No hidden fees.
               </Text>
             </VStack>
@@ -228,7 +261,10 @@ export default function HomePage() {
                   )}
                   <VStack align="stretch" spacing={4}>
                     <VStack align="start" spacing={1}>
-                      <Badge colorScheme={tier.color} textTransform="capitalize">
+                      <Badge
+                        colorScheme={tier.color}
+                        textTransform="capitalize"
+                      >
                         {tier.name}
                       </Badge>
                       <HStack align="baseline" spacing={1}>
@@ -239,7 +275,11 @@ export default function HomePage() {
                           / job post
                         </Text>
                       </HStack>
-                      <Text fontSize="sm" color="neutral.600" _dark={{ color: 'neutral.400' }}>
+                      <Text
+                        fontSize="sm"
+                        color="neutral.600"
+                        _dark={{ color: 'neutral.400' }}
+                      >
                         {tier.description}
                       </Text>
                     </VStack>
@@ -265,12 +305,23 @@ export default function HomePage() {
                     Social Media Promotion Add-ons
                   </Heading>
                 </HStack>
-                <Text fontSize="sm" color="neutral.600" _dark={{ color: 'neutral.400' }} textAlign="center">
+                <Text
+                  fontSize="sm"
+                  color="neutral.600"
+                  _dark={{ color: 'neutral.400' }}
+                  textAlign="center"
+                >
                   Extend your reach with optional social media promotions
                 </Text>
                 <HStack spacing={4} flexWrap="wrap" justify="center">
                   {socialAddons.map((addon, index) => (
-                    <Badge key={index} colorScheme="blue" px={3} py={1} fontSize="sm">
+                    <Badge
+                      key={index}
+                      colorScheme="blue"
+                      px={3}
+                      py={1}
+                      fontSize="sm"
+                    >
                       {addon.name} {addon.price}
                     </Badge>
                   ))}
@@ -301,8 +352,8 @@ export default function HomePage() {
                 _dark={{ color: 'neutral.400' }}
                 maxW="xl"
               >
-                Join hundreds of companies finding great talent through our platform.
-                Post your first job today.
+                Join hundreds of companies finding great talent through our
+                platform. Post your first job today.
               </Text>
               <HStack spacing={4} pt={4} flexWrap="wrap" justify="center">
                 <Link href="/signup">

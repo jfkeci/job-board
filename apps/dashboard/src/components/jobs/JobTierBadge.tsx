@@ -1,7 +1,7 @@
 'use client';
 
-import { JobTier } from '@borg/types';
-import { Badge } from '@borg/ui';
+import { JobTier } from '@job-board/types';
+import { Badge } from '@job-board/ui';
 
 interface JobTierBadgeProps {
   tier: JobTier;

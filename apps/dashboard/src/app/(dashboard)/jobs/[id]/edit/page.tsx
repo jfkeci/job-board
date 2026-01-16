@@ -1,6 +1,6 @@
 'use client';
 
-import type { CreateJobDto, UpdateJobDto } from '@borg/types';
+import type { CreateJobDto, UpdateJobDto } from '@job-board/types';
 import {
   Container,
   Heading,
@@ -11,7 +11,7 @@ import {
   Center,
   Spinner,
   GlassCard,
-} from '@borg/ui';
+} from '@job-board/ui';
 import { Alert, AlertIcon } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -61,7 +61,11 @@ export default function EditJobPage() {
       <VStack spacing={6} align="stretch">
         {/* Back Link */}
         <Link href={`/jobs/${id}`}>
-          <HStack spacing={2} color="primary.500" _hover={{ color: 'primary.600' }}>
+          <HStack
+            spacing={2}
+            color="primary.500"
+            _hover={{ color: 'primary.600' }}
+          >
             <Icon as={FiArrowLeft} />
             <Text>Back to Job Details</Text>
           </HStack>

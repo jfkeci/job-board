@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**borg-clone** is a full-stack TypeScript Turborepo monorepo for a multi-tenant B2B/B2C job advertisement platform.
+**job-board-clone** is a full-stack TypeScript Turborepo monorepo for a multi-tenant B2B/B2C job advertisement platform.
 
 ## Commands
 
@@ -23,8 +23,8 @@ pnpm format           # Prettier formatting
 pnpm test             # Run tests
 
 # Filtered commands (single package)
-pnpm build --filter=@borg/api
-pnpm type-check --filter=@borg/config
+pnpm build --filter=@job-board/api
+pnpm type-check --filter=@job-board/config
 
 # Package-specific (run from package directory)
 pnpm test:watch       # Jest watch mode (api)
@@ -37,27 +37,27 @@ pnpm test:cov         # Jest with coverage (api)
 
 ```
 apps/
-├── api/           # @borg/api - NestJS backend REST API (port 3001)
-├── web/           # @borg/web - Next.js consumer frontend (port 3000)
-└── dashboard/     # @borg/dashboard - Next.js B2B admin dashboard (port 3002)
+├── api/           # @job-board/api - NestJS backend REST API (port 3001)
+├── web/           # @job-board/web - Next.js consumer frontend (port 3000)
+└── dashboard/     # @job-board/dashboard - Next.js B2B admin dashboard (port 3002)
 
 packages/
-├── types/         # @borg/types - Shared TypeScript types
-├── config/        # @borg/config - Zod-validated env config (NestJS module)
-├── backend-lib/   # @borg/backend-lib - Shared backend utilities
-├── db/            # @borg/db - TypeORM database layer (PostgreSQL)
-├── ui/            # @borg/ui - Glassmorphism design system (Chakra UI)
+├── types/         # @job-board/types - Shared TypeScript types
+├── config/        # @job-board/config - Zod-validated env config (NestJS module)
+├── backend-lib/   # @job-board/backend-lib - Shared backend utilities
+├── db/            # @job-board/db - TypeORM database layer (PostgreSQL)
+├── ui/            # @job-board/ui - Glassmorphism design system (Chakra UI)
 ├── eslint-config-backend/    # ESLint + Prettier for backend
 └── eslint-config-frontend/   # ESLint + Prettier for frontend
 ```
 
 ### Key Patterns
 
-- **Package naming**: All packages use `@borg/*` prefix
-- **Workspace dependencies**: Use `"@borg/types": "workspace:*"` in package.json
-- **Shared types**: Import from `@borg/types` for cross-app type safety
-- **Config service**: Use `@borg/config` for environment validation with Zod schemas
-- **ESLint configs**: Backend apps extend `@borg/eslint-config-backend`, frontends extend `@borg/eslint-config-frontend`
+- **Package naming**: All packages use `@job-board/*` prefix
+- **Workspace dependencies**: Use `"@job-board/types": "workspace:*"` in package.json
+- **Shared types**: Import from `@job-board/types` for cross-app type safety
+- **Config service**: Use `@job-board/config` for environment validation with Zod schemas
+- **ESLint configs**: Backend apps extend `@job-board/eslint-config-backend`, frontends extend `@job-board/eslint-config-frontend`
 - **Import aliases**: All apps use `@/*` for src directory imports
 
 ### Tech Stack
@@ -65,19 +65,19 @@ packages/
 | Component | Technology |
 |-----------|------------|
 | Frontend | Next.js 15, React 19 |
-| Dashboard UI | Chakra UI 2, @borg/ui (glassmorphism) |
+| Dashboard UI | Chakra UI 2, @job-board/ui (glassmorphism) |
 | Web UI | TailwindCSS |
 | Backend | NestJS 10, TypeORM (PostgreSQL) |
 | Build | Turborepo, tsup, pnpm workspaces |
 | Validation | Zod (config), class-validator (NestJS DTOs) |
 
-### @borg/ui Design System
+### @job-board/ui Design System
 
 Glassmorphism components with customizable brand colors:
 
 ```tsx
 // Setup with brand preset
-import { GlassThemeProvider, brandPresets } from '@borg/ui';
+import { GlassThemeProvider, brandPresets } from '@job-board/ui';
 <GlassThemeProvider brandConfig={brandPresets.indigo}>
 
 // Components: GlassCard, GlassButton, GlassInput, GlassModal, GlassNavbar, GlassSidebar, GlassPanel

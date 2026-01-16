@@ -35,7 +35,7 @@ notes: B2B clients need to create and manage their organization after registrati
 
 ## Context
 
-B2B clients (employers/recruiters) need to create and manage their organization profile after registering on the dashboard. The Organization entity already exists in \`@borg/db\`. We need to create the Organizations module with CRUD endpoints.
+B2B clients (employers/recruiters) need to create and manage their organization profile after registering on the dashboard. The Organization entity already exists in \`@job-board/db\`. We need to create the Organizations module with CRUD endpoints.
 
 Organizations are tied to a tenant and can have multiple users (CLIENT, CLIENT_ADMIN roles). After a user registers, they should be able to create an organization and become its admin.
 
@@ -45,11 +45,11 @@ Create a fully functional Organizations module with:
 - CRUD endpoints for organization management
 - Proper authorization (only organization admins can modify)
 - Swagger documentation following established patterns
-- Exception handling using \`@borg/backend-lib\`
+- Exception handling using \`@job-board/backend-lib\`
 
 ## Current State
 
-### Organization Entity (exists in @borg/db)
+### Organization Entity (exists in @job-board/db)
 
 \`\`\`typescript
 // packages/db/src/entities/organization.entity.ts
@@ -84,7 +84,7 @@ export enum OrganizationSize {
 
 ### DatabaseService (has organizations repository)
 
-The \`DatabaseService\` in \`@borg/db\` provides access to \`db.organizations\` repository.
+The \`DatabaseService\` in \`@job-board/db\` provides access to \`db.organizations\` repository.
 
 ## Requirements
 
@@ -358,7 +358,7 @@ When a user creates an organization:
 - Do NOT implement organization listing/search (future feature)
 - Do NOT implement organization verification (admin feature)
 - Keep authorization simple (no complex RBAC yet)
-- Use existing \`@borg/backend-lib\` exceptions
+- Use existing \`@job-board/backend-lib\` exceptions
 - Follow Swagger documentation patterns from reference
 
 ## Expected Output
@@ -384,7 +384,7 @@ When a user creates an organization:
 - [ ] Slug is auto-generated and unique within tenant
 - [ ] Proper error responses using ApiExceptions
 - [ ] Swagger documentation complete
-- [ ] Type-check passes: \`pnpm type-check --filter=@borg/api\`
+- [ ] Type-check passes: \`pnpm type-check --filter=@job-board/api\`
 - [ ] API starts without errors
 
 ## Technical Notes

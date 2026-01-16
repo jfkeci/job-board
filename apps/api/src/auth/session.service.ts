@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
 
-import { ConfigService } from '@borg/config';
-import { DatabaseService, Session } from '@borg/db';
+import { ConfigService } from '@job-board/config';
+import { DatabaseService, Session } from '@job-board/db';
 
 interface DeviceInfo {
   userAgent: string | null;
@@ -126,7 +126,11 @@ export class SessionService {
 
     const ua = userAgent.toLowerCase();
 
-    if (ua.includes('mobile') || ua.includes('android') || ua.includes('iphone')) {
+    if (
+      ua.includes('mobile') ||
+      ua.includes('android') ||
+      ua.includes('iphone')
+    ) {
       return 'mobile';
     }
 

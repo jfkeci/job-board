@@ -140,7 +140,7 @@ If space allows, add a simple insights section:
 - **DO NOT** modify layout files or routing
 - **DO NOT** create actual API calls - use mock/placeholder data
 - **ONLY** modify `apps/dashboard/src/app/(dashboard)/overview/page.tsx`
-- Use **@borg/ui** components (GlassCard, GlassButton, etc.) - already imported
+- Use **@job-board/ui** components (GlassCard, GlassButton, etc.) - already imported
 - Maintain the glassmorphism design aesthetic
 - Keep existing import structure where possible
 - Ensure responsive design
@@ -160,11 +160,11 @@ If space allows, add a simple insights section:
 - [ ] Glassmorphism design aesthetic maintained
 - [ ] Responsive design works on all screen sizes
 - [ ] No TypeScript errors
-- [ ] Uses existing @borg/ui components
+- [ ] Uses existing @job-board/ui components
 
 ## Technical Notes
 
-- Dashboard uses **Chakra UI** via **@borg/ui** package (not TailwindCSS)
+- Dashboard uses **Chakra UI** via **@job-board/ui** package (not TailwindCSS)
 - Glassmorphism components: `GlassCard`, `GlassButton`, `GlassPanel`, etc.
 - Keep using `react-icons/fi` for icons (already imported)
 - Extract mock data to constants at top of file for easy replacement

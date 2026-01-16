@@ -15,6 +15,7 @@ import {
   Payment,
   RefreshToken,
   SavedJob,
+  SearchQuery,
   Session,
   Tenant,
   User,
@@ -87,5 +88,8 @@ export class DatabaseService {
 
     @InjectRepository(File)
     public readonly files: Repository<File>,
+
+    @InjectRepository(SearchQuery)
+    public readonly searchQueries: Repository<SearchQuery>,
   ) {}
 }

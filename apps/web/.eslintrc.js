@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['@borg/eslint-config-frontend', 'next/core-web-vitals'],
+  extends: ['@job-board/eslint-config-frontend', 'next/core-web-vitals'],
   parserOptions: {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,

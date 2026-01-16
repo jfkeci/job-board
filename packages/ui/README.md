@@ -1,4 +1,4 @@
-# @borg/ui
+# @job-board/ui
 
 A glassmorphism design system built on Chakra UI with support for customizable brand colors.
 
@@ -14,7 +14,7 @@ A glassmorphism design system built on Chakra UI with support for customizable b
 ## Installation
 
 ```bash
-pnpm add @borg/ui
+pnpm add @job-board/ui
 ```
 
 ### Peer Dependencies
@@ -29,7 +29,7 @@ pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 ```tsx
 // app/layout.tsx
-import { GlassThemeProvider } from '@borg/ui';
+import { GlassThemeProvider } from '@job-board/ui';
 
 export default function RootLayout({ children }) {
   return (
@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
 ### Using Components
 
 ```tsx
-import { GlassCard, GlassButton, GlassInput, Box, Heading, VStack } from '@borg/ui';
+import { GlassCard, GlassButton, GlassInput, Box, Heading, VStack } from '@job-board/ui';
 
 export default function LoginForm() {
   return (
@@ -68,7 +68,7 @@ export default function LoginForm() {
 ### Using Brand Presets
 
 ```tsx
-import { GlassThemeProvider, brandPresets } from '@borg/ui';
+import { GlassThemeProvider, brandPresets } from '@job-board/ui';
 
 // Main app with indigo theme
 <GlassThemeProvider brandConfig={brandPresets.indigo}>
@@ -97,7 +97,7 @@ import { GlassThemeProvider, brandPresets } from '@borg/ui';
 ### Custom Brand Colors
 
 ```tsx
-import { GlassThemeProvider } from '@borg/ui';
+import { GlassThemeProvider } from '@job-board/ui';
 
 const customBrand = {
   primary: '#e11d48',    // Rose/pink
@@ -113,7 +113,7 @@ const customBrand = {
 ### Accessing Brand Colors
 
 ```tsx
-import { useBrandColors } from '@borg/ui';
+import { useBrandColors } from '@job-board/ui';
 
 function BrandedComponent() {
   const { primary, primaryScale } = useBrandColors();
@@ -223,7 +223,7 @@ function BrandedComponent() {
 Create custom glass effects:
 
 ```tsx
-import { useGlassStyles } from '@borg/ui';
+import { useGlassStyles } from '@job-board/ui';
 
 function CustomGlass() {
   const { styles } = useGlassStyles({
@@ -242,7 +242,7 @@ function CustomGlass() {
 Generate a full color scale from a single color:
 
 ```tsx
-import { generateColorScale } from '@borg/ui';
+import { generateColorScale } from '@job-board/ui';
 
 const scale = generateColorScale('#6366f1');
 // Returns: { 50: '#...', 100: '#...', ..., 900: '#...' }
@@ -268,7 +268,7 @@ Apply glass effects using Chakra's `layerStyle` prop:
 Dark mode is supported automatically. Use Chakra's color mode utilities:
 
 ```tsx
-import { useColorMode, useColorModeValue } from '@borg/ui';
+import { useColorMode, useColorModeValue } from '@job-board/ui';
 
 function ThemeToggle() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -291,7 +291,7 @@ import type {
   GlassCardProps,
   GlassButtonProps,
   GlassThemeConfig,
-} from '@borg/ui';
+} from '@job-board/ui';
 ```
 
 ## Browser Support

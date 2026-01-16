@@ -40,21 +40,21 @@ The application requires a centralized database package that contains all TypeOR
 
 ## Goal
 
-1. Update `@borg/config` to support PostgreSQL and add `getTypeOrmConfig()` method
-2. Create `@borg/db` package with all TypeORM entities
+1. Update `@job-board/config` to support PostgreSQL and add `getTypeOrmConfig()` method
+2. Create `@job-board/db` package with all TypeORM entities
 3. Implement DatabaseService facade pattern for repository access
 4. Setup local development environment variables
 
 ## Current State
 
-- `@borg/config` exists with MySQL configuration
+- `@job-board/config` exists with MySQL configuration
 - No database entities exist
 - No TypeORM integration
-- Local PostgreSQL running with `borg_db` database created
+- Local PostgreSQL running with `jobboard_db` database created
 
 ## Requirements
 
-### 1. **Update @borg/config Package**
+### 1. **Update @job-board/config Package**
 
 #### 1.1 Update env.interface.ts
 Change database type from MySQL to PostgreSQL:
@@ -113,12 +113,12 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_USERNAME=postgres
 DB_PASSWORD=
-DB_DATABASE=borg_db
+DB_DATABASE=jobboard_db
 DB_SYNCHRONIZE=true
 DB_LOGGING=true
 ```
 
-### 2. **Create @borg/db Package**
+### 2. **Create @job-board/db Package**
 
 #### 2.1 Package Structure
 ```
@@ -415,15 +415,15 @@ export { DatabaseModule } from './database.module';
 
 - Use PostgreSQL-specific features where beneficial (e.g., `uuid` type)
 - All entities must match the ER diagram schema exactly
-- Use `@borg/eslint-config-backend` for linting
+- Use `@job-board/eslint-config-backend` for linting
 - DatabaseService must be injectable and provide typed repository access
 - Entities should use lazy relations where appropriate to avoid circular imports
 
 ## Expected Output
 
-- [ ] `@borg/config` updated for PostgreSQL with `getTypeOrmConfig()` method
+- [ ] `@job-board/config` updated for PostgreSQL with `getTypeOrmConfig()` method
 - [ ] Local dev `.env` file created with PostgreSQL credentials
-- [ ] `@borg/db` package created with all entities
+- [ ] `@job-board/db` package created with all entities
 - [ ] All enums defined matching ER diagram
 - [ ] DatabaseService facade implemented
 - [ ] DatabaseModule with forRoot() method
@@ -438,7 +438,7 @@ export { DatabaseModule } from './database.module';
 - [ ] All 12 enums defined
 - [ ] DatabaseService provides typed access to all 16 repositories
 - [ ] ConfigService.getTypeOrmConfig() returns valid TypeORM options
-- [ ] Can import and use in `@borg/api` app
+- [ ] Can import and use in `@job-board/api` app
 
 ## Technical Notes
 
@@ -504,8 +504,8 @@ export class Tenant {
 // apps/api/src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from '@borg/config';
-import { DatabaseModule, entities } from '@borg/db';
+import { ConfigModule, ConfigService } from '@job-board/config';
+import { DatabaseModule, entities } from '@job-board/db';
 
 @Module({
   imports: [
@@ -543,7 +543,7 @@ export class JobService {
 ```json
 {
   "dependencies": {
-    "@borg/config": "workspace:*",
+    "@job-board/config": "workspace:*",
     "typeorm": "^0.3.20"
   },
   "peerDependencies": {
@@ -551,7 +551,7 @@ export class JobService {
     "@nestjs/typeorm": "^10.0.0"
   },
   "devDependencies": {
-    "@borg/eslint-config-backend": "workspace:*",
+    "@job-board/eslint-config-backend": "workspace:*",
     "@nestjs/common": "^10.4.15",
     "@nestjs/typeorm": "^10.0.2",
     "@types/node": "^22.10.5",

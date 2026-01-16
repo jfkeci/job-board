@@ -12,6 +12,7 @@ export {
   Payment,
   RefreshToken,
   SavedJob,
+  SearchQuery,
   Session,
   Tenant,
   User,

@@ -13,7 +13,7 @@ import {
   Text,
   useColorMode,
   GlassButton,
-} from '@borg/ui';
+} from '@job-board/ui';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -34,7 +34,10 @@ interface HeaderProps {
   showMenuButton?: boolean;
 }
 
-export function Header({ onMobileMenuToggle, showMenuButton = false }: HeaderProps) {
+export function Header({
+  onMobileMenuToggle,
+  showMenuButton = false,
+}: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { user, isAuthenticated, isHydrated, logout } = useAuthStore();
   const router = useRouter();
@@ -92,8 +95,12 @@ export function Header({ onMobileMenuToggle, showMenuButton = false }: HeaderPro
               >
                 B
               </Box>
-              <Text fontSize="xl" fontWeight="bold" display={{ base: 'none', sm: 'block' }}>
-                Borg Dashboard
+              <Text
+                fontSize="xl"
+                fontWeight="bold"
+                display={{ base: 'none', sm: 'block' }}
+              >
+                job-board Dashboard
               </Text>
             </HStack>
           </Link>
@@ -136,7 +143,9 @@ export function Header({ onMobileMenuToggle, showMenuButton = false }: HeaderPro
                   >
                     <HStack spacing={2}>
                       <Avatar size="sm" name={displayName} bg="primary.500" />
-                      <Text display={{ base: 'none', md: 'block' }}>{shortName}</Text>
+                      <Text display={{ base: 'none', md: 'block' }}>
+                        {shortName}
+                      </Text>
                     </HStack>
                   </MenuButton>
                   <MenuList>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Spinner, Center } from '@borg/ui';
+import { Spinner, Center } from '@job-board/ui';
 import { type ReactNode } from 'react';
 
 import { useAuthStore } from '@/store/auth.store';

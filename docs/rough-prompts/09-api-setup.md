@@ -4,7 +4,7 @@
 
 refine a comprehensive prompt form this 
 
-setup the main api, @borg/api
+setup the main api, @job-board/api
 use config package, backend libs logger middleware and database package to establish a connection
 also add swagger documentation, validation pipes
 and a verbose healthcheck endpoint

@@ -15,7 +15,7 @@ import {
   Icon,
   GlassCard,
   GlassButton,
-} from '@borg/ui';
+} from '@job-board/ui';
 import Link from 'next/link';
 import { FiCheck, FiLinkedin, FiInstagram, FiFacebook } from 'react-icons/fi';
 
@@ -126,8 +126,8 @@ export default function PricingPage() {
               color="neutral.600"
               _dark={{ color: 'neutral.400' }}
             >
-              Choose the perfect tier for your hiring needs. Reach qualified candidates with our
-              transparent, pay-per-posting pricing.
+              Choose the perfect tier for your hiring needs. Reach qualified
+              candidates with our transparent, pay-per-posting pricing.
             </Text>
           </VStack>
         </Container>
@@ -166,7 +166,11 @@ export default function PricingPage() {
                     <Heading as="h3" size="md">
                       {plan.name}
                     </Heading>
-                    <Text fontSize="sm" color="neutral.600" _dark={{ color: 'neutral.400' }}>
+                    <Text
+                      fontSize="sm"
+                      color="neutral.600"
+                      _dark={{ color: 'neutral.400' }}
+                    >
                       {plan.description}
                     </Text>
                   </VStack>
@@ -176,13 +180,19 @@ export default function PricingPage() {
                     <Text fontSize="3xl" fontWeight="bold">
                       {plan.price}
                     </Text>
-                    <Text fontSize="sm" color="neutral.500">{plan.period}</Text>
+                    <Text fontSize="sm" color="neutral.500">
+                      {plan.period}
+                    </Text>
                   </HStack>
 
                   {/* Features */}
                   <List spacing={2} flex="1">
                     {plan.features.map((feature, index) => (
-                      <ListItem key={index} display="flex" alignItems="flex-start">
+                      <ListItem
+                        key={index}
+                        display="flex"
+                        alignItems="flex-start"
+                      >
                         <ListIcon
                           as={FiCheck}
                           color="primary.500"
@@ -212,7 +222,11 @@ export default function PricingPage() {
       </Box>
 
       {/* Promotional Add-ons Section */}
-      <Box py={{ base: 16, md: 24 }} bg="glass.light.surface" _dark={{ bg: 'glass.dark.surface' }}>
+      <Box
+        py={{ base: 16, md: 24 }}
+        bg="glass.light.surface"
+        _dark={{ bg: 'glass.dark.surface' }}
+      >
         <Container maxW="container.xl">
           <VStack spacing={10}>
             <VStack spacing={4} textAlign="center">
@@ -225,12 +239,17 @@ export default function PricingPage() {
                 _dark={{ color: 'neutral.400' }}
                 maxW="2xl"
               >
-                Extend your reach with social media promotion. Add-ons can be combined with any
-                tier for maximum exposure.
+                Extend your reach with social media promotion. Add-ons can be
+                combined with any tier for maximum exposure.
               </Text>
             </VStack>
 
-            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} w="full" maxW="4xl">
+            <SimpleGrid
+              columns={{ base: 1, md: 3 }}
+              spacing={6}
+              w="full"
+              maxW="4xl"
+            >
               {addons.map((addon) => (
                 <GlassCard key={addon.name} p={6}>
                   <HStack spacing={4}>
@@ -250,7 +269,11 @@ export default function PricingPage() {
                           +{addon.price}
                         </Text>
                       </HStack>
-                      <Text fontSize="sm" color="neutral.600" _dark={{ color: 'neutral.400' }}>
+                      <Text
+                        fontSize="sm"
+                        color="neutral.600"
+                        _dark={{ color: 'neutral.400' }}
+                      >
                         {addon.description}
                       </Text>
                     </VStack>
@@ -276,14 +299,12 @@ export default function PricingPage() {
                 _dark={{ color: 'neutral.400' }}
                 maxW="xl"
               >
-                For recruitment agencies and high-volume employers, we offer custom pricing
-                packages tailored to your hiring needs.
+                For recruitment agencies and high-volume employers, we offer
+                custom pricing packages tailored to your hiring needs.
               </Text>
               <HStack spacing={4}>
                 <Link href="/contact">
-                  <GlassButton size="lg">
-                    Contact Sales
-                  </GlassButton>
+                  <GlassButton size="lg">Contact Sales</GlassButton>
                 </Link>
                 <Link href="/dashboard/overview">
                   <GlassButton size="lg" variant="ghost">

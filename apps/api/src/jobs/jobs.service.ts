@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ApiExceptions } from '@borg/backend-lib';
-import { DatabaseService, Job, JobStatus, UserRole } from '@borg/db';
+import { ApiExceptions } from '@job-board/backend-lib';
+import { DatabaseService, Job, JobStatus, UserRole } from '@job-board/db';
 
 import { RequestUser } from '../auth/interfaces';
 import {
@@ -48,7 +48,9 @@ export class JobsService {
   /**
    * List all jobs for user's organization
    */
-  async findAll(user: RequestUser): Promise<{ data: JobListItemDto[]; total: number }> {
+  async findAll(
+    user: RequestUser,
+  ): Promise<{ data: JobListItemDto[]; total: number }> {
     // Get user with organization
     const dbUser = await this.db.users.findOne({
       where: { id: user.id },
@@ -118,7 +120,11 @@ export class JobsService {
     const updateData: Partial<Job> = { ...dto };
     if (dto.title && dto.title !== job.title) {
       const baseSlug = this.generateSlug(dto.title);
-      updateData.slug = await this.ensureUniqueSlug(baseSlug, user.tenantId, id);
+      updateData.slug = await this.ensureUniqueSlug(
+        baseSlug,
+        user.tenantId,
+        id,
+      );
     }
 
     await this.db.jobs.update(id, updateData);
@@ -142,11 +148,7 @@ export class JobsService {
     await this.verifyJobAccess(job, user);
 
     // Only DRAFT jobs can be deleted
-    this.assertStatus(
-      job,
-      [JobStatus.DRAFT],
-      'Only draft jobs can be deleted',
-    );
+    this.assertStatus(job, [JobStatus.DRAFT], 'Only draft jobs can be deleted');
 
     await this.db.jobs.delete(id);
   }
@@ -180,7 +182,11 @@ export class JobsService {
     // Validate required fields
     if (!job.title || !job.description || !job.categoryId) {
       throw ApiExceptions.validationFailed([
-        { field: 'job', code: 'VALIDATION_FIELD_REQUIRED', message: 'Job must have title, description, and category' },
+        {
+          field: 'job',
+          code: 'VALIDATION_FIELD_REQUIRED',
+          message: 'Job must have title, description, and category',
+        },
       ]);
     }
 
@@ -253,12 +259,18 @@ export class JobsService {
     const now = new Date();
     let newExpiresAt: Date;
 
-    if (job.status === JobStatus.EXPIRED || !job.expiresAt || job.expiresAt < now) {
+    if (
+      job.status === JobStatus.EXPIRED ||
+      !job.expiresAt ||
+      job.expiresAt < now
+    ) {
       // Expired: extend from now
       newExpiresAt = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
     } else {
       // Active: extend from current expiry
-      newExpiresAt = new Date(job.expiresAt.getTime() + 30 * 24 * 60 * 60 * 1000);
+      newExpiresAt = new Date(
+        job.expiresAt.getTime() + 30 * 24 * 60 * 60 * 1000,
+      );
     }
 
     await this.db.jobs.update(id, {
@@ -322,7 +334,10 @@ export class JobsService {
       where: { id: user.id },
     });
 
-    if (!dbUser?.organizationId || dbUser.organizationId !== job.organizationId) {
+    if (
+      !dbUser?.organizationId ||
+      dbUser.organizationId !== job.organizationId
+    ) {
       throw ApiExceptions.organizationAccessDenied();
     }
   }

@@ -1,6 +1,12 @@
 'use client';
 
-import { JobStatus, EmploymentType, RemoteOption, ExperienceLevel, SalaryPeriod } from '@borg/types';
+import {
+  JobStatus,
+  EmploymentType,
+  RemoteOption,
+  ExperienceLevel,
+  SalaryPeriod,
+} from '@job-board/types';
 import {
   Box,
   Container,
@@ -17,7 +23,7 @@ import {
   useDisclosure,
   GlassCard,
   GlassButton,
-} from '@borg/ui';
+} from '@job-board/ui';
 import {
   Alert,
   AlertIcon,
@@ -43,10 +49,21 @@ import {
   FiMapPin,
   FiBriefcase,
   FiDollarSign,
+  FiUsers,
+  FiBarChart2,
 } from 'react-icons/fi';
 
-import { JobStatusBadge, JobTierBadge, PublishJobModal } from '@/components/jobs';
-import { useJob, useDeleteJob, useCloseJob, useExtendJob } from '@/hooks/use-jobs';
+import {
+  JobStatusBadge,
+  JobTierBadge,
+  PublishJobModal,
+} from '@/components/jobs';
+import {
+  useJob,
+  useDeleteJob,
+  useCloseJob,
+  useExtendJob,
+} from '@/hooks/use-jobs';
 
 const employmentTypeLabels: Record<EmploymentType, string> = {
   [EmploymentType.FULL_TIME]: 'Full Time',
@@ -86,9 +103,18 @@ function formatDate(dateString: string | null): string {
   });
 }
 
-function formatSalary(min: number | null, max: number | null, currency: string, period: SalaryPeriod): string {
+function formatSalary(
+  min: number | null,
+  max: number | null,
+  currency: string,
+  period: SalaryPeriod,
+): string {
   if (!min && !max) return 'Not specified';
-  const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0 });
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: 0,
+  });
   if (min && max) {
     return `${formatter.format(min)} - ${formatter.format(max)}${salaryPeriodLabels[period]}`;
   }
@@ -187,7 +213,11 @@ export default function JobDetailPage() {
       <VStack spacing={6} align="stretch">
         {/* Back Link */}
         <Link href="/jobs">
-          <HStack spacing={2} color="primary.500" _hover={{ color: 'primary.600' }}>
+          <HStack
+            spacing={2}
+            color="primary.500"
+            _hover={{ color: 'primary.600' }}
+          >
             <Icon as={FiArrowLeft} />
             <Text>Back to Jobs</Text>
           </HStack>
@@ -204,7 +234,25 @@ export default function JobDetailPage() {
           </VStack>
 
           {/* Action Buttons */}
-          <HStack spacing={2}>
+          <HStack spacing={2} flexWrap="wrap">
+            <Link href={`/jobs/${id}/applications`}>
+              <GlassButton
+                leftIcon={<Icon as={FiUsers} />}
+                size="sm"
+                variant="outline"
+              >
+                Applications
+              </GlassButton>
+            </Link>
+            <Link href={`/jobs/${id}/analytics`}>
+              <GlassButton
+                leftIcon={<Icon as={FiBarChart2} />}
+                size="sm"
+                variant="outline"
+              >
+                Analytics
+              </GlassButton>
+            </Link>
             <Link href={`/jobs/${id}/edit`}>
               <GlassButton leftIcon={<Icon as={FiEdit} />} size="sm">
                 Edit
@@ -345,7 +393,12 @@ export default function JobDetailPage() {
                     Salary
                   </Text>
                   <Text fontWeight="medium">
-                    {formatSalary(job.salaryMin, job.salaryMax, job.salaryCurrency, job.salaryPeriod)}
+                    {formatSalary(
+                      job.salaryMin,
+                      job.salaryMax,
+                      job.salaryCurrency,
+                      job.salaryPeriod,
+                    )}
                   </Text>
                 </Box>
               </HStack>
@@ -369,7 +422,11 @@ export default function JobDetailPage() {
               <Text fontWeight="semibold" mb={3}>
                 Job Description
               </Text>
-              <Text whiteSpace="pre-wrap" color="neutral.700" _dark={{ color: 'neutral.300' }}>
+              <Text
+                whiteSpace="pre-wrap"
+                color="neutral.700"
+                _dark={{ color: 'neutral.300' }}
+              >
                 {job.description}
               </Text>
             </Box>
@@ -382,7 +439,11 @@ export default function JobDetailPage() {
                   <Text fontWeight="semibold" mb={3}>
                     Requirements
                   </Text>
-                  <Text whiteSpace="pre-wrap" color="neutral.700" _dark={{ color: 'neutral.300' }}>
+                  <Text
+                    whiteSpace="pre-wrap"
+                    color="neutral.700"
+                    _dark={{ color: 'neutral.300' }}
+                  >
                     {job.requirements}
                   </Text>
                 </Box>
@@ -397,7 +458,11 @@ export default function JobDetailPage() {
                   <Text fontWeight="semibold" mb={3}>
                     Benefits
                   </Text>
-                  <Text whiteSpace="pre-wrap" color="neutral.700" _dark={{ color: 'neutral.300' }}>
+                  <Text
+                    whiteSpace="pre-wrap"
+                    color="neutral.700"
+                    _dark={{ color: 'neutral.300' }}
+                  >
                     {job.benefits}
                   </Text>
                 </Box>
@@ -431,7 +496,8 @@ export default function JobDetailPage() {
               Delete Job
             </AlertDialogHeader>
             <AlertDialogBody>
-              Are you sure you want to delete &quot;{job.title}&quot;? This action cannot be undone.
+              Are you sure you want to delete &quot;{job.title}&quot;? This
+              action cannot be undone.
             </AlertDialogBody>
             <AlertDialogFooter>
               <GlassButton ref={deleteDialogRef} onClick={onDeleteClose}>
@@ -462,7 +528,8 @@ export default function JobDetailPage() {
               Close Job
             </AlertDialogHeader>
             <AlertDialogBody>
-              Are you sure you want to close &quot;{job.title}&quot;? It will no longer be visible to candidates.
+              Are you sure you want to close &quot;{job.title}&quot;? It will no
+              longer be visible to candidates.
             </AlertDialogBody>
             <AlertDialogFooter>
               <GlassButton ref={closeDialogRef} onClick={onCloseClose}>

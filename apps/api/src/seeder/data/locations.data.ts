@@ -1,4 +1,4 @@
-import { LocationType } from '@borg/db';
+import { LocationType } from '@job-board/db';
 
 export interface LocationSeedData {
   type: LocationType;
@@ -18,7 +18,9 @@ export const locationsData: Record<string, LocationSeedData[]> = {
           type: LocationType.REGION,
           slug: 'grad-zagreb',
           name: 'Grad Zagreb',
-          children: [{ type: LocationType.CITY, slug: 'zagreb', name: 'Zagreb' }],
+          children: [
+            { type: LocationType.CITY, slug: 'zagreb', name: 'Zagreb' },
+          ],
         },
         {
           type: LocationType.REGION,
@@ -66,7 +68,11 @@ export const locationsData: Record<string, LocationSeedData[]> = {
           name: 'Zadarska županija',
           children: [
             { type: LocationType.CITY, slug: 'zadar', name: 'Zadar' },
-            { type: LocationType.CITY, slug: 'biograd', name: 'Biograd na Moru' },
+            {
+              type: LocationType.CITY,
+              slug: 'biograd',
+              name: 'Biograd na Moru',
+            },
           ],
         },
         {
@@ -82,7 +88,9 @@ export const locationsData: Record<string, LocationSeedData[]> = {
           type: LocationType.REGION,
           slug: 'varazdinska',
           name: 'Varaždinska županija',
-          children: [{ type: LocationType.CITY, slug: 'varazdin', name: 'Varaždin' }],
+          children: [
+            { type: LocationType.CITY, slug: 'varazdin', name: 'Varaždin' },
+          ],
         },
       ],
     },
@@ -143,7 +151,9 @@ export const locationsData: Record<string, LocationSeedData[]> = {
           type: LocationType.REGION,
           slug: 'jugovzhodna',
           name: 'Jugovzhodna Slovenija',
-          children: [{ type: LocationType.CITY, slug: 'novo-mesto', name: 'Novo mesto' }],
+          children: [
+            { type: LocationType.CITY, slug: 'novo-mesto', name: 'Novo mesto' },
+          ],
         },
       ],
     },
@@ -161,14 +171,20 @@ export const locationsData: Record<string, LocationSeedData[]> = {
           children: [
             { type: LocationType.CITY, slug: 'beograd', name: 'Beograd' },
             { type: LocationType.CITY, slug: 'zemun', name: 'Zemun' },
-            { type: LocationType.CITY, slug: 'novi-beograd', name: 'Novi Beograd' },
+            {
+              type: LocationType.CITY,
+              slug: 'novi-beograd',
+              name: 'Novi Beograd',
+            },
           ],
         },
         {
           type: LocationType.REGION,
           slug: 'juznobacki-okrug',
           name: 'Južnobački okrug',
-          children: [{ type: LocationType.CITY, slug: 'novi-sad', name: 'Novi Sad' }],
+          children: [
+            { type: LocationType.CITY, slug: 'novi-sad', name: 'Novi Sad' },
+          ],
         },
         {
           type: LocationType.REGION,
@@ -180,7 +196,9 @@ export const locationsData: Record<string, LocationSeedData[]> = {
           type: LocationType.REGION,
           slug: 'sumadijski-okrug',
           name: 'Šumadijski okrug',
-          children: [{ type: LocationType.CITY, slug: 'kragujevac', name: 'Kragujevac' }],
+          children: [
+            { type: LocationType.CITY, slug: 'kragujevac', name: 'Kragujevac' },
+          ],
         },
         {
           type: LocationType.REGION,

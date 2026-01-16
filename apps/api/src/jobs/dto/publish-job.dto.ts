@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsOptional, IsArray } from 'class-validator';
-import { JobTier, PromotionType } from '@borg/db';
+import { JobTier, PromotionType } from '@job-board/db';
 
 export class PublishJobDto {
   @ApiProperty({

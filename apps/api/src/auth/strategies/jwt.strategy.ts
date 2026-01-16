@@ -2,8 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { ConfigService } from '@borg/config';
-import { DatabaseService } from '@borg/db';
+import { ConfigService } from '@job-board/config';
+import { DatabaseService } from '@job-board/db';
 
 import { JwtPayload, RequestUser } from '../interfaces';
 

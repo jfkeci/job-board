@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { createHash, randomBytes } from 'crypto';
 
-import { ConfigService } from '@borg/config';
-import { DatabaseService, User } from '@borg/db';
+import { ConfigService } from '@job-board/config';
+import { DatabaseService, User } from '@job-board/db';
 
 import { JwtPayload } from './interfaces';
 
@@ -49,10 +49,7 @@ export class TokenService {
   /**
    * Store refresh token in database (hashed)
    */
-  async storeRefreshToken(
-    sessionId: string,
-    token: string,
-  ): Promise<void> {
+  async storeRefreshToken(sessionId: string, token: string): Promise<void> {
     const hashedToken = this.hashRefreshToken(token);
     const expiresAt = this.calculateExpiry(this.config.jwtRefreshTokenExpiry);
 

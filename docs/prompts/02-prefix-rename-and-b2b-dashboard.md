@@ -21,7 +21,7 @@ dependencies:
 blocks: []
 related_specs: []
 related_planning: []
-notes: Establishes consistent @borg naming convention and adds B2B dashboard app
+notes: Establishes consistent @job-board naming convention and adds B2B dashboard app
 ---
 
 # 02 - Rename Package Prefix and Add B2B Dashboard
@@ -34,11 +34,11 @@ notes: Establishes consistent @borg naming convention and adds B2B dashboard app
 
 ## Context
 
-The monorepo was initially set up with `@mp` package prefix. The project requires a consistent `@borg` prefix across all packages and apps. Additionally, a new B2B dashboard application is needed alongside the existing consumer-facing website.
+The monorepo was initially set up with `@mp` package prefix. The project requires a consistent `@job-board` prefix across all packages and apps. Additionally, a new B2B dashboard application is needed alongside the existing consumer-facing website.
 
 ## Goal
 
-1. Rename all package prefixes from `@mp` to `@borg`
+1. Rename all package prefixes from `@mp` to `@job-board`
 2. Add convenient local development scripts for running individual apps
 3. Create a new B2B dashboard Next.js application
 
@@ -60,16 +60,16 @@ packages/
 
 ### 1. **Rename Package Prefix**
 
-Update all package names from `@mp/*` to `@borg/*`:
+Update all package names from `@mp/*` to `@job-board/*`:
 
 | Current | New |
 |---------|-----|
-| `@mp/api` | `@borg/api` |
-| `@mp/web` | `@borg/web` |
-| `@mp/types` | `@borg/types` |
-| `@mp/backend-lib` | `@borg/backend-lib` |
-| `@mp/eslint-config-backend` | `@borg/eslint-config-backend` |
-| `@mp/eslint-config-frontend` | `@borg/eslint-config-frontend` |
+| `@mp/api` | `@job-board/api` |
+| `@mp/web` | `@job-board/web` |
+| `@mp/types` | `@job-board/types` |
+| `@mp/backend-lib` | `@job-board/backend-lib` |
+| `@mp/eslint-config-backend` | `@job-board/eslint-config-backend` |
+| `@mp/eslint-config-frontend` | `@job-board/eslint-config-frontend` |
 
 Update all references:
 - All `package.json` files (name field and dependencies)
@@ -84,9 +84,9 @@ Add convenience scripts to root `package.json` for running individual apps:
 {
   "scripts": {
     "dev": "turbo dev",
-    "dev:api": "turbo dev --filter=@borg/api",
-    "dev:web": "turbo dev --filter=@borg/web",
-    "dev:dashboard": "turbo dev --filter=@borg/dashboard"
+    "dev:api": "turbo dev --filter=@job-board/api",
+    "dev:web": "turbo dev --filter=@job-board/web",
+    "dev:dashboard": "turbo dev --filter=@job-board/dashboard"
   }
 }
 ```
@@ -98,8 +98,8 @@ Create a new Next.js application at `apps/dashboard`:
 - **Purpose**: B2B dashboard for business clients/admin functionality
 - **Tech Stack**: Next.js 15 with App Router, TypeScript, Tailwind CSS
 - **Port**: 3002 (to avoid conflicts with web on 3000 and api on 3001)
-- **Package Name**: `@borg/dashboard`
-- **Configuration**: Use `@borg/eslint-config-frontend` and `@borg/types`
+- **Package Name**: `@job-board/dashboard`
+- **Configuration**: Use `@job-board/eslint-config-frontend` and `@job-board/types`
 
 #### Dashboard Structure
 ```
@@ -132,7 +132,7 @@ apps/dashboard/
 
 ## Expected Output
 
-- [ ] All packages renamed from `@mp/*` to `@borg/*`
+- [ ] All packages renamed from `@mp/*` to `@job-board/*`
 - [ ] All import statements updated
 - [ ] Root `package.json` has individual dev scripts
 - [ ] New `apps/dashboard/` created and configured

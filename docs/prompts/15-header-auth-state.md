@@ -270,7 +270,7 @@ import { FiGrid } from 'react-icons/fi';  // Add for Dashboard icon
 - [ ] No flash of wrong UI state on page load (hydration handled)
 - [ ] Center navigation only shows Home and Pricing
 - [ ] Dashboard accessible via user dropdown when logged in
-- [ ] Type-check passes: `pnpm type-check --filter=@borg/dashboard`
+- [ ] Type-check passes: `pnpm type-check --filter=@job-board/dashboard`
 
 ## Technical Notes
 

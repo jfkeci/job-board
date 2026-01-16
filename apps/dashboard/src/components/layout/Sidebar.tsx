@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Flex, IconButton, VStack, Text, Tooltip } from '@borg/ui';
+import { Box, Flex, IconButton, VStack, Text, Tooltip } from '@job-board/ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -34,7 +34,10 @@ const settingsItems = [
   { href: '/help', label: 'Help', icon: FiHelpCircle },
 ];
 
-export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: SidebarProps) {
+export function Sidebar({
+  collapsed: controlledCollapsed,
+  onCollapsedChange,
+}: SidebarProps) {
   const pathname = usePathname();
   const [internalCollapsed, setInternalCollapsed] = useState(false);
 
@@ -134,11 +137,17 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
                     bg={isActive(item.href) ? 'primary.50' : 'transparent'}
                     color={isActive(item.href) ? 'primary.600' : 'neutral.600'}
                     _hover={{
-                      bg: isActive(item.href) ? 'primary.100' : 'glass.light.surfaceHover',
+                      bg: isActive(item.href)
+                        ? 'primary.100'
+                        : 'glass.light.surfaceHover',
                     }}
                     _dark={{
-                      bg: isActive(item.href) ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
-                      color: isActive(item.href) ? 'primary.300' : 'neutral.300',
+                      bg: isActive(item.href)
+                        ? 'rgba(99, 102, 241, 0.2)'
+                        : 'transparent',
+                      color: isActive(item.href)
+                        ? 'primary.300'
+                        : 'neutral.300',
                       _hover: {
                         bg: isActive(item.href)
                           ? 'rgba(99, 102, 241, 0.25)'
@@ -149,7 +158,11 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
                   >
                     <Box as={item.icon} boxSize={5} flexShrink={0} />
                     {!collapsed && (
-                      <Text whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
+                      <Text
+                        whiteSpace="nowrap"
+                        overflow="hidden"
+                        textOverflow="ellipsis"
+                      >
                         {item.label}
                       </Text>
                     )}
@@ -199,11 +212,17 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
                     bg={isActive(item.href) ? 'primary.50' : 'transparent'}
                     color={isActive(item.href) ? 'primary.600' : 'neutral.600'}
                     _hover={{
-                      bg: isActive(item.href) ? 'primary.100' : 'glass.light.surfaceHover',
+                      bg: isActive(item.href)
+                        ? 'primary.100'
+                        : 'glass.light.surfaceHover',
                     }}
                     _dark={{
-                      bg: isActive(item.href) ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
-                      color: isActive(item.href) ? 'primary.300' : 'neutral.300',
+                      bg: isActive(item.href)
+                        ? 'rgba(99, 102, 241, 0.2)'
+                        : 'transparent',
+                      color: isActive(item.href)
+                        ? 'primary.300'
+                        : 'neutral.300',
                       _hover: {
                         bg: isActive(item.href)
                           ? 'rgba(99, 102, 241, 0.25)'
@@ -214,7 +233,11 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
                   >
                     <Box as={item.icon} boxSize={5} flexShrink={0} />
                     {!collapsed && (
-                      <Text whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
+                      <Text
+                        whiteSpace="nowrap"
+                        overflow="hidden"
+                        textOverflow="ellipsis"
+                      >
                         {item.label}
                       </Text>
                     )}

@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: 'Borg Dashboard',
+  title: 'job-board Dashboard',
   description: 'B2B Dashboard for business clients',
 };
 

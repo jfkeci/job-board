@@ -31,7 +31,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Borg API')
+    .setTitle('job-board API')
     .setDescription('Job advertisement platform API')
     .setVersion('1.0')
     .addBearerAuth(

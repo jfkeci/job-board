@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 
-import { Category, DatabaseService, Location, Tenant } from '@borg/db';
+import { Category, DatabaseService, Location, Tenant } from '@job-board/db';
 
 import {
   categoriesData,
@@ -31,12 +31,13 @@ export class SeederService {
    * Get current seed status (record counts)
    */
   async getStatus(): Promise<SeederStatus> {
-    const [tenants, categories, categoryTranslations, locations] = await Promise.all([
-      this.db.tenants.count(),
-      this.db.categories.count(),
-      this.db.categoryTranslations.count(),
-      this.db.locations.count(),
-    ]);
+    const [tenants, categories, categoryTranslations, locations] =
+      await Promise.all([
+        this.db.tenants.count(),
+        this.db.categories.count(),
+        this.db.categoryTranslations.count(),
+        this.db.locations.count(),
+      ]);
 
     return { tenants, categories, categoryTranslations, locations };
   }
@@ -81,7 +82,9 @@ export class SeederService {
           this.logger.debug(`Truncated table: ${table}`);
         } catch (error) {
           // Table might not exist, skip
-          this.logger.warn(`Could not truncate table ${table}: ${(error as Error).message}`);
+          this.logger.warn(
+            `Could not truncate table ${table}: ${(error as Error).message}`,
+          );
         }
       }
 
@@ -113,7 +116,9 @@ export class SeederService {
   async seedTenants(): Promise<Tenant[]> {
     const existing = await this.db.tenants.find();
     if (existing.length > 0) {
-      this.logger.log(`Tenants already seeded (${existing.length} found), skipping...`);
+      this.logger.log(
+        `Tenants already seeded (${existing.length} found), skipping...`,
+      );
       return existing;
     }
 
@@ -128,7 +133,9 @@ export class SeederService {
       });
       const saved = await this.db.tenants.save(tenant);
       tenants.push(saved);
-      this.logger.debug(`Created tenant: ${saved.name} (${saved.code}) - ${saved.id}`);
+      this.logger.debug(
+        `Created tenant: ${saved.name} (${saved.code}) - ${saved.id}`,
+      );
     }
 
     this.logger.log(`Seeded ${tenants.length} tenants`);
@@ -141,7 +148,9 @@ export class SeederService {
   async seedCategories(): Promise<Category[]> {
     const existing = await this.db.categories.find();
     if (existing.length > 0) {
-      this.logger.log(`Categories already seeded (${existing.length} found), skipping...`);
+      this.logger.log(
+        `Categories already seeded (${existing.length} found), skipping...`,
+      );
       return existing;
     }
 
@@ -200,7 +209,9 @@ export class SeederService {
   async seedLocations(): Promise<Location[]> {
     const existing = await this.db.locations.find();
     if (existing.length > 0) {
-      this.logger.log(`Locations already seeded (${existing.length} found), skipping...`);
+      this.logger.log(
+        `Locations already seeded (${existing.length} found), skipping...`,
+      );
       return existing;
     }
 
@@ -221,7 +232,11 @@ export class SeederService {
       }
 
       for (const locationData of tenantLocations) {
-        const location = await this.createLocationWithChildren(locationData, tenant.id, null);
+        const location = await this.createLocationWithChildren(
+          locationData,
+          tenant.id,
+          null,
+        );
         locations.push(location);
       }
     }
@@ -252,7 +267,11 @@ export class SeederService {
     // Create children recursively
     if (data.children) {
       for (const childData of data.children) {
-        await this.createLocationWithChildren(childData, tenantId, savedLocation.id);
+        await this.createLocationWithChildren(
+          childData,
+          tenantId,
+          savedLocation.id,
+        );
       }
     }
 

@@ -38,7 +38,7 @@ notes: B2B clients manage job listings for their organization. Jobs have a lifec
 
 ## Context
 
-B2B clients (employers) need to create and manage job listings for their organization. Jobs have a lifecycle that goes from draft creation through publication to expiration or manual closure. The `Job` entity already exists in `@borg/db` with all necessary fields including tier-based pricing, salary information, and status tracking.
+B2B clients (employers) need to create and manage job listings for their organization. Jobs have a lifecycle that goes from draft creation through publication to expiration or manual closure. The `Job` entity already exists in `@job-board/db` with all necessary fields including tier-based pricing, salary information, and status tracking.
 
 This is a core revenue-generating feature - employers pay to publish job listings based on tier selection.
 
@@ -49,11 +49,11 @@ Create a complete Jobs module in `apps/api` that provides:
 - Job lifecycle management (draft → publish → close/expire)
 - Organization-scoped job access (users can only manage their org's jobs)
 - Swagger documentation following established patterns
-- Exception handling using `@borg/backend-lib`
+- Exception handling using `@job-board/backend-lib`
 
 ## Current State
 
-### Job Entity (exists in @borg/db)
+### Job Entity (exists in @job-board/db)
 
 ```typescript
 @Entity('jobs')
@@ -142,7 +142,7 @@ enum PromotionType {
 
 ### DatabaseService
 
-The `DatabaseService` in `@borg/db` provides `db.jobs` repository.
+The `DatabaseService` in `@job-board/db` provides `db.jobs` repository.
 
 ## Requirements
 
@@ -694,7 +694,7 @@ if (!user.organizationId) {
 Use existing `ApiExceptions` factory methods:
 
 ```typescript
-import { ApiExceptions } from '@borg/backend-lib';
+import { ApiExceptions } from '@job-board/backend-lib';
 
 // Available exceptions:
 ApiExceptions.jobNotFound()              // 404 - Job not found
@@ -754,7 +754,7 @@ For status-related conflicts, use `ApiExceptions.conflict()` with descriptive me
 - [ ] Proper status transitions enforced
 - [ ] Swagger documentation complete with examples
 - [ ] All exceptions use ApiExceptions factory
-- [ ] Type-check passes: `pnpm type-check --filter=@borg/api`
+- [ ] Type-check passes: `pnpm type-check --filter=@job-board/api`
 - [ ] API starts without errors
 
 ## Technical Notes

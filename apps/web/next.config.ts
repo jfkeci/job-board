@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@borg/types'],
+  transpilePackages: ['@job-board/types'],
 };
 
 export default nextConfig;

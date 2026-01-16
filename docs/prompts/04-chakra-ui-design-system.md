@@ -23,7 +23,7 @@ dependencies:
 blocks: []
 related_specs: []
 related_planning: []
-notes: Successfully created @borg/ui package with glassmorphism theme, brand color customization, and pre-built Glass components. Package builds successfully and exports all components, utilities, and types.
+notes: Successfully created @job-board/ui package with glassmorphism theme, brand color customization, and pre-built Glass components. Package builds successfully and exports all components, utilities, and types.
 ---
 
 # 04 - Chakra UI Glassmorphism Design System Package

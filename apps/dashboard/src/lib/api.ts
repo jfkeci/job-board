@@ -106,4 +106,105 @@ export const authApi = {
   me: () => apiClient<User>('/auth/me'),
 };
 
+// ============================================================================
+// Applications API
+// ============================================================================
+
+export type ApplicationStatus =
+  | 'SUBMITTED'
+  | 'REVIEWING'
+  | 'SHORTLISTED'
+  | 'INTERVIEW'
+  | 'OFFERED'
+  | 'REJECTED'
+  | 'WITHDRAWN';
+
+export interface Application {
+  id: string;
+  jobId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string | null;
+  coverLetter: string | null;
+  linkedinUrl: string | null;
+  portfolioUrl: string | null;
+  resumeUrl: string | null;
+  status: ApplicationStatus;
+  notes: string | null;
+  submittedAt: string;
+  reviewedAt: string | null;
+}
+
+export interface ApplicationsResponse {
+  data: Application[];
+  total: number;
+}
+
+export const applicationsApi = {
+  getByJob: (jobId: string) =>
+    apiClient<ApplicationsResponse>(`/applications/jobs/${jobId}`),
+
+  updateStatus: (applicationId: string, status: ApplicationStatus, notes?: string) =>
+    apiClient<Application>(`/applications/${applicationId}/status`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status, notes }),
+    }),
+};
+
+// ============================================================================
+// Job Analytics API
+// ============================================================================
+
+export interface JobAnalytics {
+  viewsOverTime: Array<{ date: string; views: number }>;
+  applicationsOverTime: Array<{ date: string; applications: number }>;
+  totalViews: number;
+  totalApplications: number;
+  conversionRate: number;
+  averageTimeOnPage: number;
+  sourceBreakdown: Array<{ source: string; count: number; percentage: number }>;
+}
+
+export const analyticsApi = {
+  getJobAnalytics: (jobId: string, period: '7d' | '30d' | '90d' = '30d') =>
+    apiClient<JobAnalytics>(`/analytics/jobs/${jobId}?period=${period}`),
+};
+
+// ============================================================================
+// Organization API
+// ============================================================================
+
+export interface Organization {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  website: string | null;
+  industry: string | null;
+  size: string | null;
+  logoUrl: string | null;
+  isVerified: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface UpdateOrganizationData {
+  name?: string;
+  description?: string;
+  website?: string;
+  industry?: string;
+  size?: string;
+}
+
+export const organizationsApi = {
+  get: (id: string) => apiClient<Organization>(`/organizations/${id}`),
+
+  update: (id: string, data: UpdateOrganizationData) =>
+    apiClient<Organization>(`/organizations/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    }),
+};
+
 export { ApiClientError };

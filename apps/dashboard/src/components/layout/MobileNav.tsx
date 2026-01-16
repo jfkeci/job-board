@@ -12,7 +12,7 @@ import {
   Box,
   Text,
   Divider,
-} from '@borg/ui';
+} from '@job-board/ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -51,7 +51,15 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
   const isActive = (href: string) => pathname === href;
 
-  const NavItem = ({ href, label, icon: Icon }: { href: string; label: string; icon: React.ElementType }) => (
+  const NavItem = ({
+    href,
+    label,
+    icon: Icon,
+  }: {
+    href: string;
+    label: string;
+    icon: React.ElementType;
+  }) => (
     <Link href={href} onClick={onClose}>
       <Flex
         align="center"
@@ -71,7 +79,9 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           bg: isActive(href) ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
           color: isActive(href) ? 'primary.300' : 'neutral.300',
           _hover: {
-            bg: isActive(href) ? 'rgba(99, 102, 241, 0.25)' : 'glass.dark.surfaceHover',
+            bg: isActive(href)
+              ? 'rgba(99, 102, 241, 0.25)'
+              : 'glass.dark.surfaceHover',
           },
         }}
       >
@@ -108,7 +118,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               B
             </Box>
             <Text fontSize="lg" fontWeight="bold">
-              Borg Dashboard
+              job-board Dashboard
             </Text>
           </Flex>
         </DrawerHeader>

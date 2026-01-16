@@ -47,7 +47,7 @@ Transform the homepage into a proper job advertisement platform landing page tha
 Current implementation shows:
 - "MP Clone" title
 - Technical stack information
-- Example User JSON from @borg/types
+- Example User JSON from @job-board/types
 - Grid showing Frontend/Backend tech
 
 This does not reflect the job board platform purpose at all.

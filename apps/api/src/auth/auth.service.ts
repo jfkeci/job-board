@@ -2,15 +2,10 @@ import { Injectable } from '@nestjs/common';
 import * as argon2 from 'argon2';
 import { Request } from 'express';
 
-import { ApiExceptions } from '@borg/backend-lib';
-import { DatabaseService, User, UserRole } from '@borg/db';
+import { ApiExceptions } from '@job-board/backend-lib';
+import { DatabaseService, User, UserRole } from '@job-board/db';
 
-import {
-  AuthResponseDto,
-  LoginDto,
-  RegisterDto,
-  UserResponseDto,
-} from './dto';
+import { AuthResponseDto, LoginDto, RegisterDto, UserResponseDto } from './dto';
 import { RequestUser } from './interfaces';
 import { SessionService } from './session.service';
 import { TokenService } from './token.service';
@@ -64,8 +59,14 @@ export class AuthService {
     await this.db.userProfiles.save(profile);
 
     // Create session and tokens
-    const session = await this.sessionService.createSession(savedUser.id, request);
-    const accessToken = this.tokenService.generateAccessToken(savedUser, session.id);
+    const session = await this.sessionService.createSession(
+      savedUser.id,
+      request,
+    );
+    const accessToken = this.tokenService.generateAccessToken(
+      savedUser,
+      session.id,
+    );
     const refreshToken = this.tokenService.generateRefreshToken();
     await this.tokenService.storeRefreshToken(session.id, refreshToken);
 
@@ -128,7 +129,8 @@ export class AuthService {
    */
   async refresh(refreshToken: string): Promise<AuthResponseDto> {
     // Validate refresh token
-    const sessionId = await this.tokenService.validateRefreshToken(refreshToken);
+    const sessionId =
+      await this.tokenService.validateRefreshToken(refreshToken);
 
     if (!sessionId) {
       throw ApiExceptions.refreshTokenInvalid();
@@ -206,7 +208,10 @@ export class AuthService {
   /**
    * Verify password against hash
    */
-  private async verifyPassword(hash: string, password: string): Promise<boolean> {
+  private async verifyPassword(
+    hash: string,
+    password: string,
+  ): Promise<boolean> {
     return argon2.verify(hash, password);
   }
 

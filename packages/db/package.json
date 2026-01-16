@@ -1,5 +1,5 @@
 {
-  "name": "@borg/db",
+  "name": "@job-board/db",
   "version": "0.0.0",
   "private": true,
   "main": "./dist/index.js",
@@ -17,7 +17,9 @@
       }
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -28,7 +30,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@borg/config": "workspace:*",
+    "@job-board/config": "workspace:*",
     "typeorm": "^0.3.20"
   },
   "peerDependencies": {
@@ -36,7 +38,7 @@
     "@nestjs/typeorm": "^10.0.0"
   },
   "devDependencies": {
-    "@borg/eslint-config-backend": "workspace:*",
+    "@job-board/eslint-config-backend": "workspace:*",
     "@nestjs/common": "^10.4.15",
     "@nestjs/typeorm": "^10.0.2",
     "@types/node": "^22.10.5",

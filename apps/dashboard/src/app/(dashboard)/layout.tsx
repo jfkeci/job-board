@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Flex, Center, Spinner } from '@borg/ui';
+import { Box, Flex, Center, Spinner } from '@job-board/ui';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 

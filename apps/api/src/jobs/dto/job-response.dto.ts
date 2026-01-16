@@ -7,7 +7,7 @@ import {
   PromotionType,
   RemoteOption,
   SalaryPeriod,
-} from '@borg/db';
+} from '@job-board/db';
 
 export class JobResponseDto {
   @ApiProperty({

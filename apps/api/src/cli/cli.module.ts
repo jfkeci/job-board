@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { ConfigModule, ConfigService } from '@borg/config';
-import { DatabaseModule, entities } from '@borg/db';
+import { ConfigModule, ConfigService } from '@job-board/config';
+import { DatabaseModule, entities } from '@job-board/db';
 
 import { SeederModule } from '../seeder';
 
@@ -31,11 +31,6 @@ import {
     // Seeder module
     SeederModule,
   ],
-  providers: [
-    DbStatusCommand,
-    DbSeedCommand,
-    DbPurgeCommand,
-    DbResetCommand,
-  ],
+  providers: [DbStatusCommand, DbSeedCommand, DbPurgeCommand, DbResetCommand],
 })
 export class CliModule {}

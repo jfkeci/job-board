@@ -1,4 +1,4 @@
-import { UserRole } from '@borg/db';
+import { UserRole } from '@job-board/db';
 
 export interface JwtPayload {
   sub: string; // User ID

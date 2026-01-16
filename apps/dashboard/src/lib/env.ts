@@ -14,7 +14,7 @@ const envSchema = z.object({
     .uuid('NEXT_PUBLIC_DEFAULT_TENANT_ID must be a valid UUID'),
 
   // Optional with defaults
-  NEXT_PUBLIC_APP_NAME: z.string().default('Borg Dashboard'),
+  NEXT_PUBLIC_APP_NAME: z.string().default('job-board Dashboard'),
   NEXT_PUBLIC_APP_ENV: z
     .enum(['development', 'staging', 'production'])
     .default('development'),
@@ -35,7 +35,9 @@ function validateEnv() {
   if (!parsed.success) {
     console.error('❌ Invalid environment variables:');
     console.error(parsed.error.flatten().fieldErrors);
-    throw new Error('Invalid environment variables. Check the console for details.');
+    throw new Error(
+      'Invalid environment variables. Check the console for details.',
+    );
   }
 
   return parsed.data;

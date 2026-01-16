@@ -4,7 +4,7 @@ import type {
   CreateJobDto,
   UpdateJobDto,
   PublishJobDto,
-} from '@borg/types';
+} from '@job-board/types';
 
 import { apiClient } from '@/lib/api';
 

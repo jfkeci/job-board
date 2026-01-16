@@ -72,7 +72,7 @@ Create a robust environment variable setup for the dashboard frontend with:
 4. **Environment variables to support**
    - `NEXT_PUBLIC_API_URL` - Backend API base URL (required)
    - `NEXT_PUBLIC_DEFAULT_TENANT_ID` - Default tenant UUID (required for MVP)
-   - `NEXT_PUBLIC_APP_NAME` - Application display name (optional, default: "Borg Dashboard")
+   - `NEXT_PUBLIC_APP_NAME` - Application display name (optional, default: "job-board Dashboard")
    - `NEXT_PUBLIC_APP_ENV` - Environment indicator (optional, default: "development")
 
 ## Constraints
@@ -80,7 +80,7 @@ Create a robust environment variable setup for the dashboard frontend with:
 - Must use `NEXT_PUBLIC_` prefix for client-side variables (Next.js requirement)
 - Must not break existing functionality
 - Keep the config module lightweight (no external dependencies except Zod)
-- Follow existing project patterns from `@borg/config` package
+- Follow existing project patterns from `@job-board/config` package
 
 ## Expected Output
 
@@ -116,15 +116,15 @@ apps/dashboard/
 
 ## Example/Reference
 
-Reference the `@borg/config` package for Zod validation patterns:
+Reference the `@job-board/config` package for Zod validation patterns:
 ```typescript
-// Example pattern from @borg/config
+// Example pattern from @job-board/config
 import { z } from 'zod';
 
 const envSchema = z.object({
   NEXT_PUBLIC_API_URL: z.string().url(),
   NEXT_PUBLIC_DEFAULT_TENANT_ID: z.string().uuid(),
-  NEXT_PUBLIC_APP_NAME: z.string().default('Borg Dashboard'),
+  NEXT_PUBLIC_APP_NAME: z.string().default('job-board Dashboard'),
   NEXT_PUBLIC_APP_ENV: z.enum(['development', 'staging', 'production']).default('development'),
 });
 

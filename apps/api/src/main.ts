@@ -2,11 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { ConfigService } from '@borg/config';
+import { ConfigService } from '@job-board/config';
 import {
   LoggerService,
   createValidationExceptionFactory,
-} from '@borg/backend-lib';
+} from '@job-board/backend-lib';
 
 import { AppModule } from './app.module';
 
@@ -33,7 +33,7 @@ async function bootstrap() {
   // Configure CORS
   app.enableCors({
     origin: isProduction
-      ? [/\.borg\.com$/] // Restrict to borg.com domains in production
+      ? [/\.job-board\.com$/] // Restrict to job-board.com domains in production
       : true, // Allow all origins in development
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -61,7 +61,7 @@ async function bootstrap() {
 
   // Configure Swagger documentation
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Borg API')
+    .setTitle('job-board API')
     .setDescription('Multi-tenant Job Board REST API')
     .setVersion('1.0.0')
     .addBearerAuth(

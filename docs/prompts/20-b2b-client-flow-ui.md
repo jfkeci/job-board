@@ -82,7 +82,7 @@ Implement the complete B2B client flow UI so a user can:
 - `use-organizations.ts` - useOrganization, useCreateOrganization, useUpdateOrganization, useDeleteOrganization
 - `use-jobs.ts` - useJobs, useJob, useCreateJob, useUpdateJob, useDeleteJob, usePublishJob, useCloseJob
 
-**Shared Types** (`@borg/types`):
+**Shared Types** (`@job-board/types`):
 - Organization, CreateOrganizationDto, UpdateOrganizationDto
 - Job, JobListItem, CreateJobDto, UpdateJobDto, PublishJobDto
 - JobStatus, JobType (EmploymentType), ExperienceLevel, RemoteOption (RemotePolicy), JobTier
@@ -256,8 +256,8 @@ Replace mock data with real API data.
 - **Don't modify** backend API code
 - **Don't modify** existing services or hooks (they're complete)
 - **Don't modify** auth flow (it's working)
-- **Use existing** `@borg/ui` components (GlassCard, GlassButton, GlassInput, etc.)
-- **Use existing** shared types from `@borg/types`
+- **Use existing** `@job-board/ui` components (GlassCard, GlassButton, GlassInput, etc.)
+- **Use existing** shared types from `@job-board/types`
 - **Follow existing** patterns in dashboard codebase
 - **Maintain** mobile responsiveness
 
@@ -291,7 +291,7 @@ Replace mock data with real API data.
 - [ ] All forms show validation errors
 - [ ] Loading states displayed during API calls
 - [ ] Error states handled gracefully
-- [ ] Type-check passes: `pnpm type-check --filter=@borg/dashboard`
+- [ ] Type-check passes: `pnpm type-check --filter=@job-board/dashboard`
 - [ ] Build succeeds: `pnpm build`
 
 ## Technical Notes
@@ -313,7 +313,7 @@ import type {
   ExperienceLevel,
   RemoteOption,      // Note: API may use RemotePolicy
   JobTier,
-} from '@borg/types';
+} from '@job-board/types';
 ```
 
 ### Hook Usage Examples
